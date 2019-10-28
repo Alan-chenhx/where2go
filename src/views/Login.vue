@@ -11,7 +11,7 @@
               <p slot="description" class="description">Hi There</p>
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>face</md-icon>
-                <label>First Name...</label>
+                <label>User Name...</label>
                 <md-input v-model="username"></md-input>
               </md-field>
               <md-field class="md-form-group" slot="inputs">
@@ -22,7 +22,7 @@
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>lock_outline</md-icon>
                 <label>Password...</label>
-                <md-input v-model="password"></md-input>
+                <md-input type="password" v-model="password"></md-input>
               </md-field>
               <md-button slot="footer" class="md-simple md-success md-lg" @click="login">Log in</md-button>
               <md-button slot="footer" class="md-simple md-success md-lg" @click="register">Register</md-button>
