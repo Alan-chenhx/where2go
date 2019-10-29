@@ -93,27 +93,22 @@ export default {
         username: this.username,
         password: password_sha
       };
+    console.log(this.username);
+        console.log(password);
+     this.$http
+            .post("/login.php", {username: this.username, password: password_sha})
+      .then(response => {
+        if (response.data.code == 1) {
+          //let expireDays = 1000 * 60 * 60 * 24 * 15;
+          //this.setCookie("session", response.data.session, expireDays);
+         // this.getUserInfo();
+          //this.$router.push("/profile");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
-      // this.$http
-      //   .post("/login.php", { param: loginParam })
-      //   .then(response => {
-      //     if (response.data.code == 1) {
-      //       let expireDays = 1000 * 60 * 60 * 24 * 15;
-      //       this.setCookie("session", response.data.session, expireDays);
-      //       this.getUserInfo();
-      //       this.$router.push("/profile");
-      //     }
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
-
-      setTimeout(() => {
-        let expireDays = 1000 * 60 * 60 * 24 * 15;
-        this.setCookie("session", "testuser...", expireDays);
-        this.getUserInfo();
-        this.$router.push("/profile");
-      }, 1500);
     },
 
     register() {
@@ -130,16 +125,17 @@ export default {
         password: password_sha
       };
 
-      // this.$http
-      //   .post("/Register.php", { param: registerParam })
-      //   .then(response => {
-      //     if (response.data.code == 1) {
-      //       this.popupModal = true;
-      //     }
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
+        console.log(registerParam);
+    this.$http
+            .post("/register.php", {username: this.username, email: this.email, password: password_sha})
+      .then(response => {
+        if (response.data.code == 1) {
+          this.popupModal = true;
+        }
+      })
+     .catch(error => {
+        console.log(error);
+      });
 
       this.popupModal = true;
     },
