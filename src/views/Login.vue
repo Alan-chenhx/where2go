@@ -38,7 +38,7 @@
               </template>
 
               <template slot="body">
-                <p class="text-primary">You have successfully registered!</p>
+                <p class="text-primary">{{ popupInfo }}</p>
               </template>
             </modal>
           </div>
@@ -60,6 +60,7 @@ export default {
   data() {
     return {
       popupModal: false,
+      popupInfo: null,
       username: null,
       password: null,
       email: null
@@ -93,21 +94,25 @@ export default {
         username: this.username,
         password: password_sha
       };
-     this.$http
-            .post("/login.php", {username: this.username, password: password_sha})
-      .then(response => {
-        if (response.data.success == 1) {
+      this.$http
+        .post("/login.php", { username: this.username, password: password_sha })
+        .then(response => {
+          if (response.data.success == 1) {
             let expireDays = 1000 * 60 * 60 * 24 * 15;
             console.log("success");
             this.setCookie("session", response.data.session, expireDays);
             this.getUserInfo();
             this.$router.push("/profile");
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
+          } else {
+            if (response.data.code == 1) {
+              this.popupModal = true;
+              this.popupInfo = "Incorrent User Name or Password!"
+            }
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
 
     register() {
@@ -124,17 +129,22 @@ export default {
         password: password_sha
       };
 
-        console.log(registerParam);
-    this.$http
-            .post("/register.php", {username: this.username, email: this.email, password: password_sha})
-      .then(response => {
-        if (response.data.code == 1) {
-          this.popupModal = true;
-        }
-      })
-     .catch(error => {
-        console.log(error);
-      });
+      console.log(registerParam);
+      this.$http
+        .post("/register.php", {
+          username: this.username,
+          email: this.email,
+          password: password_sha
+        })
+        .then(response => {
+          if (response.data.code == 1) {
+            this.popupModal = true;
+            this.popupInfo = "You have successfully registered!";
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
       this.popupModal = true;
     },
@@ -145,22 +155,28 @@ export default {
     },
 
     getUserInfo() {
-      let userInfo = {
-        username: "Doterlin",
-        uid: "10000",
-        portrait: require("@/assets/img/profile/1.jpg")
-      };
-      this.$http.get("/getuser.php").then((response) => {
-        //Success
-        console.log(response.data.uname);
-        console.log(response.data.usid);
-        console.log(response.data.email);
-        console.log(response.data.phone);
-        console.log(response.data.tag);
-      }).catch(error => {
-           console.log(error);
-      });
-      this.$store.commit("updateUserInfo", userInfo);
+      this.$http
+        .get("/getuser.php")
+        .then(response => {
+          //Success
+          console.log(response.data.uname);
+          console.log(response.data.usid);
+          console.log(response.data.email);
+          console.log(response.data.phone);
+          console.log(response.data.tag);
+          let userInfo = {
+            username: response.data.uname,
+            uid: response.data.usid,
+            email: response.data.email,
+            phone: response.data.phone,
+            tag: response.data.tag,
+            portrait: require("@/assets/img/profile/1.jpg")
+          };
+          this.$store.commit("updateUserInfo", userInfo);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };

@@ -31,6 +31,9 @@ const store = new Vuex.Store({
     userInfo: {
       username: "USER",
       uid: null,
+      email: null,
+      phone: "",
+      tag: "",
       portrait: null
     }
   },
