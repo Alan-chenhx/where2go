@@ -93,16 +93,15 @@ export default {
         username: this.username,
         password: password_sha
       };
-    console.log(this.username);
-        console.log(password);
      this.$http
             .post("/login.php", {username: this.username, password: password_sha})
       .then(response => {
-        if (response.data.code == 1) {
-          //let expireDays = 1000 * 60 * 60 * 24 * 15;
-          //this.setCookie("session", response.data.session, expireDays);
-         // this.getUserInfo();
-          //this.$router.push("/profile");
+        if (response.data.success == 1) {
+            let expireDays = 1000 * 60 * 60 * 24 * 15;
+            console.log("success");
+            this.setCookie("session", response.data.session, expireDays);
+            this.getUserInfo();
+            this.$router.push("/profile");
         }
       })
       .catch(error => {
@@ -151,15 +150,16 @@ export default {
         uid: "10000",
         portrait: require("@/assets/img/profile/1.jpg")
       };
-
-      // this.$http.get(url, {
-      //   "params":{}
-      // }).then((response) => {
-      //   //Success
-      // }.catch(error => {
-      //      console.log(error);
-      // });
-
+      this.$http.get("/getuser.php").then((response) => {
+        //Success
+        console.log(response.data.uname);
+        console.log(response.data.usid);
+        console.log(response.data.email);
+        console.log(response.data.phone);
+        console.log(response.data.tag);
+      }).catch(error => {
+           console.log(error);
+      });
       this.$store.commit("updateUserInfo", userInfo);
     }
   }
