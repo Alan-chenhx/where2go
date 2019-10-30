@@ -15,22 +15,15 @@
                   />
                 </div>
                 <div class="name">
-                  <h3 class="title">{{$store.state.userInfo.username}}</h3>
+                  <h3 class="title">{{ $store.state.userInfo.username }}</h3>
                 </div>
               </div>
             </div>
           </div>
           <div class="description text-center">
-            <p>test.</p>
-          </div>
-          <div class="profile-tabs">
-            <tabs
-              :tab-name="['Studio', 'Work', 'Favorite']"
-              :tab-icon="['camera', 'palette', 'favorite']"
-              plain
-              nav-pills-icons
-              color-button="success"
-            ></tabs>
+            <p>{{ $store.state.userInfo.email }}</p>
+            <p>{{ $store.state.userInfo.phone }}</p>
+            <p>{{ $store.state.userInfo.tag }}</p>
           </div>
         </div>
       </div>
