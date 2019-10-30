@@ -90,10 +90,6 @@ export default {
       //let password_sha = hex_sha1(hex_sha1( this.password ));
       let password_sha = this.password;
 
-      let loginParam = {
-        username: this.username,
-        password: password_sha
-      };
       this.$http
         .post("/login.php", { username: this.username, password: password_sha })
         .then(response => {
@@ -106,7 +102,7 @@ export default {
           } else {
             if (response.data.code == 1) {
               this.popupModal = true;
-              this.popupInfo = "Incorrent User Name or Password!"
+              this.popupInfo = "Incorrent User Name or Password!";
             }
           }
         })
