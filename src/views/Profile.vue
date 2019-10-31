@@ -20,10 +20,30 @@
               </div>
             </div>
           </div>
-          <div class="description text-center">
+          <div>
             <p>{{ $store.state.userInfo.email }}</p>
             <p>{{ $store.state.userInfo.phone }}</p>
             <p>{{ $store.state.userInfo.tag }}</p>
+          </div>
+          <div>
+            <md-table md-card>
+              <md-table-row>
+                <md-table-head>Email</md-table-head>
+                <md-table-cell>{{ $store.state.userInfo.email }}</md-table-cell>
+              </md-table-row>
+              <md-table-row>
+                <md-table-head>Phone</md-table-head>
+                <md-table-cell>{{ $store.state.userInfo.email }}</md-table-cell>
+              </md-table-row>
+              <md-table-row>
+                <md-table-head>Tag</md-table-head>
+                <md-table-cell>
+                  <md-badge class="md-square" md-content="Low Budget" />
+                  <md-badge class="md-square" md-content="Self-driving" />
+                  <md-badge class="md-square" md-content="Adventure Seeker" />
+                </md-table-cell>
+              </md-table-row>
+            </md-table>
           </div>
         </div>
       </div>

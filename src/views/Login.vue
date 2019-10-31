@@ -15,11 +15,6 @@
                 <md-input v-model="username"></md-input>
               </md-field>
               <md-field class="md-form-group" slot="inputs">
-                <md-icon>email</md-icon>
-                <label>Email...</label>
-                <md-input v-model="email" type="email"></md-input>
-              </md-field>
-              <md-field class="md-form-group" slot="inputs">
                 <md-icon>lock_outline</md-icon>
                 <label>Password...</label>
                 <md-input type="password" v-model="password"></md-input>
@@ -62,8 +57,7 @@ export default {
       popupModal: false,
       popupInfo: "",
       username: null,
-      password: null,
-      email: null
+      password: null
     };
   },
   props: {
@@ -81,7 +75,7 @@ export default {
   },
   methods: {
     login() {
-      if (this.username && this.email && this.password) {
+      if (this.username && this.password) {
         this.toLogin();
       }
     },
@@ -110,7 +104,7 @@ export default {
     },
 
     register() {
-      if (this.username && this.email && this.password) {
+      if (this.username && this.password) {
         this.toRegister();
       }
     },
@@ -119,7 +113,6 @@ export default {
       let password_sha = this.password;
       let registerParam = {
         username: this.username,
-        email: this.email,
         password: password_sha
       };
 
@@ -127,7 +120,6 @@ export default {
       this.$http
         .post("/register.php", {
           username: this.username,
-          email: this.email,
           password: password_sha
         })
         .then(response => {
@@ -162,7 +154,7 @@ export default {
             email: response.data.email,
             phone: response.data.phone,
             tag: response.data.tag,
-            portrait: require("@/assets/img/profile/1.jpg")
+            portrait: require("@/assets/img/profile/" + response.data.portrait + ".jpg")
           };
           this.$store.commit("updateUserInfo", userInfo);
         })

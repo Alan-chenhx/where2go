@@ -31,10 +31,10 @@ const store = new Vuex.Store({
     userInfo: {
       username: "USER",
       uid: null,
-      email: null,
+      email: "",
       phone: "",
-      tag: "",
-      portrait: null
+      tag: "000",
+      portrait: "1"
     }
   },
   mutations: {
