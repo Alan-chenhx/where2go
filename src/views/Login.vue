@@ -157,7 +157,7 @@ export default {
         .catch(error => {
           console.log(error);
         });
-        console.log($store.state.userInfo.username);
+        console.log(this.$store.state.userInfo.username);
     }
   }
 };
