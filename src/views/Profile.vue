@@ -75,9 +75,9 @@ export default {
     }
   },
   created() {
-    // if (!this.getCookie("session")) {
-    //   this.$router.push("/login");
-    // }
+    if (!this.getCookie("session")) {
+      this.$router.push("/login");
+    }
   }
 };
 </script>
