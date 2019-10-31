@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       popupModal: false,
-      popupInfo: null,
+      popupInfo: "",
       username: null,
       password: null,
       email: null
@@ -100,10 +100,8 @@ export default {
             this.getUserInfo();
             this.$router.push("/profile");
           } else {
-            if (response.data.code == 1) {
-              this.popupModal = true;
-              this.popupInfo = "Incorrent User Name or Password!";
-            }
+            this.popupInfo = "Incorrent User Name or Password!";
+            this.popupModal = true;
           }
         })
         .catch(error => {
@@ -134,8 +132,8 @@ export default {
         })
         .then(response => {
           if (response.data.code == 1) {
-            this.popupModal = true;
             this.popupInfo = "You have successfully registered!";
+            this.popupModal = true;
           }
         })
         .catch(error => {
