@@ -15,7 +15,7 @@
                   />
                 </div>
                 <div class="name">
-                  <h3 class="title">{{ this.$store.state.userInfo.username }}</h3>
+                  <h3 class="title">{{ username }}</h3>
                 </div>
               </div>
             </div>
@@ -79,6 +79,7 @@ export default {
   bodyClass: "profile-page",
   data() {
     return {
+      username: "",
       email: "",
       phone: "",
       tag0: false,
@@ -151,6 +152,7 @@ export default {
     if (!this.getCookie("session")) {
       this.$router.push("/login");
     }
+    this.username = this.$store.state.userInfo.username;
   }
 };
 </script>

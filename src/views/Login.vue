@@ -153,7 +153,6 @@ export default {
               ".jpg")
           };
           this.$store.commit("updateUserInfo", userInfo);
-          sleep(0.1);
         })
         .catch(error => {
           console.log(error);
