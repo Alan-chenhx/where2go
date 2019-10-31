@@ -15,7 +15,7 @@
                   />
                 </div>
                 <div class="name">
-                  <h3 class="title">{{ username }}</h3>
+                  <h3 class="title">{{ this.$store.state.userInfo.username }}</h3>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@ export default {
     if (!this.getCookie("session")) {
       this.$router.push("/login");
     }
-    this.username = this.$store.state.userInfo.username;
+    console.log(this.$store.state.userInfo.username);
   }
 };
 </script>
