@@ -26,20 +26,27 @@
                 <md-table-head>Email</md-table-head>
                 <md-table-cell v-if="!isEditting">{{ this.$store.state.userInfo.email }}</md-table-cell>
                 <md-table-cell v-else>
-                  <md-input v-model="email"></md-input>
+                  <md-field>
+                    <md-input v-model="email"></md-input>
+                  </md-field>
                 </md-table-cell>
               </md-table-row>
               <md-table-row>
                 <md-table-head>Phone</md-table-head>
                 <md-table-cell v-if="!isEditting">{{ this.$store.state.userInfo.phone }}</md-table-cell>
                 <md-table-cell v-else>
-                  <md-input v-model="phone"></md-input>
+                  <md-field>
+                    <md-input v-model="phone"></md-input>
+                  </md-field>
                 </md-table-cell>
               </md-table-row>
               <md-table-row>
                 <md-table-head>Tag</md-table-head>
                 <md-table-cell v-if="!isEditting">
-                  <md-button class="md-info" v-show="this.$store.state.userInfo.tag[0]=='1'">Self Driving</md-button>
+                  <md-button
+                    class="md-info"
+                    v-show="this.$store.state.userInfo.tag[0]=='1'"
+                  >Self Driving</md-button>
                   <md-button
                     class="md-primary"
                     v-show="this.$store.state.userInfo.tag[1]=='1'"
