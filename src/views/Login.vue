@@ -80,7 +80,7 @@ export default {
       }
     },
 
-    async toLogin() {
+    toLogin() {
       //let password_sha = hex_sha1(hex_sha1( this.password ));
       let password_sha = this.password;
 
@@ -91,9 +91,7 @@ export default {
             let expireDays = 1000 * 60 * 60 * 24 * 15;
             console.log("success");
             this.setCookie("session", response.data.session, expireDays);
-            await this.getUserInfo();
-            console.log(2);
-            this.$router.push("/profile");
+            this.getUserInfo();
           } else {
             this.popupInfo = "Incorrent User Name or Password!";
             this.popupModal = true;
@@ -133,8 +131,8 @@ export default {
       this.$router.go();
     },
 
-    async getUserInfo() {
-      await this.$http
+    getUserInfo() {
+      this.$http
         .get("/getuser.php")
         .then(response => {
           //Success
@@ -154,7 +152,7 @@ export default {
               ".jpg")
           };
           this.$store.commit("updateUserInfo", userInfo);
-          console.log(1);
+          this.$router.push("/profile");
         })
         .catch(error => {
           console.log(error);
