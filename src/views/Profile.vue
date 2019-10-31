@@ -15,7 +15,7 @@
                   />
                 </div>
                 <div class="name">
-                  <h3 class="title">{{ $store.state.userInfo.username }}</h3>
+                  <h3 class="title">{{ this.$store.state.userInfo.username }}</h3>
                 </div>
               </div>
             </div>
@@ -24,14 +24,14 @@
             <md-table md-card>
               <md-table-row>
                 <md-table-head>Email</md-table-head>
-                <md-table-cell v-if="!isEditting">{{ $store.state.userInfo.email }}</md-table-cell>
+                <md-table-cell v-if="!isEditting">{{ this.$store.state.userInfo.email }}</md-table-cell>
                 <md-table-cell v-else>
                   <md-input v-model="email"></md-input>
                 </md-table-cell>
               </md-table-row>
               <md-table-row>
                 <md-table-head>Phone</md-table-head>
-                <md-table-cell v-if="!isEditting">{{ $store.state.userInfo.phone }}</md-table-cell>
+                <md-table-cell v-if="!isEditting">{{ this.$store.state.userInfo.phone }}</md-table-cell>
                 <md-table-cell v-else>
                   <md-input v-model="phone"></md-input>
                 </md-table-cell>
@@ -39,14 +39,14 @@
               <md-table-row>
                 <md-table-head>Tag</md-table-head>
                 <md-table-cell v-if="!isEditting">
-                  <md-button class="md-info" v-show="$store.state.userInfo.tag[0]=='1'">Self Driving</md-button>
+                  <md-button class="md-info" v-show="this.$store.state.userInfo.tag[0]=='1'">Self Driving</md-button>
                   <md-button
                     class="md-primary"
-                    v-show="$store.state.userInfo.tag[1]=='1'"
+                    v-show="this.$store.state.userInfo.tag[1]=='1'"
                   >Adventure Seeker</md-button>
                   <md-button
                     class="md-success"
-                    v-show="$store.state.userInfo.tag[2]=='1'"
+                    v-show="this.$store.state.userInfo.tag[2]=='1'"
                   >Low Budget</md-button>
                 </md-table-cell>
                 <md-table-cell v-else>
