@@ -21,11 +21,6 @@
             </div>
           </div>
           <div>
-            <p>{{ $store.state.userInfo.email }}</p>
-            <p>{{ $store.state.userInfo.phone }}</p>
-            <p>{{ $store.state.userInfo.tag }}</p>
-          </div>
-          <div>
             <md-table md-card>
               <md-table-row>
                 <md-table-head>Email</md-table-head>
@@ -33,14 +28,14 @@
               </md-table-row>
               <md-table-row>
                 <md-table-head>Phone</md-table-head>
-                <md-table-cell>{{ $store.state.userInfo.email }}</md-table-cell>
+                <md-table-cell>{{ $store.state.userInfo.phone }}</md-table-cell>
               </md-table-row>
               <md-table-row>
                 <md-table-head>Tag</md-table-head>
                 <md-table-cell>
-                  <md-badge class="md-square" md-content="Low Budget" />
-                  <md-badge class="md-square" md-content="Self-driving" />
-                  <md-badge class="md-square" md-content="Adventure Seeker" />
+                  <md-button class="md-info" v-show="$store.state.userInfo.tag[0]=='1'">Self Driving</md-button>
+                  <md-button class="md-primary" v-show="$store.state.userInfo.tag[1]=='1'">Adventure Seeker</md-button>
+                  <md-button class="md-success" v-show="$store.state.userInfo.tag[2]=='1'">Low Budget</md-button>
                 </md-table-cell>
               </md-table-row>
             </md-table>
