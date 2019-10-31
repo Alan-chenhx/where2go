@@ -152,7 +152,6 @@ export default {
     if (!this.getCookie("session")) {
       this.$router.push("/login");
     }
-    console.log(this.$store.state.userInfo.username);
   }
 };
 </script>
