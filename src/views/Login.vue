@@ -91,7 +91,7 @@ export default {
             let expireDays = 1000 * 60 * 60 * 24 * 15;
             console.log("success");
             this.setCookie("session", response.data.session, expireDays);
-            await this.getUserInfo();
+            this.getUserInfo();
             console.log(2);
             this.$router.push("/profile");
           } else {
@@ -133,7 +133,7 @@ export default {
       this.$router.go();
     },
 
-    getUserInfo() {
+    async getUserInfo() {
       await this.$http
         .get("/getuser.php")
         .then(response => {
