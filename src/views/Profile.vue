@@ -59,7 +59,7 @@
           </div>
           <div>
             <md-button class="md-block" @click="edit" v-if="!isEditting">Edit</md-button>
-            <md-button class="md-info md-block" @click="update" v-else>Update</md-button>
+            <md-button class="md-info md-block" @click="updateInfo" v-else>Update</md-button>
             <md-button class="md-rose md-block" @click="deleteMyself">Delete</md-button>
           </div>
           <p></p>
@@ -104,7 +104,7 @@ export default {
     edit() {
       this.isEditting = true;
     },
-    update() {
+    updateInfo() {
       let tag = "";
       if (this.tag0) tag += "1";
       else tag += "0";
@@ -122,8 +122,8 @@ export default {
           console.log(error);
         });
       let userInfo = {
-        username: $store.state.userInfo.username,
-        uid: $store.state.userInfo.uid,
+        username: this.$store.state.userInfo.username,
+        uid: this.$store.state.userInfo.uid,
         email: this.email,
         phone: this.phone,
         tag: tag,
@@ -134,7 +134,17 @@ export default {
     },
     deleteMyself() {
       this.$http.post("/delete.php", {});
-      this.$router.push("/login");
+      this.delCookie("session");
+      let userInfo = {
+        username: "USER",
+        uid: null,
+        email: "",
+        phone: "",
+        tag: "000",
+        portrait: require("@/assets/img/profile/1.jpg")
+      };
+      this.$store.commit("updateUserInfo", userInfo);
+      this.$router.push("/");
     }
   },
   created() {

@@ -34,7 +34,7 @@ const store = new Vuex.Store({
       email: "",
       phone: "",
       tag: "000",
-      portrait: "1"
+      portrait: require("@/assets/img/profile/1.jpg")
     }
   },
   mutations: {

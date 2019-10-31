@@ -111,12 +111,6 @@ export default {
 
     toRegister() {
       let password_sha = this.password;
-      let registerParam = {
-        username: this.username,
-        password: password_sha
-      };
-
-      console.log(registerParam);
       this.$http
         .post("/register.php", {
           username: this.username,

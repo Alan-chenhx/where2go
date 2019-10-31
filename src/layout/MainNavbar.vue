@@ -184,7 +184,10 @@ export default {
       let userInfo = {
         username: "USER",
         uid: null,
-        portrait: null
+        email: "",
+        phone: "",
+        tag: "000",
+        portrait: require("@/assets/img/profile/1.jpg")
       };
       this.$store.commit("updateUserInfo", userInfo);
       this.$router.push("/");
