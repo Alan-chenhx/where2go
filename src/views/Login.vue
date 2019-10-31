@@ -153,11 +153,11 @@ export default {
               ".jpg")
           };
           this.$store.commit("updateUserInfo", userInfo);
+          console.log(this.$store.state.userInfo);
         })
         .catch(error => {
           console.log(error);
         });
-        console.log(this.$store.state.userInfo.username);
     }
   }
 };
