@@ -106,11 +106,11 @@ export default {
     },
     update() {
       let tag = "";
-      if (tag0) tag += "1";
+      if (this.tag0) tag += "1";
       else tag += "0";
-      if (tag1) tag += "1";
+      if (this.tag1) tag += "1";
       else tag += "0";
-      if (tag2) tag += "1";
+      if (this.tag2) tag += "1";
       else tag += "0";
       this.$http
         .post("/updateinfo.php", {
@@ -133,32 +133,6 @@ export default {
     if (!this.getCookie("session")) {
       this.$router.push("/login");
     }
-  },
-  getUserInfo() {
-    this.$http
-      .get("/getuser.php")
-      .then(response => {
-        //Success
-        console.log(response.data.uname);
-        console.log(response.data.usid);
-        console.log(response.data.email);
-        console.log(response.data.phone);
-        console.log(response.data.tag);
-        let userInfo = {
-          username: response.data.uname,
-          uid: response.data.usid,
-          email: response.data.email,
-          phone: response.data.phone,
-          tag: response.data.tag,
-          portrait: require("@/assets/img/profile/" +
-            response.data.portrait +
-            ".jpg")
-        };
-        this.$store.commit("updateUserInfo", userInfo);
-      })
-      .catch(error => {
-        console.log(error);
-      });
   }
 };
 </script>
