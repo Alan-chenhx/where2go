@@ -157,7 +157,7 @@ export default {
         .catch(error => {
           console.log(error);
         });
-        concole.log($store.state.userInfo.username);
+        console.log($store.state.userInfo.username);
     }
   }
 };
