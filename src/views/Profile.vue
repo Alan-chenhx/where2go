@@ -24,22 +24,45 @@
             <md-table md-card>
               <md-table-row>
                 <md-table-head>Email</md-table-head>
-                <md-table-cell>{{ $store.state.userInfo.email }}</md-table-cell>
+                <md-table-cell v-if="!isEditting">{{ $store.state.userInfo.email }}</md-table-cell>
+                <md-table-cell v-else>
+                  <md-input v-model="email"></md-input>
+                </md-table-cell>
               </md-table-row>
               <md-table-row>
                 <md-table-head>Phone</md-table-head>
-                <md-table-cell>{{ $store.state.userInfo.phone }}</md-table-cell>
+                <md-table-cell v-if="!isEditting">{{ $store.state.userInfo.phone }}</md-table-cell>
+                <md-table-cell v-else>
+                  <md-input v-model="phone"></md-input>
+                </md-table-cell>
               </md-table-row>
               <md-table-row>
                 <md-table-head>Tag</md-table-head>
-                <md-table-cell>
+                <md-table-cell v-if="!isEditting">
                   <md-button class="md-info" v-show="$store.state.userInfo.tag[0]=='1'">Self Driving</md-button>
-                  <md-button class="md-primary" v-show="$store.state.userInfo.tag[1]=='1'">Adventure Seeker</md-button>
-                  <md-button class="md-success" v-show="$store.state.userInfo.tag[2]=='1'">Low Budget</md-button>
+                  <md-button
+                    class="md-primary"
+                    v-show="$store.state.userInfo.tag[1]=='1'"
+                  >Adventure Seeker</md-button>
+                  <md-button
+                    class="md-success"
+                    v-show="$store.state.userInfo.tag[2]=='1'"
+                  >Low Budget</md-button>
+                </md-table-cell>
+                <md-table-cell v-else>
+                  <md-checkbox v-model="tag0" value="true">Self Driving</md-checkbox>
+                  <md-checkbox v-model="tag1" value="true">Adventure Seeker</md-checkbox>
+                  <md-checkbox v-model="tag2" value="true">Low Budget</md-checkbox>
                 </md-table-cell>
               </md-table-row>
             </md-table>
           </div>
+          <div>
+            <md-button class="md-block" @click="edit" v-if="!isEditting">Edit</md-button>
+            <md-button class="md-info md-block" @click="update" v-else>Update</md-button>
+            <md-button class="md-rose md-block" @click="deleteMyself">Delete</md-button>
+          </div>
+          <p></p>
         </div>
       </div>
     </div>
@@ -55,14 +78,17 @@ export default {
   },
   bodyClass: "profile-page",
   data() {
-    return {};
+    return {
+      email: "",
+      phone: "",
+      tag0: false,
+      tag1: false,
+      tag2: false,
+      isEditting: false
+    };
   },
   props: {
     header: {
-      type: String,
-      default: require("@/assets/img/bg.jpg")
-    },
-    img: {
       type: String,
       default: require("@/assets/img/bg.jpg")
     }
@@ -72,6 +98,34 @@ export default {
       return {
         backgroundImage: `url(${this.header})`
       };
+    }
+  },
+  methods: {
+    edit() {
+      this.isEditting = true;
+    },
+    update() {
+      let tag = "";
+      if (tag0) tag += "1";
+      else tag += "0";
+      if (tag1) tag += "1";
+      else tag += "0";
+      if (tag2) tag += "1";
+      else tag += "0";
+      this.$http
+        .post("/updateinfo.php", {
+          email: this.email,
+          phone: this.phone,
+          tag: tag
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      this.getUserInfo();
+      this.isEditting = false;
+    },
+    deleteMyself() {
+      this.$http.post("/delete.php", {});
     }
   },
   created() {
