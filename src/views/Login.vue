@@ -92,6 +92,7 @@ export default {
             console.log("success");
             this.setCookie("session", response.data.session, expireDays);
             this.getUserInfo();
+            console.log(2);
             this.$router.push("/profile");
           } else {
             this.popupInfo = "Incorrent User Name or Password!";
@@ -153,6 +154,7 @@ export default {
               ".jpg")
           };
           this.$store.commit("updateUserInfo", userInfo);
+          console.log(1);
         })
         .catch(error => {
           console.log(error);
