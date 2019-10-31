@@ -11,7 +11,7 @@ $password = $_POST['password'];
 $email = 'not set';
 $phone = 'not set';
 $tag = '000';
-$portrait = '1';
+$portrait = rand(1, 4);
 $query = mysqli_query($conn, "INSERT INTO profiles (email, phone, tag, portrait) 
                               VALUES ('$email', '$phone', '$tag', '$portrait') 
                               ON DUPLICATE KEY UPDATE email = '$email', 
