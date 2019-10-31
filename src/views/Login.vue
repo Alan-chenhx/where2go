@@ -80,7 +80,7 @@ export default {
       }
     },
 
-    toLogin() {
+    async toLogin() {
       //let password_sha = hex_sha1(hex_sha1( this.password ));
       let password_sha = this.password;
 
@@ -91,7 +91,7 @@ export default {
             let expireDays = 1000 * 60 * 60 * 24 * 15;
             console.log("success");
             this.setCookie("session", response.data.session, expireDays);
-            this.getUserInfo();
+            await this.getUserInfo();
             console.log(2);
             this.$router.push("/profile");
           } else {
