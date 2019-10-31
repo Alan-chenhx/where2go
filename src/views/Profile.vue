@@ -134,8 +134,7 @@ export default {
         uid: this.$store.state.userInfo.uid,
         email: this.email,
         phone: this.phone,
-        tag: tag,
-        portrait: require("@/assets/img/profile/1.jpg")
+        tag: tag
       };
       this.$store.commit("updateUserInfo", userInfo);
       this.isEditting = false;
