@@ -14,7 +14,7 @@ $tag = $_POST['tag'];
 // $email = "shuhanw2@illinois.edu";
 // $phone = "2179793386";
 // $tag = "110";
-$portrait = rand(1, 4);
+$portrait = $_POST['portrait'];
 
 $query = mysqli_query($conn, "INSERT INTO profiles (user_id, email, phone, tag, portrait) 
                               VALUES ('$uid', '$email', '$phone', '$tag', '$portrait') 
