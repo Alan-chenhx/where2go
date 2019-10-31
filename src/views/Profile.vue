@@ -126,6 +126,7 @@ export default {
     },
     deleteMyself() {
       this.$http.post("/delete.php", {});
+      this.$router.push("/login");
     }
   },
   created() {

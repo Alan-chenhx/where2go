@@ -48,7 +48,7 @@ const store = new Vuex.Store({
 });
 
 Vue.prototype.getUserInfo = () => {
-  this.$http
+  axios
     .get("/getuser.php")
     .then(response => {
       //Success
