@@ -131,10 +131,8 @@ export default {
           password: password_sha
         })
         .then(response => {
-          if (response.data.code == 1) {
-            this.popupInfo = "You have successfully registered!";
-            this.popupModal = true;
-          }
+          this.popupInfo = "You have successfully registered!";
+          this.popupModal = true;
         })
         .catch(error => {
           console.log(error);
