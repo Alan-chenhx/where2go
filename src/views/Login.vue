@@ -48,7 +48,7 @@ import { LoginCard, Modal } from "@/components";
 
 export default {
   created() {
-    if (!this.getCookie("session")) {
+    if (this.getCookie("session")) {
       this.$router.push("/");
     }
   },
