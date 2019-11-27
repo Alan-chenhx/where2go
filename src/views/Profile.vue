@@ -120,11 +120,13 @@ export default {
       else tag += "0";
       if (this.tag2) tag += "1";
       else tag += "0";
+      let portrait = parseInt(Math.random() * (4 - 1 + 1), 10) + 1;
       this.$http
         .post("/updateinfo.php", {
           email: this.email,
           phone: this.phone,
-          tag: tag
+          tag: tag,
+          portrait: portrait.toString()
         })
         .catch(error => {
           console.log(error);
@@ -134,7 +136,10 @@ export default {
         uid: this.$store.state.userInfo.uid,
         email: this.email,
         phone: this.phone,
-        tag: tag
+        tag: tag,
+        portrait: require("@/assets/img/profile/" +
+          portrait.toString() +
+          ".jpg")
       };
       this.$store.commit("updateUserInfo", userInfo);
       this.isEditting = false;

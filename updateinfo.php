@@ -14,9 +14,11 @@ $tag = $_POST['tag'];
 // $email = "shuhanw2@illinois.edu";
 // $phone = "2179793386";
 // $tag = "110";
+$portrait = $_POST['portrait'];
 
-$query = mysqli_query($conn, "INSERT INTO profiles (user_id, email, phone, tag) 
-                              VALUES ('$uid', '$email', '$phone', '$tag') 
+$query = mysqli_query($conn, "INSERT INTO profiles (user_id, email, phone, tag, portrait) 
+                              VALUES ('$uid', '$email', '$phone', '$tag', '$portrait') 
                               ON DUPLICATE KEY UPDATE email = '$email', 
                                                       phone = '$phone', 
-                                                      tag = '$tag';");
+                                                      tag = '$tag', 
+                                                      portrait = '$portrait';");
