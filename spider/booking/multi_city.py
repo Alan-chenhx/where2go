@@ -69,8 +69,9 @@ for city in CITIES:
         page=soup.find_all(class_="bui-u-inline")[-1].text
         # if(i>)
         page=int(page)
-        if(i>page):
+        if(i>min(page,10)):
             break
+        print(page)
         Hotels = soup.find_all(class_="sr-hotel__name")
         Score = soup.find_all(class_="bui-review-score__badge")
         Links = soup.find_all(class_="hotel_name_link url")
