@@ -1,3 +1,4 @@
+import demjson
 from selenium import webdriver
 import json
 import requests
@@ -31,7 +32,7 @@ for city in CITIES:
     driver = webdriver.Chrome(executable_path="./chromedriver", port=0, options=None, service_args=None, desired_capabilities=None, service_log_path=None, chrome_options=option, keep_alive=True)
     # browser = webdriver.Chrome()
     headers = Headers()
-    # driver.get('https://www.booking.com/searchresults.html?label=gen173nr-1FCAEoggI46AdIM1gEaJMCiAEBmAExuAEZyAEM2AEB6AEB-AECiAIBqAIDuALK7ovvBcACAQ&sid=7ffb886c4c43c7ea81140ca5815ff720&tmpl=searchresults&checkin=2020-01-08&checkout=2020-01-09&class_interval=1&dest_id=20014181&dest_type=city&dtdisc=0&group_adults=2&group_children=0&inac=0&index_postcard=0&label_click=undef&no_rooms=1&postcard=0&raw_dest_type=city&room1=A%2CA&sb_price_type=total&shw_aparth=1&slp_r_match=0&srpvid=0ff5a741f20c0064&ss=Los%20Angeles&ss_all=0&ssb=empty&sshis=0&top_ufis=1&rows=25&offset=725')
+    # driver.get('https://www.booking.com/searchresults.en-us.html?label=gen173nr-1FCAEoggI46AdIM1gEaJMCiAEBmAExuAEZyAEM2AEB6AEB-AECiAIBqAIDuAL-j43vBcACAQ&sid=8bcd1b3a88930b9b7889376c71d06371&tmpl=searchresults&ac_click_type=b&ac_position=0&checkin_month=2&checkin_monthday=5&checkin_year=2020&checkout_month=2&checkout_monthday=6&checkout_year=2020&class_interval=1&dest_id=20014181&dest_type=city&dtdisc=0&from_sf=1&group_adults=2&group_children=0&iata=LAX&inac=0&index_postcard=0&label_click=undef&no_rooms=1&postcard=0&raw_dest_type=city&room1=A%2CA&sb_price_type=total&search_selected=1&shw_aparth=1&slp_r_match=0&src=index&src_elem=sb&srpvid=8e3022c3551f003c&ss=Los%20Angeles%2C%20California%2C%20USA&ss_all=0&ss_raw=Los%20Angeles&ssb=empty&sshis=0&top_ufis=1&rows=25&offset=375')
     driver.get('http://www.booking.com/')
 
     city_input = driver.find_element_by_name("ss")
@@ -59,17 +60,26 @@ for city in CITIES:
     driver.find_element_by_class_name('xp__button').click()
     url = driver.current_url
     ans[city].setdefault('url',url)
+    i=0
     while(1):
+        
+        
         soup = BeautifulSoup(driver.page_source, 'lxml')
+        i+=1
+        page=soup.find_all(class_="bui-u-inline")[-1].text
+        # if(i>)
+        page=int(page)
+        if(i>page):
+            break
         Hotels = soup.find_all(class_="sr-hotel__name")
         Score = soup.find_all(class_="bui-review-score__badge")
         Links = soup.find_all(class_="hotel_name_link url")
         for i in range(len(Hotels)):
             hotel_name=(re.sub(r'\n', '', Hotels[i].text))
-            overall_score=(Score[i].text)
+            # overall_score=(Score[i].text)
             ans[city].setdefault(hotel_name,{})
             ans[city][hotel_name].setdefault('overall_score',0)
-            ans[city][hotel_name]['overall_score']=overall_score
+            # ans[city][hotel_name]['overall_score']=overall_score
             s="http://booking.com"+(re.sub(r'\n', '', Links[i].get('href')))
             # print(s)
             r = getHTMLText(s, headers=headers)
@@ -92,6 +102,8 @@ for city in CITIES:
             try:
                 # driver2.find_element_by_class_name('bui-review-score__badge').click()
                 # soup2 = BeautifulSoup(driver2.page_source, 'lxml')
+                # overall_score=soup2.find_all(class_="bui-review-score__badge").text
+                # ans[city][hotel_name]['overall_score']=overall_score
                 Scores = soup2.find_all(class_="c-score-bar__score")
                 rating_key=["Staff","Facilities","Cleanliness","Comfort","Value for money","Location","Free WiFi"]
                 for i in range(len(Scores)):
@@ -100,14 +112,14 @@ for city in CITIES:
                 print('fail')
                 pass
             # driver2.quit()
-            print(hotel_name)
-            # print(ans)
+            # print(hotel_name)
+            # print(ans)    
         # driver.implicitly_wait(5)
         try:
-            prev=driver.current_url
             driver.find_element_by_css_selector("[title='Next page']").click()
             # print('clicked')
             time.sleep(6)
+            print(1)
         except:
             break 
         
