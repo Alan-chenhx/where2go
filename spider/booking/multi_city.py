@@ -26,6 +26,8 @@ for city in CITIES:
     calender=driver.find_element_by_css_selector("[class='bui-calendar__control bui-calendar__control--next']").click()
     time.sleep(0.2)
     calender=driver.find_element_by_css_selector("[class='bui-calendar__control bui-calendar__control--next']").click()
+    time.sleep(0.2)
+    calender=driver.find_element_by_css_selector("[class='bui-calendar__control bui-calendar__control--next']").click()
 
     # Feb
     row=driver.find_elements_by_tag_name('tr')
@@ -53,15 +55,17 @@ for city in CITIES:
             s="http://booking.com"+(re.sub(r'\n', '', Links[i].get('href')))
             driver2 = webdriver.Chrome(executable_path="./chromedriver", port=0, options=None, service_args=None, desired_capabilities=None, service_log_path=None, chrome_options=option, keep_alive=True)
             driver2.get(s)
+            time.sleep(0.2)
             soup2 = BeautifulSoup(driver2.page_source, 'lxml')
             # driver2.find_element_by_css_selector("[class='span.hp_address_subtitle.js-hp_address_subtitle.jq_tooltip']").text
             address=soup2.find_all(class_='address address_clean')[0].text
             ans[city][hotel_name].setdefault('address','')
             ans[city][hotel_name]['address']=address
-            price=soup2.find_all(class_='bui-price-display__value prco-ltr-center-align-helper prco-font16-helper')[0].text
+            price=soup2.find_all(class_='bui-price-display__value prco-ltr-center-align-helper prco-font16-helper')
             # print(price)
             ans[city][hotel_name].setdefault('price','')
-            ans[city][hotel_name]['price']=price
+            if(len(price)!=0):
+                ans[city][hotel_name]['price']=price[0].text
             driver2.find_element_by_class_name('bui-review-score__badge').click()
             soup2 = BeautifulSoup(driver2.page_source, 'lxml')
             Scores = soup.find_all(class_="c-score-bar__score")
