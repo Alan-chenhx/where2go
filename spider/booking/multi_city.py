@@ -60,18 +60,18 @@ for city in CITIES:
     driver.find_element_by_class_name('xp__button').click()
     url = driver.current_url
     ans[city].setdefault('url',url)
-    i=0
+    cur_page=0
     while(1):
         
         
         soup = BeautifulSoup(driver.page_source, 'lxml')
-        i+=1
+        cur_page+=1
         page=soup.find_all(class_="bui-u-inline")[-1].text
         # if(i>)
         page=int(page)
-        if(i>min(page,10)):
+        if(cur_page>min(page,10)):
             break
-        print(page)
+        print(cur_page,page)
         Hotels = soup.find_all(class_="sr-hotel__name")
         Score = soup.find_all(class_="bui-review-score__badge")
         Links = soup.find_all(class_="hotel_name_link url")
