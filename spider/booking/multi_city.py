@@ -30,7 +30,7 @@ for city in CITIES:
     ans.setdefault(city,{})
     driver = webdriver.Chrome(executable_path="./chromedriver", port=0, options=None, service_args=None, desired_capabilities=None, service_log_path=None, chrome_options=option, keep_alive=True)
     # browser = webdriver.Chrome()
-    
+    headers = Headers()
     # driver.get('https://www.booking.com/searchresults.html?label=gen173nr-1FCAEoggI46AdIM1gEaJMCiAEBmAExuAEZyAEM2AEB6AEB-AECiAIBqAIDuALK7ovvBcACAQ&sid=7ffb886c4c43c7ea81140ca5815ff720&tmpl=searchresults&checkin=2020-01-08&checkout=2020-01-09&class_interval=1&dest_id=20014181&dest_type=city&dtdisc=0&group_adults=2&group_children=0&inac=0&index_postcard=0&label_click=undef&no_rooms=1&postcard=0&raw_dest_type=city&room1=A%2CA&sb_price_type=total&shw_aparth=1&slp_r_match=0&srpvid=0ff5a741f20c0064&ss=Los%20Angeles&ss_all=0&ssb=empty&sshis=0&top_ufis=1&rows=25&offset=725')
     driver.get('http://www.booking.com/')
 
@@ -72,20 +72,20 @@ for city in CITIES:
             ans[city][hotel_name]['overall_score']=overall_score
             s="http://booking.com"+(re.sub(r'\n', '', Links[i].get('href')))
             # print(s)
-            response = requests.get(s)
+            r = getHTMLText(s, headers=headers)
             # print(response.text)
             # driver2 = webdriver.Chrome(executable_path="./chromedriver", port=0, options=None, service_args=None, desired_capabilities=None, service_log_path=None, chrome_options=option, keep_alive=True)
             # driver2.get(s)
             # time.sleep(0.2)
-            soup2 = BeautifulSoup(response.text, 'lxml')
-            print(soup2)
+            soup2 = BeautifulSoup(r, 'lxml')
+            # print(soup2)
             # driver2.find_element_by_css_selector("[class='span.hp_address_subtitle.js-hp_address_subtitle.jq_tooltip']").text
             address=soup2.find_all(class_='hp_address_subtitle js-hp_address_subtitle jq_tooltip')[0].text
             ans[city][hotel_name].setdefault('address','')
             ans[city][hotel_name]['address']=address
             # print(address)
             price=soup2.find_all(class_='bui-price-display__value prco-ltr-center-align-helper prco-font16-helper')
-            print(price)
+            # print(price)
             ans[city][hotel_name].setdefault('price','')
             if(len(price)!=0):
                 ans[city][hotel_name]['price']=price[0].text
@@ -101,7 +101,7 @@ for city in CITIES:
                 pass
             # driver2.quit()
             print(hotel_name)
-            print(ans)
+            # print(ans)
         # driver.implicitly_wait(5)
         try:
             prev=driver.current_url
