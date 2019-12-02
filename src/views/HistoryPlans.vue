@@ -20,18 +20,30 @@
                     <v-img
                       :src = "item.background" 
                       height="200px"
-                      class="white--text levation-0 text-center align-center"
+                      class="white--text text-center align-end "
                     >
-                      <v-card-title class="font-weight-black justify-center display-1">
+                      <v-spacer></v-spacer>
+                      <v-spacer></v-spacer>
+                      <v-card-title class="font-weight-black align-center justify-center display-1">
                         {{ item.trip_name }}
                       </v-card-title>
                       <v-card-subtitle class="white--text align-center justify-center subtitle-1">
                         {{ item.begin_time }} -{{ item.end_time }}
                       </v-card-subtitle>
+
+                      <v-spacer></v-spacer>
+                      <v-flex class="align-end">
+                        <v-expand-transition class="align-end">
+                          <v-card-text  class="text--end align-end justify-end grey v-card--reveal lighten-5" >
+                              <div class="text--primary" v-if="hover">Preference : {{ item.preference }}</div>
+                              <div class="text--primary" v-if="hover">Pace : {{ item.pace }}</div>
+                              <div class="text--primary" v-else>{{ item.preference }}, {{ item.pace }}</div>
+                          </v-card-text>
+                        </v-expand-transition>
+                      </v-flex>
                     </v-img>
-                    <v-card-text class="text--primary" >
-                      <div>{{ item.preference }}, {{ item.pace }}</div>
-                    </v-card-text>
+                    
+                    
                   </v-card>
                 </v-hover>
               </v-col>
@@ -97,9 +109,16 @@
     </v-content>
   </v-app>
 </template>
+<style>
+.v-card--reveal {
 
+  opacity: .5;
+
+}
+</style>
 <script>
   export default {
+    
     data: () => ({
       itemsPerPageArray: [4, 8, 12],
       itemsPerPage: 4,
