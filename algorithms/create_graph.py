@@ -23,7 +23,7 @@ class path:
         self.read(city) 
         for i in self.data:
             for j in i['tag']:
-                if(j==prefer or j=='Must See'):
+                if((j in prefer) or j=='Must See'):
                     self.pplist.append(i)
                     break
             else:
@@ -62,6 +62,11 @@ class path:
             sums+=alpha1*(1/self.CNRup[i])*(1/len(self.uplist)*1)
             sums+=alpha2*(1/self.CNRup[i]+(1/(self.CNRup[i]**2)))*self.Tuprefer[i]/sum(self.Duprefer[i])
         return sums
+def cal_len(city,preference):
+    curPath=path()
+    curPath.create(city,preference)
+    n = len(curPath.pplist)
+    return n
 
 def cal(city,preference,times):
     curPath=path()
@@ -87,8 +92,6 @@ def cal(city,preference,times):
         cur_time+=int(curPath.pplist[maxi[1]]['duration'])
         paths.append((curPath.pplist[maxi[1]]['name'],curPath.pplist[maxi[1]]['duration'],curPath.pplist[maxi[1]]['rating']))
     # print(paths)
-
-
     n = len(curPath.uplist)
     used=[]
     while(len(used)<n and cur_time<times):
