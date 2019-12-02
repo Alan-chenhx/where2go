@@ -1,21 +1,17 @@
-import DropDown from "./Dropdown.vue";
-import Parallax from "./Parallax.vue";
-import Pagination from "./Pagination.vue";
-import Slider from "./Slider.vue";
-import Badge from "./Badge.vue";
-import NavTabsCard from "./cards/NavTabsCard.vue";
-import LoginCard from "./cards/LoginCard.vue";
-import Tabs from "./Tabs.vue";
-import Modal from "./Modal.vue";
+import Vue from 'vue'
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
 
-export {
-  DropDown,
-  Parallax,
-  Pagination,
-  Slider,
-  Badge,
-  NavTabsCard,
-  LoginCard,
-  Tabs,
-  Modal
-};
+const requireComponent = require.context(
+  '@/components', true, /\.vue$/
+)
+
+requireComponent.keys().forEach(fileName => {
+  const componentConfig = requireComponent(fileName)
+
+  const componentName = upperFirst(
+    camelCase(fileName.replace(/^\.\//, '').replace(/\.\w+$/, ''))
+  )
+
+  Vue.component(componentName, componentConfig.default || componentConfig)
+})

@@ -1,9 +1,13 @@
 module.exports = {
-  css: {
-    loaderOptions: {
-      css: {
-        sourceMap: process.env.NODE_ENV !== "production" ? true : false
+  "transpileDependencies": [
+    "vuetify"
+  ],
+  devServer: {
+    proxy: {
+      '^/api/': {
+        target: 'http://localhost:3000',
+        changeOrigin: true, // so CORS doesn't bite us. 
       }
     }
   }
-};
+}
