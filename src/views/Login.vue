@@ -8,26 +8,58 @@
     <v-content style="z-index:1;position:fixed;width:100%;height:100%">
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="4">
-            <material-card  class="elevation-12" title="Login">
-              <v-card-text>
-                <v-form>
-                  <v-text-field label="Username" name="Username" prepend-icon="person" type="text" />
+          <v-col cols="12" sm="8" md="3">
+            <material-card class="elevation-12">
+              <template v-slot:header>
+                <v-tabs v-model="tab" centered>
+                  <v-tabs-slider></v-tabs-slider>
 
-                  <v-text-field
-                    id="password"
-                    label="Password"
-                    name="password"
-                    prepend-icon="lock"
-                    type="password"
-                  />
-                </v-form>
+                  <v-tab href="#login">Log in</v-tab>
+
+                  <v-tab href="#register">Sign Up</v-tab>
+                </v-tabs>
+              </template>
+              <v-card-text>
+                <v-tabs-items v-model="tab">
+                  <v-tab-item value="login" align="center">
+                    <v-form>
+                      <v-text-field
+                        label="Username"
+                        name="Username"
+                        prepend-icon="person"
+                        type="text"
+                      />
+
+                      <v-text-field
+                        label="Password"
+                        name="password"
+                        prepend-icon="lock"
+                        type="password"
+                      />
+                      <v-btn color="primary">Log In</v-btn>
+                    </v-form>
+                  </v-tab-item>
+                  <v-tab-item value="register" align="center">
+                    <v-form>
+                      <v-text-field
+                        label="Username"
+                        name="Username"
+                        prepend-icon="person"
+                        type="text"
+                      />
+
+                      <v-text-field
+                        label="Password"
+                        name="Password"
+                        prepend-icon="lock"
+                        type="password"
+                      />
+                      <v-text-field label="Email" name="Email" prepend-icon="email" type="text" />
+                      <v-btn color="primary">Sign Up</v-btn>
+                    </v-form>
+                  </v-tab-item>
+                </v-tabs-items>
               </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn color="primary">Sign Up</v-btn>
-                <v-btn color="primary">Login</v-btn>
-              </v-card-actions>
             </material-card>
           </v-col>
         </v-row>
@@ -40,10 +72,10 @@
 export default {
   name: "Login",
 
-  components: {
-  },
+  components: {},
 
   data: () => ({
+    tab: null,
     backgrounds: [
       {
         src: require("@/assets/gate.jpg")

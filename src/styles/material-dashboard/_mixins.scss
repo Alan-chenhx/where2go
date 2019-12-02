@@ -41,7 +41,7 @@
 }
 
 @mixin drawer-active-colors($color-name, $color) {
-  .v-navigation-drawer .v-list .v-list-item .v-list__item.v-list__item--active.#{$color-name} {
+  .v-navigation-drawer .v-list .v-list-item .v-list-item.v-list-item--active.#{$color-name} {
     background-color: $color !important;
     @include shadow-big-color($color);
   }

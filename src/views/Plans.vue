@@ -79,7 +79,7 @@
               <v-spacer></v-spacer>
 
               <span
-                class="mr-4
+                class="mr-6
                 grey--text"
               >
                 Page {{ page }} of {{ numberOfPages }}
