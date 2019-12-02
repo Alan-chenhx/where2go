@@ -1,6 +1,6 @@
 <template>
   <v-app style="height:100vh">
-    <v-app-bar app color="primary" dark></v-app-bar>
+    <MainNavBar />
     <router-view />
   </v-app>
 </template>
