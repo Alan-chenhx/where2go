@@ -1,15 +1,19 @@
 <template>
-    <v-app-bar       
-      color="grey lighten-4"
+    <v-toolbar 
+      dense      
+      color="white"
       shrink-on-scroll
-      src="https://picsum.photos/1920/1080?random"
       scroll-target="#scrolling-techniques-1"
-      dense
       >
 
       <v-toolbar-title>Where2go</v-toolbar-title>
 
       <v-spacer></v-spacer>
+
+
+      <v-btn icon>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
 
 
       <v-toolbar-items>
@@ -27,7 +31,7 @@
           dark
           v-on="on"
         >
-          Menu as Popover
+          *Log in*
         </v-btn>
       </template>
 
@@ -35,7 +39,7 @@
         <v-list>
           <v-list-item>
             <v-list-item-avatar>
-              <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+              <img src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
             </v-list-item-avatar>
 
             <v-list-item-content>
@@ -52,7 +56,7 @@
     </div>
     </v-toolbar-items>
 
-    </v-app-bar>
+    </v-toolbar>
 
 
 </template>
