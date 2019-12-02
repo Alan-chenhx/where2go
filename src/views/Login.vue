@@ -1,5 +1,5 @@
 <template>
-  <v-app style="height:100vh">
+  <v-app style="height:150vh">
     <v-content>
       <v-carousel :show-arrows="false" hide-delimiters cycle height="100%">
         <v-carousel-item v-for="(item,i) in backgrounds" :key="i" :src="item.src"></v-carousel-item>
@@ -12,7 +12,7 @@
             <material-card  class="elevation-12" title="Login">
               <v-card-text>
                 <v-form>
-                  <v-text-field label="Login" name="login" prepend-icon="person" type="text" />
+                  <v-text-field label="Username" name="Username" prepend-icon="person" type="text" />
 
                   <v-text-field
                     id="password"
@@ -46,16 +46,16 @@ export default {
   data: () => ({
     backgrounds: [
       {
-        src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
+        src: require("@/assets/gate.jpg")
       },
       {
-        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
+        src: require("@/assets/sunset1.jpg")
       },
       {
-        src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+        src: require("@/assets/sunset2.jpg")
       },
       {
-        src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
+        src: require("@/assets/uni.jpg")
       }
     ]
   }),
