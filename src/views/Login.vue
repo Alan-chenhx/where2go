@@ -78,7 +78,10 @@ export default {
     tab: null,
     backgrounds: [
       {
-        src: require("@/assets/gate.jpg")
+        src: require("@/assets/yosemite.jpg")
+      },
+      {
+        src: require("@/assets/wof.jpg")
       },
       {
         src: require("@/assets/sunset1.jpg")
@@ -93,10 +96,7 @@ export default {
         src: require("@/assets/cali1.jpg")
       },
       {
-        src: require("@/assets/yosemite.jpg")
-      },
-      {
-        src: require("@/assets/wof.jpg")
+        src: require("@/assets/gate.jpg")
       }
     ]
   }),
