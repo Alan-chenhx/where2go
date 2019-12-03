@@ -24,10 +24,12 @@ def main():
         ans.setdefault(city,[])
         # print(find.generate(city,preference,int(day[index])))
         ans[city]=find.generate(city,preference,int(day[index]))
-    
+    # print(ans)
     for i in ans:
         days=ans[i]
-        for day in days:
+        for day_in,day in enumerate(days):
+            day=list(day)
+            day.pop(-1)
             for index,ele in enumerate(day[0]):
                 # print(ele)
                 if isinstance(ele,tuple):
@@ -36,8 +38,19 @@ def main():
                     tmp['duration']=ele[1]
                     tmp['rating']=ele[2]
                     # print(tmp)
+                    try:
+                        tmp['timetonext']=day[0][index+1]
+                    except:
+                        tmp['timetonext']=0
+                    # print(day[0][index])
                     day[0][index]=tmp.copy()
-    
+            for index,ele in enumerate(day[0]):
+                # print(ele)
+                if isinstance(ele,float):
+                    day[0].pop(index)
+                
+            days[day_in]=day[0]
+
     pprint.pprint(ans)
     return ans
 
