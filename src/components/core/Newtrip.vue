@@ -82,7 +82,7 @@
 
 <script>
 export default {
-  data: vm => ({
+  data: () => ({
     dialog: false,
     counter: 1,
     date1: new Date().toISOString().substr(0, 10),
