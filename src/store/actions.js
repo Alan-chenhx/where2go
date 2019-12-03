@@ -1,4 +1,5 @@
 // https://vuex.vuejs.org/en/actions.html
+import axios from 'axios'
 
 export default {
   login({
@@ -6,14 +7,14 @@ export default {
   }, user) {
     return new Promise((resolve, reject) => {
       commit('auth_request')
-      this.$http({
+      axios({
           url: '/api/login',
           data: user,
           method: 'POST'
         })
         .then(resp => {
           const currUserId = resp.data.currUserId
-          //this.$http.defaults.headers.common['Authorization'] = currUserId
+          //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
           resolve(resp)
         })
@@ -28,14 +29,14 @@ export default {
   }, user) {
     return new Promise((resolve, reject) => {
       commit('auth_request')
-      this.$http({
+      axios({
           url: '/api/register',
           data: user,
           method: 'POST'
         })
         .then(resp => {
           const currUserId = resp.data.currUserId
-          //this.$http.defaults.headers.common['Authorization'] = currUserId
+          //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
           resolve(resp)
         })
@@ -50,14 +51,14 @@ export default {
   }) {
     return new Promise((resolve) => {
       commit('logout')
-      //delete this.$http.defaults.headers.common['Authorization']
+      //delete axios.defaults.headers.common['Authorization']
       resolve()
     })
   },
   fetchUserProfile({
     commit
   }, userId) {
-    this.$http({
+    axios({
       url: '/api/register',
       data: userId,
       method: 'POST'
@@ -73,7 +74,7 @@ export default {
   fetchPlans({
     commit
   }, userId) {
-    this.$http({
+    axios({
       url: '/api/register',
       data: userId,
       method: 'POST'

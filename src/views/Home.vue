@@ -1,90 +1,42 @@
 <template>
   <v-content>
-    <v-container style="max-width: 600px;">
-      <div>
-        <div class="d-flex flex-column mb-6" style="height: 100vh;overflow-y: auto;">
-          <v-card v-for="n in 100" :key="n" class="pa-2" outlined tile>Flex item {{ n }}</v-card>
-        </div>
-      </div>
-      <v-timeline dense clipped>
-        <v-timeline-item fill-dot class="white--text mb-12" color="orange" small>
-          <template v-slot:icon>
-            <v-btn>test</v-btn>
-          </template>
-          <v-text-field
-            v-model="input"
-            hide-details
-            flat
-            label="Leave a comment..."
-            solo
-            @keydown.enter="comment"
-          >
-            <template v-slot:append>
-              <v-btn class="mx-0" depressed @click="comment">Post</v-btn>
-            </template>
-          </v-text-field>
-        </v-timeline-item>
-
-        <v-slide-x-transition group>
-          <v-timeline-item
-            v-for="event in timeline"
-            :key="event.id"
-            class="mb-6"
-            color="pink"
-            small
-          >
-            <v-row justify="space-between">
-              <v-col cols="7" v-text="event.text"></v-col>
-              <v-col class="text-right" cols="5" v-text="event.time"></v-col>
-            </v-row>
-          </v-timeline-item>
-        </v-slide-x-transition>
-
-        <v-timeline-item class="mb-6" hide-dot>
-          <span>TODAY</span>
-        </v-timeline-item>
-
-        <v-timeline-item class="mb-6" color="grey" icon-color="grey lighten-2" small>
-          <v-row justify="space-between">
-            <v-col cols="7">This order was archived.</v-col>
-            <v-col class="text-right" cols="5">15:26 EDT</v-col>
-          </v-row>
-        </v-timeline-item>
-
-        <v-timeline-item class="mb-6" small>
-          <v-row justify="space-between">
-            <v-col cols="7">
-              <v-chip class="white--text ml-0" color="purple" label small>APP</v-chip>Digital Downloads fulfilled 1 item.
-            </v-col>
-            <v-col class="text-right" cols="5">15:25 EDT</v-col>
-          </v-row>
-        </v-timeline-item>
-
-        <v-timeline-item class="mb-6" color="grey" small>
-          <v-row justify="space-between">
-            <v-col cols="7">Order confirmation email was sent to John Leider (john@vuetifyjs.com).</v-col>
-            <v-col class="text-right" cols="5">15:25 EDT</v-col>
-          </v-row>
-        </v-timeline-item>
-
-        <v-timeline-item class="mb-6" hide-dot>
-          <v-btn class="mx-0" color="white">Resend Email</v-btn>
-        </v-timeline-item>
-
-        <v-timeline-item class="mb-6" color="grey" small>
-          <v-row justify="space-between">
-            <v-col cols="7">A $15.00 USD payment was processed on PayPal Express Checkout</v-col>
-            <v-col class="text-right" cols="5">15:25 EDT</v-col>
-          </v-row>
-        </v-timeline-item>
-
-        <v-timeline-item color="grey" small>
-          <v-row justify="space-between">
-            <v-col cols="7">John Leider placed this order on Online Store (checkout #1937432132572).</v-col>
-            <v-col class="text-right" cols="5">15:25 EDT</v-col>
-          </v-row>
-        </v-timeline-item>
-      </v-timeline>
+    <v-container>
+      <v-row>
+        <v-col cols="1">
+          <div>
+            <div class="d-flex flex-column" style="height: 90vh;overflow-y: auto;position: fixed;">
+              <v-btn v-for="n in 100" class="black--text ma-0" :key="n" @click="$vuetify.goTo('#date' + n)" icon text>{{ n }}</v-btn>
+            </div>
+          </div>
+        </v-col>
+        <v-col cols="20">
+          <v-timeline dense clipped>
+            <div v-for="(city, index) in attrs" :key="index">
+              <div v-for="(days, index) in city" :key="index">
+                <v-timeline-item fill-dot small :id="'date'+index">
+                  <template v-slot:icon>
+                    <v-btn class="headline white--text" color="black">{{index}}</v-btn>
+                  </template>
+                </v-timeline-item>
+                <div v-for="(attr, index) in days" :key="index">
+                  <v-timeline-item>
+                    <v-card class="elevation-3">
+                      <v-card-title class="headline">{{attr.name}}</v-card-title>
+                      <v-card-text>Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.</v-card-text>
+                    </v-card>
+                  </v-timeline-item>
+                  <v-timeline-item color="white" fill-dot v-if="attr.timetonext!=0">
+                    <template v-slot:icon>
+                      <v-icon color="black">mdi-car</v-icon>
+                    </template>
+                    <span>{{ attr.timetonext }} mins</span>
+                  </v-timeline-item>
+                </div>
+              </div>
+            </div>
+          </v-timeline>
+        </v-col>
+      </v-row>
     </v-container>
   </v-content>
 </template>
@@ -92,6 +44,151 @@
 <script>
 export default {
   data: () => ({
+    attrs: {
+      "Los Angeles": [
+        [
+          {
+            duration: "120",
+            name: "Santa Monica Museum of Art",
+            rating: 2.8,
+            timetonext: 3.0
+          },
+          {
+            duration: "120",
+            name: "Fantastic Race",
+            rating: 4.8,
+            timetonext: 5.0
+          },
+          { duration: "120", name: "Chinatown", rating: 1.4, timetonext: 0 }
+        ],
+        [
+          {
+            duration: "60",
+            name: "Griffith Observatory",
+            rating: 4.6,
+            timetonext: 0.0
+          },
+          {
+            duration: "30",
+            name: "Rebel Without a Cause Monument",
+            rating: 1.0,
+            timetonext: 6.0
+          },
+          {
+            duration: "150",
+            name: "Los Angeles Zoo & Botanical Gardens",
+            rating: 2.7,
+            timetonext: 11.0
+          },
+          {
+            duration: "90",
+            name: "Guinness World Records Museum",
+            rating: 1.9,
+            timetonext: 0
+          }
+        ],
+        [
+          {
+            duration: "240",
+            name: "Museum of Tolerance",
+            rating: 4.2,
+            timetonext: 6.0
+          },
+          {
+            duration: "30",
+            name: "Diorama-museum of Bhagavad-gita",
+            rating: 4.9,
+            timetonext: 3.0
+          },
+          {
+            duration: "90",
+            name: "The Wende Museum of the Cold War",
+            rating: 4.8,
+            timetonext: 0
+          }
+        ],
+        [
+          {
+            duration: "60",
+            name: "Santa Monica Pier",
+            rating: 4.1,
+            timetonext: 61.0
+          },
+          {
+            duration: "120",
+            name: "The Huntington Desert Garden",
+            rating: 5.0,
+            timetonext: 63.0
+          },
+          {
+            duration: "300",
+            name: "Universal Studios Hollywood",
+            rating: 4.4,
+            timetonext: 0
+          }
+        ],
+        [
+          {
+            duration: "240",
+            name: "Studio Tour",
+            rating: 4.7,
+            timetonext: 100.0
+          },
+          {
+            duration: "330",
+            name: "Disneyland Park",
+            rating: 4.2,
+            timetonext: 0
+          }
+        ],
+        [
+          {
+            duration: "300",
+            name: "Luigi's Rollickin' Roadsters",
+            rating: 4.2,
+            timetonext: 0
+          }
+        ]
+      ],
+      "San Diego": [
+        [
+          {
+            duration: "360",
+            name: "LEGOLAND California",
+            rating: 2.7,
+            timetonext: 0
+          }
+        ],
+        [
+          {
+            duration: "300",
+            name: "SeaWorld San Diego",
+            rating: 4.1,
+            timetonext: 0
+          }
+        ],
+        [
+          {
+            duration: "180",
+            name: "USS Midway Museum",
+            rating: 4.8,
+            timetonext: 6.0
+          },
+          {
+            duration: "90",
+            name: "AxeVentures",
+            rating: 4.9,
+            timetonext: 77.0
+          },
+          {
+            duration: "300",
+            name: "San Diego Zoo",
+            rating: 4.5,
+            timetonext: 0
+          }
+        ]
+      ]
+    },
     events: [],
     input: null,
     nonce: 0

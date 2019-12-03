@@ -1,13 +1,9 @@
 <template>
   <div>
-    <v-app-bar app 
-    color = "white"
-    dark>
-
-      <v-toolbar-side-icon>
+    <v-app-bar app color="white" dark :shrink-on-scroll="['login'].indexOf($route.name) == -1">
+      <v-toolbar-items>
         <v-img :src="require('../assets/logob.png')" />
-      </v-toolbar-side-icon>  
-
+      </v-toolbar-items>
 
       <v-spacer></v-spacer>
 
@@ -22,16 +18,16 @@
       <v-menu bottom open-on-hover offset-y>
         <template v-slot:activator="{ on }">
           <v-btn v-on="on">
-            <v-icon>person</v-icon>
-            User
+            <v-icon>person</v-icon> 
+            {{ isLoggedIn }}
           </v-btn>
         </template>
 
         <v-list class="dropdown-menu">
-          <v-list-item v-if="false" @click="() => {}">
+          <v-list-item v-if="!isLoggedIn" @click="toLogin">
             <v-list-item-title>Log In</v-list-item-title>
           </v-list-item>
-          <v-list-item v-if="true" @click="() => {}">
+          <v-list-item v-if="isLoggedIn" @click="logout">
             <v-list-item-title>Log Out</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -41,12 +37,21 @@
 </template>
 
 
-
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-  data: () => ({
-    
-  })
+  computed: {
+    ...mapGetters([
+      'isLoggedIn'
+    ])
+  },
+  data: () => ({}),
+  methods: {
+    ...mapActions(["logout"]),
+    toLogin(){
+      this.$router.push('/login')
+    }
+  }
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-content>
-      <v-carousel :show-arrows="false" hide-delimiters cycle height="91vh">
+      <v-carousel :show-arrows="false" hide-delimiters cycle height="100vh">
         <v-carousel-item v-for="(item,i) in backgrounds" :key="i" :src="item.src"></v-carousel-item>
       </v-carousel>
     </v-content>
@@ -36,7 +36,7 @@
                         prepend-icon="lock"
                         type="password"
                       />
-                      <v-btn color="primary">Log In</v-btn>
+                      <v-btn color="primary" @click="login">Log In</v-btn>
                     </v-form>
                   </v-tab-item>
                   <v-tab-item value="register" align="center">
@@ -55,7 +55,7 @@
                         type="password"
                       />
                       <v-text-field label="Email" name="Email" prepend-icon="email" type="text" />
-                      <v-btn color="primary">Sign Up</v-btn>
+                      <v-btn color="primary" @click="register">Sign Up</v-btn>
                     </v-form>
                   </v-tab-item>
                 </v-tabs-items>
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "Login",
 
@@ -101,6 +102,8 @@ export default {
     ]
   }),
 
-  methods: {}
+  methods: {
+    ...mapActions(["login", "register"])
+  }
 };
 </script>

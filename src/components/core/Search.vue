@@ -14,6 +14,7 @@
       solo-inverted
     ></v-autocomplete>
 </template>
+
 <script>
   export default {
     data () {
