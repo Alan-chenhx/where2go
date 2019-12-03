@@ -88,6 +88,15 @@ export default {
       },
       {
         src: require("@/assets/uni.jpg")
+      },
+      {
+        src: require("@/assets/cali1.jpg")
+      },
+      {
+        src: require("@/assets/yosemite.jpg")
+      },
+      {
+        src: require("@/assets/wof.jpg")
       }
     ]
   }),
