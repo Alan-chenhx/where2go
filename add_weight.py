@@ -11,7 +11,7 @@ for city in json_dat:
         for otherplace in json_dat[city][place]:
             query = """
                 MATCH (p1:Place), (p2:Place)
-                WHERE p1.name = {place}, p2.name = {otherplace}
-                CREATE (p1)-[:WEIGHT {{weight: {weight}}}]->(p2)
-            """
-            graph.run(query, place=place, weight=json_dat[city][place][otherplace], otherplace=otherplace)
+                WHERE p1.name = '%s', p2.name = '%s'
+                CREATE (p1)-[:WEIGHT {weight: %s} ]->(p2)
+            """ %(place, otherplace, json_dat[city][place][otherplace])
+            graph.run(query)
