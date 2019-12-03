@@ -2,7 +2,7 @@
   <v-app>
     <v-content>
       <v-container >
-        <core-Modifysight/>
+        <core-newtrip/>
         <v-data-iterator
           :items="items"
           :items-per-page.sync="itemsPerPage"
