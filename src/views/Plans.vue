@@ -2,6 +2,7 @@
   <v-app>
     <v-content>
       <v-container >
+        <core-dialog/>
         <v-data-iterator
           :items="items"
           :items-per-page.sync="itemsPerPage"
