@@ -3,7 +3,7 @@ from py2neo import Graph
 
 graph = Graph(host='localhost', auth=('neo4j', 'abduabdu'))
 
-with open('data.json') as f:
+with open('data/data.json') as f:
     json_dat = json.load(f)
 
 for city in json_dat:
