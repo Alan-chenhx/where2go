@@ -1,33 +1,15 @@
-import json
-import googlemaps
-import numpy as np
+from math import sin, cos, sqrt, atan2, radians
 
-gmaps = googlemaps.Client(key = 'AIzaSyDcDPRv_BJpXbEscdAN4lsTngNNcmJnTFc')
+def calc_dist(p1, p2):
+    lat1 = radians(p1[0])
+    lon1 = radians(p1[1]) 
+    lat2 = radians(p2[0])
+    lon2 = radians(p2[1]) 
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    R = 6373.0
+    return R * c
 
-with open('data/data.json') as f:
-    json_dat = json.load(f)
-
-distance_mat = {}
-
-for city in json_dat:
-# city = 'Ontario'
-    # print('==============='+city+'===============')
-    distance_mat[city] = {}
-    for i in range(len(json_dat[city])):
-        place = json_dat[city][i]['name']
-        otherplaces = [json_dat[city][j]['name'] for j in range(len(json_dat[city])) if j != i]
-        distance_mat[city][place] = {}
-        origin = place + ', ' + city
-        for j in range(len(otherplaces)):
-            mat = gmaps.distance_matrix(origin, otherplaces[j])
-            if 'distance' not in mat['rows'][0]['elements'][0]:
-                continue
-            distance_mat[city][place][otherplaces[j]] = float(mat['rows'][0]['elements'][0]['distance']['text'][:-3].replace(',', ''))
-        # print('==='+place+'===')
-        # print(distance_mat[city][place])
-print(distance_mat)
-# for i in range(len(origins)):
-#     for j in range(i+1, len(destinations)):
-#         distance_mat[i, j] = float(gmaps.distance_matrix(origins, destinations)['rows'][0]['elements'][0]['distance']['text'][:-3].replace(',', ''))
-# # distances = gmaps.distance_matrix(origins, destinations, mode='driving')
-# print(distance_mat)
+print(calc_dist(p1, p2))
