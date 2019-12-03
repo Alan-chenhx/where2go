@@ -15,10 +15,14 @@ class path:
         self.data=[]
         self.Tprefer=[]
         self.Tuprefer=[]
+        self.dist={}
     def read(self,city):
-        with open('data copy.json') as json_file:
+        with open('data.json') as json_file:
             tmp = json.load(json_file)
             self.data = tmp[city]
+        with open('distance.json') as json_file:
+            dis = json.load(json_file)
+            self.dist = dis[city]
     def create(self,city,prefer):
         self.read(city) 
         for i in self.data:
@@ -35,17 +39,31 @@ class path:
         for i in self.uplist:
             self.Tuprefer.append(int(i['duration']))
             self.CNRup.append(i['rating']*10)
+        
         self.Dprefer=np.zeros((len(self.pplist),len(self.pplist)))
         self.Duprefer=np.zeros((len(self.uplist),len(self.uplist)))
+        # print(self.dist)
         for i in range(0,len(self.pplist)):
             for j in range(i+1,len(self.pplist)):
-                self.Dprefer[i][j]=randint(20, 100)
-                self.Dprefer[j][i]=self.Dprefer[i][j]
+                try: 
+                    self.Dprefer[i][j]=self.dist[self.pplist[i]['name']][self.pplist[j]['name']]*1.6
+                    self.Dprefer[j][i]=self.Dprefer[i][j]
+                except:
+                    self.Dprefer[i][j]=60
+                    self.Dprefer[j][i]=self.Dprefer[i][j]
+                    # print(1111111)
+                    # print(self.pplist[i]['name'],"fuck",self.pplist[j]['name'])
         # print(Dprefer)
-        for i in range(1,len(self.uplist)):
+        for i in range(0,len(self.uplist)):
             for j in range(i+1,len(self.uplist)):
-                self.Duprefer[i][j]=randint(20, 1000)
-                self.Duprefer[j][i]=self.Duprefer[i][j]
+                try:
+                    self.Duprefer[i][j]=self.dist[self.uplist[i]['name']][self.uplist[j]['name']]*1.6
+                    self.Duprefer[j][i]=self.Duprefer[i][j]
+                except:
+                    self.Duprefer[i][j]=60
+                    self.Duprefer[j][i]=self.Duprefer[i][j]
+                    # print(2222222222)
+                    # print(city,self.uplist[i]['name'],"fuck",self.uplist[j]['name'])
         # return pplist,uplist,Dprefer,Duprefer,CNRp,CNRup
         # print(self.Dprefer)
     def RM(self,i,j,k,preferred=True):
@@ -62,6 +80,8 @@ class path:
             sums+=alpha1*(1/self.CNRup[i])*(1/len(self.uplist)*1)
             sums+=alpha2*(1/self.CNRup[i]+(1/(self.CNRup[i]**2)))*self.Tuprefer[i]/sum(self.Duprefer[i])
         return sums
+    def dis(self):
+        return self.dist
 def cal_len(city,preference):
     curPath=path()
     curPath.create(city,preference)
@@ -107,5 +127,6 @@ def cal(city,preference,times):
         cur_time+=int(curPath.uplist[maxi[1]]['duration'])
         paths.append((curPath.uplist[maxi[1]]['name'],curPath.uplist[maxi[1]]['duration'],curPath.uplist[maxi[1]]['rating']))
     # print(paths)
-    return paths
+        dist=curPath.dis()
+    return paths,dist
     

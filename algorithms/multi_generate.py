@@ -24,7 +24,7 @@ def main():
         ans.setdefault(city,[])
         # print(find.generate(city,preference,int(day[index])))
         ans[city]=find.generate(city,preference,int(day[index]))
-    # pprint.pprint(ans)
+    pprint.pprint(ans)
     return ans
 
 
