@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-content>
-      <v-carousel :show-arrows="false" hide-delimiters cycle height="100vh">
+      <v-carousel :show-arrows="false" hide-delimiters cycle height="91vh">
         <v-carousel-item v-for="(item,i) in backgrounds" :key="i" :src="item.src"></v-carousel-item>
       </v-carousel>
     </v-content>
