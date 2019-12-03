@@ -78,7 +78,6 @@ Date.prototype.addDays = function(days) {
 export default {
   data: () => ({
     startDate: new Date(2019, 11, 26),
-    numDays: 9,
     attrs: [
       [
         {
@@ -233,7 +232,11 @@ export default {
     nonce: 0
   }),
 
-  computed: {},
+  computed: {
+    numDays() {
+      return this.attrs.length
+    }
+  },
 
   methods: {
     toDate(n) {
