@@ -3,6 +3,7 @@ import find
 import sys
 import re
 import pprint
+import math
 def main():
     
     cities = sys.argv[1].replace('-',' ').split(',')
@@ -23,7 +24,7 @@ def main():
     for index,city in enumerate(cities):
         ans.setdefault(city,[])
         # print(find.generate(city,preference,int(day[index])))
-        ans[city]=find.generate(city,preference,int(day[index]))
+        ans[city]=find.generate(city,preference,int(math.floor(day[index]+0.5)))
     # print(ans)
     for i in ans:
         days=ans[i]
