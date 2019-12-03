@@ -24,6 +24,20 @@ def main():
         ans.setdefault(city,[])
         # print(find.generate(city,preference,int(day[index])))
         ans[city]=find.generate(city,preference,int(day[index]))
+    
+    for i in ans:
+        days=ans[i]
+        for day in days:
+            for index,ele in enumerate(day[0]):
+                # print(ele)
+                if isinstance(ele,tuple):
+                    tmp={}
+                    tmp['name']=ele[0]
+                    tmp['duration']=ele[1]
+                    tmp['rating']=ele[2]
+                    # print(tmp)
+                    day[0][index]=tmp.copy()
+    
     pprint.pprint(ans)
     return ans
 

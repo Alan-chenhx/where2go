@@ -2,6 +2,7 @@ import sys
 import create_graph
 from random import randint
 import heapq
+import math
 import numpy as np
 def generate(city,preference,day_s):
     time=day_s*450
@@ -14,7 +15,7 @@ def generate(city,preference,day_s):
     for i in range(0,n):
         for j in range(i+1,n):
             try:
-                graph[i][j] = distance[paths[i][0]][paths[j][0]]*1.6
+                graph[i][j] = math.ceil(distance[paths[i][0]][paths[j][0]]*1.6)
                 graph[j][i] = graph[i][j]
                 
                
