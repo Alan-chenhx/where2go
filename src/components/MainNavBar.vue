@@ -1,7 +1,13 @@
 <template>
   <div>
-    <v-app-bar app color="purple" dark>
-      <v-toolbar-title>Where2Go</v-toolbar-title>
+    <v-app-bar app 
+    color = "white"
+    dark>
+
+      <v-toolbar-side-icon>
+        <v-img :src="require('../assets/logob.png')" />
+      </v-toolbar-side-icon>  
+
 
       <v-spacer></v-spacer>
 
