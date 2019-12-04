@@ -13,18 +13,53 @@
       <v-tabs-items v-model="tab">
         <v-tab-item value="login" align="center">
           <v-form>
-            <v-text-field label="Username" name="Username" v-model="username" prepend-icon="person" type="text" />
+            <v-text-field
+              error="authStatus=='error'"
+              label="Username"
+              name="Username"
+              v-model="username"
+              prepend-icon="person"
+              type="text"
+            />
 
-            <v-text-field label="Password" name="password" v-model="password" prepend-icon="lock" type="password" />
+            <v-text-field
+              error="authStatus=='error'"
+              label="Password"
+              name="password"
+              v-model="password"
+              prepend-icon="lock"
+              type="password"
+            />
             <v-btn color="primary" @click="login({'username':username, 'password':password})">Log In</v-btn>
           </v-form>
         </v-tab-item>
         <v-tab-item value="register" align="center">
           <v-form>
-            <v-text-field label="Username" name="Username" v-model="username" prepend-icon="person" type="text" />
-            <v-text-field label="Password" name="Password" v-model="password" prepend-icon="lock" type="password" />
-            <v-text-field label="Email" name="Email" v-model="email" prepend-icon="email" type="text" />
-            <v-btn color="primary" @click="register({'username':username, 'password':password, 'email':email})">Sign Up</v-btn>
+            <v-text-field
+              label="Username"
+              name="Username"
+              v-model="username"
+              prepend-icon="person"
+              type="text"
+            />
+            <v-text-field
+              label="Password"
+              name="Password"
+              v-model="password"
+              prepend-icon="lock"
+              type="password"
+            />
+            <v-text-field
+              label="Email"
+              name="Email"
+              v-model="email"
+              prepend-icon="email"
+              type="text"
+            />
+            <v-btn
+              color="primary"
+              @click="register({'username':username, 'password':password, 'email':email})"
+            >Sign Up</v-btn>
           </v-form>
         </v-tab-item>
       </v-tabs-items>
@@ -33,8 +68,11 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
+  computed: {
+    ...mapState(["authStatus"])
+  },
   data: () => ({
     tab: null,
     username: "",
@@ -43,6 +81,13 @@ export default {
   }),
   methods: {
     ...mapActions(["login", "register"])
+  },
+  watch: {
+    authStatus: function() {
+      if (authStatus == "success") {
+        this.$router.push("/home");
+      }
+    }
   }
 };
 </script>
