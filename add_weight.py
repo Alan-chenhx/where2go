@@ -9,9 +9,9 @@ with open('distance.json') as f:
 for city in json_dat:
     for place in json_dat[city]:
         for otherplace in json_dat[city][place]:
-            query = """
+            query = '''
                 MATCH (p1:Place), (p2:Place)
-                WHERE p1.name = '%s', p2.name = '%s'
+                WHERE p1.name = "%s" AND p2.name = "%s"
                 CREATE (p1)-[:WEIGHT {weight: %s} ]->(p2)
-            """ %(place, otherplace, json_dat[city][place][otherplace])
+            ''' %(place, otherplace, json_dat[city][place][otherplace])
             graph.run(query)
