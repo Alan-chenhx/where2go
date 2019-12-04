@@ -17,6 +17,7 @@
               :error="authStatus=='error' || !eclear"
               label="Username"
               name="Username"
+              :rules="nameRules"
               v-model="username"
               prepend-icon="person"
               type="text"
@@ -26,6 +27,7 @@
               :error="authStatus=='error' || !eclear"
               label="Password"
               name="password"
+              :rules="passwordRules"
               v-model="password"
               prepend-icon="lock"
               type="password"
@@ -38,6 +40,7 @@
             <v-text-field
               label="Username"
               name="Username"
+              :rules="nameRules"
               v-model="username"
               prepend-icon="person"
               type="text"
@@ -45,6 +48,7 @@
             <v-text-field
               label="Password"
               name="Password"
+              :rules="passwordRules"
               v-model="password"
               prepend-icon="lock"
               type="password"
@@ -52,6 +56,7 @@
             <v-text-field
               label="Email"
               name="Email"
+              :rules="emailRules"
               v-model="email"
               prepend-icon="email"
               type="text"
@@ -78,7 +83,19 @@ export default {
     tab: null,
     username: "",
     password: "",
-    email: ""
+    email: "",
+    nameRules: [
+      v => !!v || "Name is required",
+      v => (v && v.length <= 10) || "Name must be less than 10 characters"
+    ],
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+    ],
+    passwordRules: [
+      v => !!v || "Password is required",
+      v => (v && v.length >= 6) || "Password must be greater than 6 characters"
+    ]
   }),
   methods: {
     ...mapActions(["login", "register"])
