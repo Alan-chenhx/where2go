@@ -18,7 +18,7 @@
       <v-menu bottom open-on-hover offset-y>
         <template v-slot:activator="{ on }">
           <v-btn v-on="on">
-            <v-icon>person</v-icon> 
+            <v-icon>person</v-icon>
             {{ isLoggedIn }}
           </v-btn>
         </template>
