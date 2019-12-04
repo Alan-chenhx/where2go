@@ -31,7 +31,6 @@ for city in itinerary:
                 CREATE (i:Itinerary {city: "%s", duration: %s, name: "%s", timetonext: %s, ref_id: ID(p)})
                 RETURN i
             """ %(name, city, city, duration, name, timetonext) 
-            print(query)
             graph.run(query)
             query = """
                 MATCH (i:Itinerary), (d:Day)
@@ -60,3 +59,10 @@ for i in range(len(its) - 1):
         RETURN i, j
     """ %(head['city'], head['name'], nxt['city'], nxt['name'])
     graph.run(query)
+head = its[i]
+query = """
+    MATCH (i:Itinerary)
+    WHERE i.city = '%s' AND i.name = "%s"
+    RETURN ID(i)
+""" %(head['city'], head['name'])
+print(graph.run(query).data()[0]['ID(i)'])
