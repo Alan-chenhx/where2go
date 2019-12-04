@@ -59,11 +59,14 @@ def algorithm1(cities, preference, days, pace='medium'):
         data = json.load(json_file)
     # cities = sys.argv[1].replace('-',' ').split(',')
     # preference = sys.argv[2]
-
+    prefer=[]
     if (preference == 'None'):
         preference = ''
     else:
-        preference=dic[preference]
+        for  pr in preference:
+            for tag in dic[pr]:
+                prefer.append(tag)
+    preference=prefer
     # days = int(sys.argv[3])
     # pace = sys.argv[4]
     ans = {}
@@ -113,6 +116,5 @@ def algorithm1(cities, preference, days, pace='medium'):
     return ans
 
 
-print(
-    algorithm1(['Los Angeles', 'San Diego', 'Santa Monica'],
-               "wildlife", 10, "high"))
+# print(algorithm1(['Los Angeles'],
+#                "None", 60, "high"))

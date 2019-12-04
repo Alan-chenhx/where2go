@@ -34,9 +34,10 @@ def generate(city,preference,day_s,pace,maps,data):
     p.append(randint(0,n-1))
     while(len(p)!=n):
         cur=p[-1]
-        mini=[999,999]
+        mini=[9999,9999]
         for i in range(n):
             if(i not in p):
+                # print(i,cur)
                 if(graph[i][cur]<mini[1]):
                     mini[0]=i
                     mini[1]=graph[i][cur]
