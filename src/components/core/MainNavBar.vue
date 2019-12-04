@@ -19,21 +19,21 @@
         <template v-slot:activator="{ on }">
           <v-btn v-on="on">
             <v-icon>face</v-icon>
-            {{ userProfile.name }}
+            <span>{{ isLoggedin?userProfile.name:'USER' }}</span>
           </v-btn>
         </template>
 
         <v-list class="dropdown-menu">
           <v-list-item v-if="!isLoggedIn" @click="toLogin">
-            <v-list-item-icon>
+            <v-list-item-content>
               <v-icon>fingerprint</v-icon>
-            </v-list-item-icon>
+            </v-list-item-content>
             <v-list-item-title>Log In</v-list-item-title>
           </v-list-item>
           <v-list-item v-if="isLoggedIn" @click="logout">
-            <v-list-item-icon>
+            <v-list-item-content>
               <v-icon>clear</v-icon>
-            </v-list-item-icon>
+            </v-list-item-content>
             <v-list-item-title>Log Out</v-list-item-title>
           </v-list-item>
         </v-list>
