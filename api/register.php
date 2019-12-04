@@ -8,14 +8,14 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 // $username = 'ggg';
 // $password = 'ggg';
-$email = 'not set';
-$phone = 'not set';
-$tag = '000';
-$portrait = '1';
-$query = mysqli_query($conn, "INSERT INTO profiles (email, phone, tag, portrait) 
-                              VALUES ('$email', '$phone', '$tag', '$portrait') 
-                              ON DUPLICATE KEY UPDATE email = '$email', 
-                                                      phone = '$phone', 
-                                                      tag = '$tag', 
-                                                      portrait = '$portrait';");
+$email = $_POST['email'];
+$description = '';
+$avatar = '1';
+$name = 'Anonymous';
+$query = mysqli_query($conn, "INSERT INTO profiles (email, description, avatar, name) 
+                              VALUES ('$email','$description', '$avatar', '$name') 
+                              ON DUPLICATE KEY UPDATE email = '$email', , 
+                                                      description = '$description',
+                                                      name = '$name', 
+                                                      avatar = '$avatar';");
 $query = mysqli_query($conn, "INSERT INTO users (username, password) VALUES ('$username', '$password');");
