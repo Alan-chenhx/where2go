@@ -1,10 +1,12 @@
 // https://vuex.vuejs.org/en/actions.html
 import axios from 'axios'
+import router from '../router'
 
 export default {
   login({
     commit
   }, user) {
+    router.push('/home')
     return new Promise((resolve, reject) => {
       commit('auth_request')
       axios({
@@ -12,11 +14,11 @@ export default {
           data: user,
           method: 'POST'
         })
-        .then(resp => {
+        .then(function (resp) {
           const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
-          this.$router.push('/home')
+          router.push('/home')
           resolve(resp)
         })
         .catch(err => {
@@ -35,11 +37,11 @@ export default {
           data: user,
           method: 'POST'
         })
-        .then(resp => {
+        .then(function (resp) {
           const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
-          this.$router.push('/home')
+          router.push('/home')
           resolve(resp)
         })
         .catch(err => {
@@ -61,7 +63,7 @@ export default {
     commit
   }, userId) {
     axios({
-        url: '/api/user.php',
+        url: '/api/getUser.php',
         data: userId,
         method: 'GET'
       })
@@ -77,7 +79,7 @@ export default {
     commit
   }, userId) {
     axios({
-        url: '/api/user.php',
+        url: '/api/updateUser.php',
         data: userId,
         method: 'POST'
       })
