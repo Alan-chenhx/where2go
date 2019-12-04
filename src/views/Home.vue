@@ -34,15 +34,15 @@
                   >{{toDate(i).toLocaleString('default', { weekday: 'short', day: 'numeric', month: 'short'})}}</v-sheet>
                 </template>
               </v-timeline-item>
+              <v-timeline-item
+                large
+                class="align-center"
+                v-if="!!day[0].city?(i>0&&!!itinerary[i-1][0].city)?day[0].city!=itinerary[i-1][0].city:true:false"
+              >
+                <span class="headline text-center text-no-wrap">{{day[0].city}}</span>
+              </v-timeline-item>
               <draggable :v-model="day" :group="'city'+day[0].city">
                 <div v-for="(attr, j) in day" :key="j">
-                  <v-timeline-item
-                    large
-                    class="align-center"
-                    v-if="!!attr.city?(j>0&&!!day[j-1].city)?attr.city!=day[j-1].city:true:false"
-                  >
-                    <span class="headline text-center text-no-wrap">{{attr.city}}</span>
-                  </v-timeline-item>
                   <v-timeline-item>
                     <v-card class="elevation-3">
                       <v-card-title class="headline">{{attr.name}}</v-card-title>
@@ -72,7 +72,7 @@
 
 <script>
 import draggable from "vuedraggable";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 Date.prototype.addDays = function(day) {
   var date = new Date(this.valueOf());
@@ -91,7 +91,7 @@ export default {
   }),
 
   computed: {
-    ...mapState(['itinerary']),
+    ...mapState(["itinerary"]),
     numDays() {
       return this.itinerary.length;
     }
