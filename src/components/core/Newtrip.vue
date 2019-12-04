@@ -68,8 +68,9 @@
 
             <v-btn value="Fast-paced">Fast-paced</v-btn>
           </v-btn-toggle>
-          <v-checkbox v-model="checkbox1" :label="`Checkbox 1: ${checkbox1.toString()}`"></v-checkbox>
-          <v-checkbox v-model="checkbox2" :label="`Checkbox 2: ${checkbox2.toString()}`"></v-checkbox>
+          <v-chip-group multiple column active-class="primary--text">
+            <v-chip filter outlined v-for="tag in tags" :key="tag">{{ tag }}</v-chip>
+          </v-chip-group>
         </v-col>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -91,7 +92,18 @@ export default {
     menu2: false,
     choise: "Medium",
     checkbox1: true,
-    checkbox2: false
+    checkbox2: false,
+    tags: [
+      "culture",
+      "outdoors",
+      "relaxing",
+      "romantic",
+      "beaches",
+      "historic sites",
+      "museums",
+      "shopping",
+      "wildlife"
+    ]
   }),
 
   methods: {
