@@ -13,8 +13,8 @@ $row = mysqli_fetch_array($query);
 $response_array["uname"] = $_SESSION["username"];
 $response_array["usid"] = $_SESSION["user_id"];
 $response_array["email"] = $row["email"];
-$response_array["phone"] = $row["phone"];
-$response_array["tag"] = $row["tag"];
-$response_array["portrait"] = $row["portrait"];
+$response_array["name"] = $row["name"];
+$response_array["description"] = $row["description"];
+$response_array["avatar"] = $row["avatar"];
 
 echo json_encode($response_array);
