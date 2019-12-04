@@ -2,7 +2,7 @@
   <v-app>
     <v-content>
       <v-container >
-        <core-newtrip/>
+        <core-UserCard/>
         <v-data-iterator
           :items="items"
           :items-per-page.sync="itemsPerPage"
