@@ -3,16 +3,18 @@ import find
 import sys
 import re
 import pprint
+import json
+import demjson
 import math
-def main():
+def algorithm1(cities,preference,days,pace='medium'):
     
-    cities = sys.argv[1].replace('-',' ').split(',')
-    preference = sys.argv[2]
+    # cities = sys.argv[1].replace('-',' ').split(',')
+    # preference = sys.argv[2]
     
     if(preference=='None'):
         preference=''
-    days = int(sys.argv[3])
-    pace = sys.argv[4]
+    # days = int(sys.argv[3])
+    # pace = sys.argv[4]
     ans={}
     city_len=[]
     for city in cities:
@@ -26,7 +28,7 @@ def main():
     for index,city in enumerate(cities):
         ans.setdefault(city,[])
         # print(find.generate(city,preference,int(day[index])))
-        ans[city]=find.generate(city,preference,int(math.floor(day[index]+0.5)))
+        ans[city]=find.generate(city,preference,int(math.floor(day[index]+0.5)),pace)
     # print(ans)
     for i in ans:
         days=ans[i]
@@ -54,12 +56,11 @@ def main():
                 
             days[day_in]=day[0]
 
-    pprint.pprint(ans)
-    return ans
+    json=demjson.encode(ans)
+    # print(json)
+    return json
 
 
 
 
-
-if __name__ == "__main__":
-    main()
+# print(algorithm1(['Los Angeles','San Diego','Santa Monica'],['Water Park','Park'],10,"high"))
