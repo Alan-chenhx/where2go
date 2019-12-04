@@ -74,7 +74,7 @@ export default {
     ...mapState(["authStatus"])
   },
   data: () => ({
-    eclear: false,
+    eclear: true,
     tab: null,
     username: "",
     password: "",

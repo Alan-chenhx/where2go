@@ -45,7 +45,7 @@
               ></v-textarea>
             </v-col>
             <v-btn color="success" @click="toModify" v-if="modify">modify</v-btn>
-            <v-btn color="success" @click="updateInfo(currUserId, userProfile)" v-if="!modify">save</v-btn>
+            <v-btn color="success" @click="updateInfo(currUserId, user)" v-if="!modify">save</v-btn>
             <!-- <core-DeleteDialogue :hidden="modify" class="mt-4" /> -->
           </v-card-text>
         </material-card>
@@ -81,6 +81,7 @@ export default {
       return this.modify;
     },
     async updateInfo(currUserId, userProfile) {
+      console.log(userProfile)
       await this.updateUserProfile(currUserId, userProfile);
       this.enable()
     }
