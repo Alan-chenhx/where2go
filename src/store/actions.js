@@ -92,7 +92,7 @@ export default {
     axios({
         url: '/api/updateIt',
         data: [
-          planId, 
+          planId,
           itId,
           attr
         ],
@@ -112,7 +112,7 @@ export default {
     axios({
         url: '/api/addAttr',
         data: [
-          planId, 
+          planId,
           itId,
           attr
         ],
@@ -132,7 +132,7 @@ export default {
     axios({
         url: '/api/removeAttr',
         data: [
-          planId, 
+          planId,
           itId
         ],
         method: 'POST'
@@ -159,7 +159,7 @@ export default {
       })
       .catch(err => {
         console.log(err)
-      }),
+      })
   },
   fetchPlanDetail({
     commit
@@ -171,9 +171,9 @@ export default {
       })
       .then(resp => {
         const attrs = resp.data.attrs
-        const planPref = resp.data.planPref
+        const planDetail = resp.data.planDetail
         commit('getAttrs', attrs)
-        commit('getPlanPref', planPref)
+        commit('getPlanDetail', planDetail)
       })
       .catch(err => {
         console.log(err)
