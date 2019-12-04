@@ -14,7 +14,7 @@
         <v-tab-item value="login" align="center">
           <v-form>
             <v-text-field
-              :error="authStatus=='error'"
+              :error="authStatus=='error' || !eclear"
               label="Username"
               name="Username"
               v-model="username"
@@ -23,7 +23,7 @@
             />
 
             <v-text-field
-              :error="authStatus=='error'"
+              :error="authStatus=='error' || !eclear"
               label="Password"
               name="password"
               v-model="password"
@@ -74,6 +74,7 @@ export default {
     ...mapState(["authStatus"])
   },
   data: () => ({
+    eclear: false,
     tab: null,
     username: "",
     password: "",
@@ -87,6 +88,9 @@ export default {
       if (this.authStatus == "success") {
         this.$router.push("/home");
       }
+    },
+    username: function() {
+      this.eclear = true;
     }
   }
 };
