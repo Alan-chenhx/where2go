@@ -7,9 +7,11 @@ def main():
     
     cities = sys.argv[1].replace('-',' ').split(',')
     preference = sys.argv[2]
+    
     if(preference=='None'):
         preference=''
     days = int(sys.argv[3])
+    pace = sys.argv[4]
     ans={}
     city_len=[]
     for city in cities:
@@ -23,7 +25,7 @@ def main():
     for index,city in enumerate(cities):
         ans.setdefault(city,[])
         # print(find.generate(city,preference,int(day[index])))
-        ans[city]=find.generate(city,preference,int(day[index]))
+        ans[city]=find.generate(city,preference,int(day[index]+0.5),pace)
     pprint.pprint(ans)
     return ans
 

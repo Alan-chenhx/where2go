@@ -3,8 +3,16 @@ import create_graph
 from random import randint
 import heapq
 import numpy as np
-def generate(city,preference,day_s):
-    time=day_s*450
+import math
+def generate(city,preference,day_s,pace):
+    if(pace=='low'):
+        para=300
+    elif(pace=='medium'):
+        para=450
+    else:
+        para=600
+
+    time=day_s*para
     paths,distance = create_graph.cal(city,preference,time)
     n=len(paths)
     # print(paths)
@@ -14,7 +22,7 @@ def generate(city,preference,day_s):
     for i in range(0,n):
         for j in range(i+1,n):
             try:
-                graph[i][j] = distance[paths[i][0]][paths[j][0]]*1.6
+                graph[i][j] = math.ceil(distance[paths[i][0]][paths[j][0]]*1.6)
                 graph[j][i] = graph[i][j]
                 
                
@@ -49,7 +57,7 @@ def generate(city,preference,day_s):
 
         daytime+=int(paths[tmp[-1]][1])
         store=[]
-        while(daytime>400 and len(p)!=0):
+        while(daytime> para and len(p)!=0):
             
             daytime-=int(paths[tmp[-1]][1])
             day.pop(-1)
@@ -65,7 +73,7 @@ def generate(city,preference,day_s):
         for i in store[::-1]:
             p.append(i)
 
-        if(daytime>=300):
+        if(daytime>=0.8*para):
             days.append((day,daytime))
             daytime=0
             day=[]
