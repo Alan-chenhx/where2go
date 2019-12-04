@@ -16,7 +16,7 @@ $tag = $_POST['tag'];
 // $tag = "110";
 $portrait = $_POST['portrait'];
 
-$query = mysqli_query($conn, "INSERT INTO profiles (user_id, email, phone, tag, portrait) 
+$query = mysqli_query($conn, "INSERT INTO profiles (user_id, email, description, name, avatar) 
                               VALUES ('$uid', '$email', '$name', '$avatar', '$description') 
                               ON DUPLICATE KEY UPDATE email = '$email', 
                               name = $name,
