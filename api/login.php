@@ -1,9 +1,11 @@
 <?php session_start();
 
-include 'includes/db.php';
+include 'include/db.php';
 $_POST = json_decode(file_get_contents("php://input"),true);
 $username = $_POST['username'];
+#$username = 'bnm';
 $password = $_POST['password'];
+#$password = 'bnm';
 
 $query = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username' AND password = '$password'");
 $counter = mysqli_num_rows($query);
@@ -16,5 +18,6 @@ if ($counter == 0) {
     $_SESSION["user_id"] = $user_id;
     $_SESSION["username"] = $username;
     $response_array['success'] = 1;
+    $response_array['currUserId'] = $user_id;
     echo json_encode($response_array);
 }
