@@ -1,6 +1,6 @@
 <?php session_start();
 
-include 'include/db.php';
+include 'includes/db.php';
 $_POST = json_decode(file_get_contents("php://input"),true);
 $username = $_POST['username'];
 #$username = 'bnm';

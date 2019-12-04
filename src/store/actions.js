@@ -1,6 +1,6 @@
 // https://vuex.vuejs.org/en/actions.html
 import axios from 'axios'
-import router from '../router'
+//import router from '../router'
 
 export default {
   login({
