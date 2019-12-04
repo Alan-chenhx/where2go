@@ -5,7 +5,7 @@ import heapq
 import math
 import numpy as np
 import math
-def generate(city,preference,day_s,pace,map):
+def generate(city,preference,day_s,pace,maps,data):
     if(pace=='low'):
         para=300
     elif(pace=='medium'):
@@ -14,7 +14,7 @@ def generate(city,preference,day_s,pace,map):
         para=600
 
     time=day_s*para
-    paths,distance = create_graph.cal(city,preference,time,map)
+    paths,distance = create_graph.cal(city,preference,time,maps,data)
     n=len(paths)
     # print(paths)
     graph = np.zeros((n,n)) 

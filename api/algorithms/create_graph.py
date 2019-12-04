@@ -4,7 +4,7 @@ import pprint
 from random import randint
 
 class path:
-    def __init__(self,distance):
+    def __init__(self,distance,data):
         self.pplist=[]
         self.uplist=[]
         self.Dprefer=[]
@@ -17,10 +17,9 @@ class path:
         self.Tuprefer=[]
         self.dist={}
         self.distance=distance
+        self.all_data=data
     def read(self,city):
-        with open('data.json') as json_file:
-            tmp = json.load(json_file)
-            self.data = tmp[city]
+            self.data = self.all_data[city]
             self.dist=self.distance[city]
     def create(self,city,prefer):
         self.read(city) 
@@ -81,14 +80,14 @@ class path:
         return sums
     def dis(self):
         return self.dist
-def cal_len(city,preference,distance):
-    curPath=path(distance)
+def cal_len(city,preference,distance,data):
+    curPath=path(distance,data)
     curPath.create(city,preference)
     n = len(curPath.pplist)
     return n
 
-def cal(city,preference,times,distance):
-    curPath=path(distance)
+def cal(city,preference,times,distance,data):
+    curPath=path(distance,data)
     curPath.create(city,preference)
     n = len(curPath.pplist)
     used=[]
