@@ -2,7 +2,7 @@
   <div>
     <v-app-bar app color="white" dark :hide-on-scroll="['login'].indexOf($route.name) == -1">
       <v-toolbar-items>
-        <v-img :src="require('../assets/logob.png')" />
+        <v-img :src="require('@/assets/logob.png')" />
       </v-toolbar-items>
 
       <v-spacer></v-spacer>
