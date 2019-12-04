@@ -3,6 +3,8 @@
 export default {
   authStatus: '',
   currUserId: null,
+  currPlanId: null,
   userProfile: {},
-  plans: {}
+  plans: {},
+  attrs: {},
 }

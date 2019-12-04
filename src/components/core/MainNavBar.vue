@@ -18,16 +18,22 @@
       <v-menu bottom open-on-hover offset-y>
         <template v-slot:activator="{ on }">
           <v-btn v-on="on">
-            <v-icon>person</v-icon> 
-            {{ isLoggedIn }}
+            <v-icon>face</v-icon>
+            <span>{{ isLoggedin?userProfile.name:'USER' }}</span>
           </v-btn>
         </template>
 
         <v-list class="dropdown-menu">
           <v-list-item v-if="!isLoggedIn" @click="toLogin">
+            <v-list-item-content>
+              <v-icon>fingerprint</v-icon>
+            </v-list-item-content>
             <v-list-item-title>Log In</v-list-item-title>
           </v-list-item>
           <v-list-item v-if="isLoggedIn" @click="logout">
+            <v-list-item-content>
+              <v-icon>clear</v-icon>
+            </v-list-item-content>
             <v-list-item-title>Log Out</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -38,18 +44,17 @@
 
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapState } from "vuex";
 export default {
   computed: {
-    ...mapGetters([
-      'isLoggedIn'
-    ])
+    ...mapState(["userProfile"]),
+    ...mapGetters(["isLoggedIn"])
   },
   data: () => ({}),
   methods: {
     ...mapActions(["logout"]),
-    toLogin(){
-      this.$router.push('/login')
+    toLogin() {
+      this.$router.push("/login");
     }
   }
 };

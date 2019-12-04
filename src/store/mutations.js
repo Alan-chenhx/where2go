@@ -15,10 +15,13 @@ export default {
     state.authStatus = ''
     state.currUserId = ''
   },
-  fetchUserProfile(state, userProfile){
+  getUserProfile(state, userProfile) {
     state.userProfile = userProfile
   },
-  fetchPlans(state, plans){
+  getPlans(state, plans) {
     state.plans = plans
+  },
+  getAttrs(state, attrs) {
+    state.attrs = attrs
   }
 }
