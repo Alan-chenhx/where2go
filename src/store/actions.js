@@ -73,10 +73,10 @@ export default {
   },
   updateUserProfile({
     commit
-  }, userId, userProfile) {
+  }, userProfile) {
     axios({
         url: '/api/updateUser.php',
-        data: userId,
+        data: userProfile,
         method: 'POST'
       })
       .then(resp => {
