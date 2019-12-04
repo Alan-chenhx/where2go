@@ -44,8 +44,9 @@
                 :rounded="rounded"
               ></v-textarea>
             </v-col>
-            <v-btn color="success" @click="updateUserProfile(currUserId, userProfile)">{{ button }}</v-btn>
-            <core-DeleteDialogue :hidden="modify" class="mt-4" />
+            <v-btn color="success" @click="toModify" v-if="modify">modify</v-btn>
+            <v-btn color="success" @click="updateInfo(currUserId, userProfile)" v-if="!modify">save</v-btn>
+            <!-- <core-DeleteDialogue :hidden="modify" class="mt-4" /> -->
           </v-card-text>
         </material-card>
       </v-col>
@@ -68,19 +69,20 @@ export default {
 
   computed: {
     ...mapState(["userProfile", "currUserId"]),
-    button() {
-      if (this.modify) {
-        return "Modify";
-      } else {
-        return "Save";
-      }
-    }
   },
 
   methods: {
     ...mapActions(['fetchUserProfile', 'updateUserProfile']),
     enable() {
       this.modify = !this.modify;
+    },
+    toModify() {
+      this.modify = !this.modify
+      return this.modify;
+    },
+    async updateInfo(currUserId, userProfile) {
+      await this.updateUserProfile(currUserId, userProfile);
+      this.enable()
     }
   },
 
