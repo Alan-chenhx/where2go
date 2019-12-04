@@ -21,10 +21,9 @@
         </v-tab-item>
         <v-tab-item value="register" align="center">
           <v-form>
-            <v-text-field label="Username" name="Username" prepend-icon="person" type="text" />
-
-            <v-text-field label="Password" name="Password" prepend-icon="lock" type="password" />
-            <v-text-field label="Email" name="Email" prepend-icon="email" type="text" />
+            <v-text-field label="Username" name="Username" v-model="username" prepend-icon="person" type="text" />
+            <v-text-field label="Password" name="Password" v-model="password" prepend-icon="lock" type="password" />
+            <v-text-field label="Email" name="Email" v-model="email" prepend-icon="email" type="text" />
             <v-btn color="primary" @click="register">Sign Up</v-btn>
           </v-form>
         </v-tab-item>
@@ -39,7 +38,8 @@ export default {
   data: () => ({
     tab: null,
     username: "",
-    password: ""
+    password: "",
+    email: ""
   }),
   methods: {
     ...mapActions(["login", "register"])

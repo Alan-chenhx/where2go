@@ -16,6 +16,7 @@ export default {
           const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
+          this.$router.push('/home')
           resolve(resp)
         })
         .catch(err => {
@@ -38,6 +39,7 @@ export default {
           const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
+          this.$router.push('/home')
           resolve(resp)
         })
         .catch(err => {
