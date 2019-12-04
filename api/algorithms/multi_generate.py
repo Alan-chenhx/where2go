@@ -102,7 +102,9 @@ def algorithm1(cities, preference, days, pace='medium'):
                     # print(tmp)
                     try:
                         tmp['timetonext'] = day[0][index + 1]
+
                     except:
+                        # print("here")
                         tmp['timetonext'] = 0
                     # print(day[0][index])
                     day[0][index] = tmp.copy()
@@ -117,5 +119,4 @@ def algorithm1(cities, preference, days, pace='medium'):
     # print(json)
     return ans
 
-
-print(algorithm1(['Los Angeles',"Mountain View"],"None", 5, "medium"))
+# print(algorithm1(['Los Angeles',"Mountain View"],"None", 5, "medium"))

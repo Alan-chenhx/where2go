@@ -15,6 +15,7 @@ def generate(city,preference,day_s,pace,maps,data):
 
     time=day_s*para
     paths,distance = create_graph.cal(city,preference,time,maps,data)
+    # print(distance)
     n=len(paths)
     # print(paths)
     graph = np.zeros((n,n)) 
@@ -29,7 +30,7 @@ def generate(city,preference,day_s,pace,maps,data):
                
             except:
                 graph[i][j]=60
-                
+    # print(graph)    
     p=[]
     p.append(randint(0,n-1))
     while(len(p)!=n):
@@ -53,7 +54,8 @@ def generate(city,preference,day_s,pace,maps,data):
         if(len(tmp)!=1):
             
             daytime+=graph[ tmp[-1] ][ tmp[-2] ]
-
+            if(graph[ tmp[-1] ][ tmp[-2] ]==0.0):
+                print(tmp[-1],tmp[-2])
             day.append(graph[ tmp[-1] ][ tmp[-2] ])
         day.append( paths[tmp[-1]] )
 
