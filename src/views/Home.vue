@@ -25,7 +25,7 @@
         </v-col>
         <v-col cols="8">
           <v-timeline dense>
-            <div v-for="(days, i) in attrs" :key="i">
+            <div v-for="(day, i) in itinerary" :key="i">
               <v-timeline-item fill-dot small :id="'date-'+i">
                 <template v-slot:icon>
                   <v-sheet
@@ -34,32 +34,34 @@
                   >{{toDate(i).toLocaleString('default', { weekday: 'short', day: 'numeric', month: 'short'})}}</v-sheet>
                 </template>
               </v-timeline-item>
-              <div v-for="(attr, j) in days" :key="j">
-                <v-timeline-item
-                  large
-                  class="align-center"
-                  v-if="!!attr.city?(j>0&&!!days[j-1].city)?attr.city!=days[j-1].city:true:false"
-                >
-                  <span class="headline text-center text-no-wrap">{{attr.city}}</span>
-                </v-timeline-item>
-                <v-timeline-item>
-                  <v-card class="elevation-3">
-                    <v-card-title class="headline">{{attr.name}}</v-card-title>
-                    <v-card-text>Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.</v-card-text>
-                  </v-card>
-                </v-timeline-item>
-                <v-timeline-item
-                  class="align-center"
-                  color="white"
-                  fill-dot
-                  v-if="attr.timetonext!=0"
-                >
-                  <template v-slot:icon>
-                    <v-icon color="black">mdi-car</v-icon>
-                  </template>
-                  <span>{{ attr.timetonext }} mins</span>
-                </v-timeline-item>
-              </div>
+              <draggable :v-model="day" :group="'city'+day[0].city">
+                <div v-for="(attr, j) in day" :key="j">
+                  <v-timeline-item
+                    large
+                    class="align-center"
+                    v-if="!!attr.city?(j>0&&!!day[j-1].city)?attr.city!=day[j-1].city:true:false"
+                  >
+                    <span class="headline text-center text-no-wrap">{{attr.city}}</span>
+                  </v-timeline-item>
+                  <v-timeline-item>
+                    <v-card class="elevation-3">
+                      <v-card-title class="headline">{{attr.name}}</v-card-title>
+                      <v-card-text>Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.</v-card-text>
+                    </v-card>
+                  </v-timeline-item>
+                  <v-timeline-item
+                    class="align-center"
+                    color="white"
+                    fill-dot
+                    v-if="attr.timetonext!=0"
+                  >
+                    <template v-slot:icon>
+                      <v-icon color="black">mdi-car</v-icon>
+                    </template>
+                    <span>{{ attr.timetonext }} mins</span>
+                  </v-timeline-item>
+                </div>
+              </draggable>
             </div>
           </v-timeline>
         </v-col>
@@ -69,16 +71,21 @@
 </template>
 
 <script>
-Date.prototype.addDays = function(days) {
+import draggable from "vuedraggable";
+
+Date.prototype.addDays = function(day) {
   var date = new Date(this.valueOf());
-  date.setDate(date.getDate() + days);
+  date.setDate(date.getDate() + day);
   return date;
 };
 
 export default {
+  components: {
+    draggable
+  },
   data: () => ({
     startDate: new Date(2019, 11, 26),
-    attrs: [
+    itinerary: [
       [
         {
           city: "Los Angeles",
@@ -234,11 +241,14 @@ export default {
 
   computed: {
     numDays() {
-      return this.attrs.length
+      return this.itinerary.length;
     }
   },
 
   methods: {
+    log: function(evt) {
+      console.log(evt);
+    },
     toDate(n) {
       return this.startDate.addDays(n);
     },

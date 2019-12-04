@@ -6,5 +6,5 @@ export default {
   currPlanId: null,
   userProfile: {},
   plans: {},
-  attrs: {},
+  currItinerary: [],
 }

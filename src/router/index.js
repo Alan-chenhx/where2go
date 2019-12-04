@@ -41,17 +41,17 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
-  const session = localStorage.getItem('currUserId');
+// router.beforeEach((to, from, next) => {
+//   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+//   const session = localStorage.getItem('currUserId');
 
-  if (requiresAuth && !session) {
-    next('/login')
-  } else if (requiresAuth && session) {
-    next()
-  } else {
-    next()
-  }
-})
+//   if (requiresAuth && !session) {
+//     next('/login')
+//   } else if (requiresAuth && session) {
+//     next()
+//   } else {
+//     next()
+//   }
+// })
 
 export default router
