@@ -34,7 +34,7 @@
                   >{{toDate(i).toLocaleString('default', { weekday: 'short', day: 'numeric', month: 'short'})}}</v-sheet>
                 </template>
               </v-timeline-item>
-              <draggable :v-model="day" :group="'city'+day[i].city">
+              <draggable :v-model="day" :group="'city'+day[0].city">
                 <div v-for="(attr, j) in day" :key="j">
                   <v-timeline-item
                     large
