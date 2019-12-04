@@ -170,7 +170,7 @@ export default {
     commit
   }, planId) {
     axios({
-        url: '/api/plans.php',
+        url: '/api/getPlanDetail.php',
         data: planId,
         method: 'GET'
       })
