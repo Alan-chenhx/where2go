@@ -95,7 +95,7 @@ export default {
           timetonext: 5.0
         },
         {
-          city: "Los Angel",
+          city: "Los Angeles",
           duration: "120",
           name: "Chinatown",
           rating: 1.4,
