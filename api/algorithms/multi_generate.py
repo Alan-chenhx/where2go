@@ -7,7 +7,8 @@ import json
 import demjson
 import math
 def algorithm1(cities,preference,days,pace='medium'):
-    
+    with open('distance.json') as json_file:
+        distance = json.load(json_file)
     # cities = sys.argv[1].replace('-',' ').split(',')
     # preference = sys.argv[2]
     
@@ -18,7 +19,7 @@ def algorithm1(cities,preference,days,pace='medium'):
     ans={}
     city_len=[]
     for city in cities:
-        city_len.append(create_graph.cal_len(city,preference))
+        city_len.append(create_graph.cal_len(city,preference,distance))
     sums=sum(city_len)
     day=[]
     for i in city_len:
@@ -28,7 +29,7 @@ def algorithm1(cities,preference,days,pace='medium'):
     for index,city in enumerate(cities):
         ans.setdefault(city,[])
         # print(find.generate(city,preference,int(day[index])))
-        ans[city]=find.generate(city,preference,int(math.floor(day[index]+0.5)),pace)
+        ans[city]=find.generate(city,preference,int(math.floor(day[index]+0.5)),pace,distance)
     # print(ans)
     for i in ans:
         days=ans[i]
@@ -56,11 +57,11 @@ def algorithm1(cities,preference,days,pace='medium'):
                 
             days[day_in]=day[0]
 
-    json=demjson.encode(ans)
+    # json_ans=demjson.encode(ans)
     # print(json)
-    return json
+    return ans
 
 
 
 
-# print(algorithm1(['Los Angeles','San Diego','Santa Monica'],['Water Park','Park'],10,"high"))
+print(algorithm1(['Los Angeles','San Diego','Santa Monica'],['Water Park','Park'],10,"high"))
