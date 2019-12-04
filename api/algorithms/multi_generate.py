@@ -6,7 +6,7 @@ import pprint
 import json
 import demjson
 import math
-def algorithm1(cities,preference,days,pace):
+def algorithm1(cities,preference='None',days,pace='medium'):
     
     # cities = sys.argv[1].replace('-',' ').split(',')
     # preference = sys.argv[2]
@@ -63,3 +63,4 @@ def algorithm1(cities,preference,days,pace):
 
 
 
+# print(algorithm1(['Los Angeles','San Diego','Santa Monica'],'None',1,"high"))
