@@ -59,32 +59,124 @@ export default {
     commit
   }, userId) {
     axios({
-      url: '/api/register',
-      data: userId,
-      method: 'POST'
-    })
-    .then(resp => {
-      const userProfile = resp.data.userProfile
-      commit('fetchUserProfile', userProfile)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+        url: '/api/user',
+        data: userId,
+        method: 'GET'
+      })
+      .then(resp => {
+        const userProfile = resp.data.userProfile
+        commit('getUserProfile', userProfile)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  updateUserProfile({
+    commit
+  }, userId) {
+    axios({
+        url: '/api/user',
+        data: userId,
+        method: 'POST'
+      })
+      .then(resp => {
+        commit('getUserProfile', userProfile)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  updateItinerary({
+    commit
+  }, planId, itId, attr) {
+    axios({
+        url: '/api/updateIt',
+        data: [
+          planId, 
+          itId,
+          attr
+        ],
+        method: 'POST'
+      })
+      .then(resp => {
+        //FIXME 
+        commit('getUserProfile', userProfile)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  addToItinerary({
+    commit
+  }, planId, itId, attr) {
+    axios({
+        url: '/api/addAttr',
+        data: [
+          planId, 
+          itId,
+          attr
+        ],
+        method: 'POST'
+      })
+      .then(resp => {
+        //FIXME 
+        commit('getUserProfile', userProfile)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
+  removeFromItinerary({
+    commit
+  }, planId, itId, attr) {
+    axios({
+        url: '/api/removeAttr',
+        data: [
+          planId, 
+          itId
+        ],
+        method: 'POST'
+      })
+      .then(resp => {
+        //FIXME 
+        commit('getUserProfile', userProfile)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   },
   fetchPlans({
     commit
   }, userId) {
     axios({
-      url: '/api/register',
-      data: userId,
-      method: 'POST'
-    })
-    .then(resp => {
-      const userProfile = resp.data.userProfile
-      commit('fetchPlans', userProfile)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+        url: '/api/plans',
+        data: userId,
+        method: 'GET'
+      })
+      .then(resp => {
+        const plans = resp.data.plans
+        commit('getPlans', userProfile)
+      })
+      .catch(err => {
+        console.log(err)
+      }),
+  },
+  fetchPlanDetail({
+    commit
+  }, planId) {
+    axios({
+        url: '/api/plans',
+        data: planId,
+        method: 'GET'
+      })
+      .then(resp => {
+        const attrs = resp.data.attrs
+        const planPref = resp.data.planPref
+        commit('getAttrs', attrs)
+        commit('getPlanPref', planPref)
+      })
+      .catch(err => {
+        console.log(err)
+      }),
   },
 }
