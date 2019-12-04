@@ -18,7 +18,7 @@ export default {
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
           resolve(resp)
-        }).then(() => router.push('/home'))
+        })
         .catch(err => {
           commit('auth_error')
           reject(err)
@@ -40,7 +40,7 @@ export default {
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
           resolve(resp)
-        }).then(() => router.push('/home'))
+        })
         .catch(err => {
           commit('auth_error', err)
           reject(err)
