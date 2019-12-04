@@ -41,7 +41,7 @@ dic={
     ],
     "museums": [
         "Architectural Building", "Art Gallery", "Art Museum",
-        "Children\u2019s Museum", "History Museum", "Military Museum",
+        "Children's Museum", "History Museum", "Military Museum",
         "Science Museum", "Shopping Mall", "Specialty Museum"
     ],
     "shopping": [
@@ -75,14 +75,16 @@ def algorithm1(cities, preference, days, pace='medium'):
         city_len.append(create_graph.cal_len(city, preference, distance, data))
     sums = sum(city_len)
     day = []
-    for i in city_len:
-        day.append(days * i / sums)
+    for i in city_len[:-1]:
+        day.append(int(days * i / sums+0.5))
+    day.append(days-sum(day))
+    
 
     for index, city in enumerate(cities):
         ans.setdefault(city, [])
         # print(find.generate(city,preference,int(day[index])))
         ans[city] = find.generate(city, preference,
-                                  int(math.floor(day[index] + 0.5)), pace,
+                                  day[index], pace,
                                   distance, data)
     # print(ans)
     for i in ans:
@@ -116,5 +118,4 @@ def algorithm1(cities, preference, days, pace='medium'):
     return ans
 
 
-# print(algorithm1(['Los Angeles'],
-#                "None", 60, "high"))
+print(algorithm1(['Los Angeles',"Mountain View"],"None", 5, "medium"))
