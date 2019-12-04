@@ -19,7 +19,7 @@
         <template v-slot:activator="{ on }">
           <v-btn v-on="on">
             <v-icon>face</v-icon>
-            <span>{{ isLoggedIn?userProfile.usid:'USER' }}</span>
+            <span>{{ isLoggedIn?userProfile.uname:'USER' }}</span>
           </v-btn>
         </template>
 
