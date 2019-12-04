@@ -60,7 +60,7 @@ export default {
     commit
   }, userId) {
     axios({
-        url: '/api/getuser.php',
+        url: '/api/getUser.php',
         data: userId,
         method: 'GET'
       })
@@ -75,7 +75,7 @@ export default {
     commit
   }, userId, userProfile) {
     axios({
-        url: '/api/updateuser.php',
+        url: '/api/updateUser.php',
         data: userId,
         method: 'POST'
       })
