@@ -3,6 +3,7 @@ import find
 import sys
 import re
 import pprint
+import math
 def main():
     
     cities = sys.argv[1].replace('-',' ').split(',')
@@ -23,8 +24,35 @@ def main():
     for index,city in enumerate(cities):
         ans.setdefault(city,[])
         # print(find.generate(city,preference,int(day[index])))
-        ans[city]=find.generate(city,preference,int(day[index]))
-    # pprint.pprint(ans)
+        ans[city]=find.generate(city,preference,int(math.floor(day[index]+0.5)))
+    # print(ans)
+    for i in ans:
+        days=ans[i]
+        for day_in,day in enumerate(days):
+            day=list(day)
+            day.pop(-1)
+            for index,ele in enumerate(day[0]):
+                # print(ele)
+                if isinstance(ele,tuple):
+                    tmp={}
+                    tmp['name']=ele[0]
+                    tmp['duration']=ele[1]
+                    tmp['rating']=ele[2]
+                    # print(tmp)
+                    try:
+                        tmp['timetonext']=day[0][index+1]
+                    except:
+                        tmp['timetonext']=0
+                    # print(day[0][index])
+                    day[0][index]=tmp.copy()
+            for index,ele in enumerate(day[0]):
+                # print(ele)
+                if isinstance(ele,float):
+                    day[0].pop(index)
+                
+            days[day_in]=day[0]
+
+    pprint.pprint(ans)
     return ans
 
 
