@@ -80,6 +80,7 @@ export default {
         method: 'POST'
       })
       .then(resp => {
+        const userProfile = resp.data.userProfile
         commit('getUserProfile', userProfile)
       })
       .catch(err => {
@@ -100,6 +101,7 @@ export default {
       })
       .then(resp => {
         //FIXME 
+        const userProfile = resp.data.userProfile
         commit('getUserProfile', userProfile)
       })
       .catch(err => {
@@ -120,6 +122,7 @@ export default {
       })
       .then(resp => {
         //FIXME 
+        const userProfile = resp.data.userProfile
         commit('getUserProfile', userProfile)
       })
       .catch(err => {
@@ -128,7 +131,7 @@ export default {
   },
   removeFromItinerary({
     commit
-  }, planId, itId, attr) {
+  }, planId, itId) {
     axios({
         url: '/api/removeAttr',
         data: [
@@ -139,6 +142,7 @@ export default {
       })
       .then(resp => {
         //FIXME 
+        const userProfile = resp.data.userProfile
         commit('getUserProfile', userProfile)
       })
       .catch(err => {
@@ -155,7 +159,7 @@ export default {
       })
       .then(resp => {
         const plans = resp.data.plans
-        commit('getPlans', userProfile)
+        commit('getPlans', plans)
       })
       .catch(err => {
         console.log(err)
@@ -169,7 +173,7 @@ export default {
         data: planId,
         method: 'GET'
       })
-      .then(resp => {
+      .then((resp) => {
         const attrs = resp.data.attrs
         const planDetail = resp.data.planDetail
         commit('getAttrs', attrs)
