@@ -36,6 +36,9 @@
 <script>
 import { mapActions } from "vuex";
 export default {
+  data: () => ({
+    tab: null
+  }),
   methods: {
     ...mapActions(["login", "register"])
   }

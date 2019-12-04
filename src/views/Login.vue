@@ -24,7 +24,6 @@ export default {
   components: {},
 
   data: () => ({
-    tab: null,
     backgrounds: [
       {
         src: require("@/assets/yosemite.jpg")
