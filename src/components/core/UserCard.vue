@@ -68,33 +68,32 @@ export default {
   }),
 
   computed: {
-    ...mapState(["userProfile", "currUserId"]),
+    ...mapState(["userProfile", "currUserId"])
   },
 
   methods: {
-    ...mapActions(['fetchUserProfile', 'updateUserProfile']),
+    ...mapActions(["fetchUserProfile", "updateUserProfile"]),
     enable() {
       this.modify = !this.modify;
     },
     toModify() {
-      this.modify = !this.modify
+      this.modify = !this.modify;
       return this.modify;
     },
     async updateInfo(userProfile) {
-      console.log(userProfile)
-      await this.updateUserProfile(userProfile);
-      this.enable()
+      console.log(userProfile);
+      await this.updateUserProfile(userProfile).then(() => this.enable());
     }
   },
 
   watch: {
     userProfile: function() {
-      this.user = this.userProfile
+      this.user = this.userProfile;
     }
   },
 
-  async created () {
-    await this.fetchUserProfile(this.currUserId)
+  async created() {
+    await this.fetchUserProfile(this.currUserId);
   }
 };
 </script>
