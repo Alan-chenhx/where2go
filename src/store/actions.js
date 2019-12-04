@@ -8,7 +8,7 @@ export default {
     return new Promise((resolve, reject) => {
       commit('auth_request')
       axios({
-          url: '/api/login',
+          url: '/api/login.php',
           data: user,
           method: 'POST'
         })
@@ -30,7 +30,7 @@ export default {
     return new Promise((resolve, reject) => {
       commit('auth_request')
       axios({
-          url: '/api/register',
+          url: '/api/register.php',
           data: user,
           method: 'POST'
         })
@@ -59,7 +59,7 @@ export default {
     commit
   }, userId) {
     axios({
-        url: '/api/user',
+        url: '/api/user.php',
         data: userId,
         method: 'GET'
       })
@@ -75,7 +75,7 @@ export default {
     commit
   }, userId) {
     axios({
-        url: '/api/user',
+        url: '/api/user.php',
         data: userId,
         method: 'POST'
       })
@@ -91,7 +91,7 @@ export default {
     commit
   }, planId, itId, attr) {
     axios({
-        url: '/api/updateIt',
+        url: '/api/updateIt.php',
         data: [
           planId,
           itId,
@@ -112,7 +112,7 @@ export default {
     commit
   }, planId, itId, attr) {
     axios({
-        url: '/api/addAttr',
+        url: '/api/addAttr.php',
         data: [
           planId,
           itId,
@@ -133,7 +133,7 @@ export default {
     commit
   }, planId, itId) {
     axios({
-        url: '/api/removeAttr',
+        url: '/api/removeAttr.php',
         data: [
           planId,
           itId
@@ -153,7 +153,7 @@ export default {
     commit
   }, userId) {
     axios({
-        url: '/api/plans',
+        url: '/api/plans.php',
         data: userId,
         method: 'GET'
       })
@@ -169,7 +169,7 @@ export default {
     commit
   }, planId) {
     axios({
-        url: '/api/plans',
+        url: '/api/plans.php',
         data: planId,
         method: 'GET'
       })

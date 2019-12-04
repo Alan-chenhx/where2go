@@ -13,10 +13,10 @@
       <v-tabs-items v-model="tab">
         <v-tab-item value="login" align="center">
           <v-form>
-            <v-text-field label="Username" name="Username" prepend-icon="person" type="text" />
+            <v-text-field label="Username" name="Username" v-model="username" prepend-icon="person" type="text" />
 
-            <v-text-field label="Password" name="password" prepend-icon="lock" type="password" />
-            <v-btn color="primary" @click="login">Log In</v-btn>
+            <v-text-field label="Password" name="password" v-model="password" prepend-icon="lock" type="password" />
+            <v-btn color="primary" @click="login({'username':username, 'password':password})">Log In</v-btn>
           </v-form>
         </v-tab-item>
         <v-tab-item value="register" align="center">
@@ -37,7 +37,9 @@
 import { mapActions } from "vuex";
 export default {
   data: () => ({
-    tab: null
+    tab: null,
+    username: "",
+    password: ""
   }),
   methods: {
     ...mapActions(["login", "register"])
