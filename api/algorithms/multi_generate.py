@@ -119,4 +119,4 @@ def algorithm1(cities, preference, days, pace='medium'):
     # print(json)
     return ans
 
-print(algorithm1(['Los Angeles',"Mountain View"],"None", 5, "medium"))
+# print(algorithm1(['Los Angeles',"Mountain View"],"None", 5, "medium"))

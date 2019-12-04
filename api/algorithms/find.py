@@ -30,7 +30,7 @@ def generate(city,preference,day_s,pace,maps,data):
                
             except:
                 graph[i][j]=60
-    print(graph)    
+    # print(graph)    
     p=[]
     p.append(randint(0,n-1))
     while(len(p)!=n):
