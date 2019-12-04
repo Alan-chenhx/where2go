@@ -13,7 +13,7 @@ export default {
           data: user,
           method: 'POST'
         })
-        .then(function (resp) {
+        .then(resp => {
           const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
@@ -36,7 +36,7 @@ export default {
           data: user,
           method: 'POST'
         })
-        .then(function (resp) {
+        .then(resp => {
           const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
