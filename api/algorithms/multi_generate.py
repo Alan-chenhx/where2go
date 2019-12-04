@@ -6,15 +6,15 @@ import pprint
 import json
 import demjson
 import math
-def main():
+def algorithm1(cities,preference,days,pace):
     
-    cities = sys.argv[1].replace('-',' ').split(',')
-    preference = sys.argv[2]
+    # cities = sys.argv[1].replace('-',' ').split(',')
+    # preference = sys.argv[2]
     
     if(preference=='None'):
         preference=''
-    days = int(sys.argv[3])
-    pace = sys.argv[4]
+    # days = int(sys.argv[3])
+    # pace = sys.argv[4]
     ans={}
     city_len=[]
     for city in cities:
@@ -57,12 +57,9 @@ def main():
             days[day_in]=day[0]
 
     json=demjson.encode(ans)
-    print(json)
-    return ans
+    # print(json)
+    return json
 
 
 
 
-
-if __name__ == "__main__":
-    main()

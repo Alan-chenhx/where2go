@@ -127,6 +127,6 @@ def cal(city,preference,times):
         cur_time+=int(curPath.uplist[maxi[1]]['duration'])
         paths.append((curPath.uplist[maxi[1]]['name'],curPath.uplist[maxi[1]]['duration'],curPath.uplist[maxi[1]]['rating']))
     # print(paths)
-        dist=curPath.dis()
+    dist=curPath.dis()
     return paths,dist
     
