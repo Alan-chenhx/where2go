@@ -60,13 +60,12 @@ export default {
     commit
   }, userId) {
     axios({
-        url: '/api/getUser.php',
+        url: '/api/getuser.php',
         data: userId,
         method: 'GET'
       })
       .then(resp => {
-        const userProfile = resp.data.userProfile
-        commit('getUserProfile', userProfile)
+        commit('getUserProfile', resp.data)
       })
       .catch(err => {
         console.log(err)
@@ -74,14 +73,13 @@ export default {
   },
   updateUserProfile({
     commit
-  }, userId) {
+  }, userId, userProfile) {
     axios({
-        url: '/api/updateUser.php',
+        url: '/api/updateuser.php',
         data: userId,
         method: 'POST'
       })
       .then(resp => {
-        const userProfile = resp.data.userProfile
         commit('getUserProfile', userProfile)
       })
       .catch(err => {
@@ -90,12 +88,12 @@ export default {
   },
   updateItinerary({
     commit
-  }, planId, itId, attr) {
+  }, planId, attrId, attr) {
     axios({
-        url: '/api/updateIt.php',
+        url: '/api/update_it.php',
         data: [
           planId,
-          itId,
+          attrId,
           attr
         ],
         method: 'POST'
@@ -111,12 +109,12 @@ export default {
   },
   addToItinerary({
     commit
-  }, planId, itId, attr) {
+  }, planId, attrId, attr) {
     axios({
-        url: '/api/addAttr.php',
+        url: '/api/add_attr.php',
         data: [
           planId,
-          itId,
+          attrId,
           attr
         ],
         method: 'POST'
@@ -132,12 +130,12 @@ export default {
   },
   removeFromItinerary({
     commit
-  }, planId, itId) {
+  }, planId, attrId) {
     axios({
         url: '/api/removeAttr.php',
         data: [
           planId,
-          itId
+          attrId
         ],
         method: 'POST'
       })
@@ -170,7 +168,7 @@ export default {
     commit
   }, planId) {
     axios({
-        url: '/api/plans.php',
+        url: '/api/getPlanDetail.php',
         data: planId,
         method: 'GET'
       })

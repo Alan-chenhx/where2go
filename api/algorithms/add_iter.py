@@ -47,14 +47,17 @@ for city in itinerary:
         d += 1
         it_list.append(oneday)
 print(it_list)
+its = []
 for day in it_list:
-    for i in range(len(day) - 1):
-        head = day[i]
-        nxt = day[i + 1]
-        query = """
-            MATCH (i:Itinerary), (j:Itinerary)
-            WHERE i.city = '%s' AND i.name = "%s" AND j.city = '%s' AND j.name = "%s"
-            CREATE (i)-[:Next]->(j)
-            RETURN i, j
-        """ %(head['city'], head['name'], nxt['city'], nxt['name'])
-        graph.run(query)
+    for entry in day:
+        its.append(entry)
+for i in range(len(its) - 1):
+    head = its[i]
+    nxt = its[i + 1]
+    query = """
+        MATCH (i:Itinerary), (j:Itinerary)
+        WHERE i.city = '%s' AND i.name = "%s" AND j.city = '%s' AND j.name = "%s"
+        CREATE (i)-[:Next]->(j)
+        RETURN i, j
+    """ %(head['city'], head['name'], nxt['city'], nxt['name'])
+    graph.run(query)
