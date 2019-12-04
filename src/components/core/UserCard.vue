@@ -9,7 +9,7 @@
           <v-card-text class="text-center pt-n12">
             <v-col style="text-align: center">
               <v-textarea
-                class="mt-n12 text--center "
+                class="mt-n12 text--center"
                 color="success"
                 style=" text-align-last: center; "
                 :readonly="modify"
@@ -23,7 +23,7 @@
               <v-textarea
                 class="mt-n12"
                 color="success"
-                 style=" text-align-last: center; "
+                style=" text-align-last: center; "
                 :readonly="modify"
                 v-model="user.email"
                 :single-line="singleLine"
@@ -35,7 +35,7 @@
               <v-textarea
                 class="mt-n10"
                 color="success"
-                 style=" text-align-last: center; "
+                style=" text-align-last: center; "
                 :readonly="modify"
                 v-model="user.discription"
                 :single-line="singleLine"
@@ -44,8 +44,8 @@
                 :rounded="rounded"
               ></v-textarea>
             </v-col>
-            <v-btn color="success" @click="enable">{{ bottum }}</v-btn>
-            <core-DeleteDialogue :hidden="modify" class="mt-4"/>
+            <v-btn color="success" @click="updateUserProfile(currUserId, userProfile)">{{ button }}</v-btn>
+            <core-DeleteDialogue :hidden="modify" class="mt-4" />
           </v-card-text>
         </material-card>
       </v-col>
@@ -54,15 +54,11 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data: () => ({
-    user: {
-      name: "Abdu Alawini",
-      avatar:
-        "https://wiki.illinois.edu/wiki/download/attachments/700856761/BV32p154.jpg?version=1&modificationDate=1565897325000",
-      email: "alawini@illinois.edu ",
-      discription: "laobi"
-    },
+    user: {},
     modify: true,
     rows: 1,
     singleLine: true,
@@ -71,7 +67,8 @@ export default {
   }),
 
   computed: {
-    bottum() {
+    ...mapState(["userProfile", "currUserId"]),
+    button() {
       if (this.modify) {
         return "Modify";
       } else {
@@ -81,9 +78,20 @@ export default {
   },
 
   methods: {
+    ...mapActions(['fetchUserProfile', 'updateUserProfile']),
     enable() {
       this.modify = !this.modify;
     }
+  },
+
+  watch: {
+    userProfile: function() {
+      this.user = this.userProfile
+    }
+  },
+
+  async created () {
+    await this.fetchUserProfile(this.currUserId)
   }
 };
 </script>

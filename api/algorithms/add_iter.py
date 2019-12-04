@@ -4,15 +4,15 @@ from py2neo import Graph
 graph = Graph(host='localhost', auth=('neo4j', 'abduabdu'))
 
 cities = sys.argv[1].replace('-',' ').split(',')
-preference = sys.argv[2]
+preference = sys.argv[2].replace('-', ' ').split(',')
 days = int(sys.argv[3])
 pace = sys.argv[4]
 itinerary = algorithm1(cities, preference, days, pace)
 print(itinerary)
 it_list = []
 
+d = 0
 for city in itinerary:
-    d = 0
     for day in itinerary[city]:
         oneday = []
         query = """
@@ -51,6 +51,7 @@ its = []
 for day in it_list:
     for entry in day:
         its.append(entry)
+print(its)
 for i in range(len(its) - 1):
     head = its[i]
     nxt = its[i + 1]
