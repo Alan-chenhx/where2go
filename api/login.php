@@ -11,7 +11,9 @@ $query = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username' A
 $counter = mysqli_num_rows($query);
 $response = array();
 if ($counter == 0) {
-    die("Invalid username or password.");
+    header('HTTP/1.1 401 Internal Server Booboo');
+    header('Content-Type: application/json; charset=UTF-8');
+    die(json_encode(array('message' => 'ERROR', 'code' => 1337)));
 } else {
     $row = mysqli_fetch_array($query);
     $user_id = $row['user_id'];
