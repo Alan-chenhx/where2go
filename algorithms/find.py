@@ -2,6 +2,7 @@ import sys
 import create_graph
 from random import randint
 import heapq
+import math
 import numpy as np
 import math
 def generate(city,preference,day_s,pace):
