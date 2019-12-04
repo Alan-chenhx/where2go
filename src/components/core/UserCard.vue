@@ -45,6 +45,7 @@
               ></v-textarea>
             </v-col>
             <v-btn color="success" @click="enable">{{ bottum }}</v-btn>
+            <core-DeleteDialogue :hidden="modify" class="mt-4"/>
           </v-card-text>
         </material-card>
       </v-col>

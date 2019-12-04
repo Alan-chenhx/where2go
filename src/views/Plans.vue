@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-content>
+      <core-UserCard/>
       <v-row>
       <v-container>
         <v-data-iterator
