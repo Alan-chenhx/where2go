@@ -8,7 +8,6 @@ preference = sys.argv[2].replace('-', ' ').split(',')
 days = int(sys.argv[3])
 pace = sys.argv[4]
 itinerary = algorithm1(cities, preference, days, pace)
-print(itinerary)
 it_list = []
 
 d = 0
@@ -32,6 +31,7 @@ for city in itinerary:
                 CREATE (i:Itinerary {city: "%s", duration: %s, name: "%s", timetonext: %s, ref_id: ID(p)})
                 RETURN i
             """ %(name, city, city, duration, name, timetonext) 
+            print(query)
             graph.run(query)
             query = """
                 MATCH (i:Itinerary), (d:Day)
@@ -46,12 +46,10 @@ for city in itinerary:
             oneday.append(step)
         d += 1
         it_list.append(oneday)
-print(it_list)
 its = []
 for day in it_list:
     for entry in day:
         its.append(entry)
-print(its)
 for i in range(len(its) - 1):
     head = its[i]
     nxt = its[i + 1]
