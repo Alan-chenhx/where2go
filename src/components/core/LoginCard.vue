@@ -24,7 +24,7 @@
             <v-text-field label="Username" name="Username" v-model="username" prepend-icon="person" type="text" />
             <v-text-field label="Password" name="Password" v-model="password" prepend-icon="lock" type="password" />
             <v-text-field label="Email" name="Email" v-model="email" prepend-icon="email" type="text" />
-            <v-btn color="primary" @click="register">Sign Up</v-btn>
+            <v-btn color="primary" @click="register({'username':username, 'password':password, 'email':email})">Sign Up</v-btn>
           </v-form>
         </v-tab-item>
       </v-tabs-items>

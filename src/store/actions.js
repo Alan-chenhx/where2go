@@ -6,7 +6,6 @@ export default {
   login({
     commit
   }, user) {
-    router.push('/home')
     return new Promise((resolve, reject) => {
       commit('auth_request')
       axios({
