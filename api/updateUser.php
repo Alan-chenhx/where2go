@@ -9,12 +9,12 @@ $uid = $_SESSION['user_id'];
 $_POST = json_decode(file_get_contents("php://input"), true);
 // $uid = 1;
 $email = $_POST['email'];
-$phone = $_POST['phone'];
-$tag = $_POST['tag'];
+$description = $_POST['description'];
+$name = $_POST['name'];
 // $email = "shuhanw2@illinois.edu";
 // $phone = "2179793386";
 // $tag = "110";
-$portrait = $_POST['portrait'];
+$avatar = $_POST['avatar'];
 
 $query = mysqli_query($conn, "INSERT INTO profiles (user_id, email, description, name, avatar) 
                               VALUES ('$uid', '$email', '$name', '$avatar', '$description') 
