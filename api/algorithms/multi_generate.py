@@ -3,6 +3,8 @@ import find
 import sys
 import re
 import pprint
+import json
+import demjson
 import math
 def main():
     
@@ -26,7 +28,7 @@ def main():
     for index,city in enumerate(cities):
         ans.setdefault(city,[])
         # print(find.generate(city,preference,int(day[index])))
-        ans[city]=find.generate(city,preference,int(math.floor(day[index]+0.5)))
+        ans[city]=find.generate(city,preference,int(math.floor(day[index]+0.5)),pace)
     # print(ans)
     for i in ans:
         days=ans[i]
@@ -54,7 +56,8 @@ def main():
                 
             days[day_in]=day[0]
 
-    pprint.pprint(ans)
+    json=demjson.encode(ans)
+    print(json)
     return ans
 
 
