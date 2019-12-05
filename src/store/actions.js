@@ -195,6 +195,7 @@ export default {
       })
       .then((resp) => {
         const detail = resp.data
+        console.log(detail)
         commit('getItinerary', detail)
       })
       .catch(err => {
