@@ -72,7 +72,7 @@
 
 <script>
 import draggable from "vuedraggable";
-import { mapState } from "vuex";
+import { mapState,mapActions } from "vuex";
 
 Date.prototype.addDays = function(day) {
   var date = new Date(this.valueOf());
@@ -98,6 +98,7 @@ export default {
   },
 
   methods: {
+    ...mapActions(['fetchPlanDetail']),
     log: function(evt) {
       window.console.log(evt);
     },
@@ -122,6 +123,10 @@ export default {
 
       this.input = null;
     }
+  },
+
+  async created() {
+    await this.fetchPlanDetail(13455);
   }
 };
 </script>

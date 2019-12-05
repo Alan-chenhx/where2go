@@ -109,7 +109,7 @@ export default {
     commit
   }, planId, attrId, attr) {
     axios({
-        url: '/api/update_it.php',
+        url: '/api/algorithms/updateAttr.php',
         data: [
           planId,
           attrId,
@@ -130,7 +130,7 @@ export default {
     commit
   }, planId, attrId, attr) {
     axios({
-        url: '/api/add_attr.php',
+        url: '/api/algorithms/addAttr.php',
         data: [
           planId,
           attrId,
@@ -151,7 +151,7 @@ export default {
     commit
   }, planId, attrId) {
     axios({
-        url: '/api/removeAttr.php',
+        url: '/api/algorithms/removeAttr.php',
         data: [
           planId,
           attrId
@@ -171,7 +171,7 @@ export default {
     commit
   }, userId) {
     axios({
-        url: '/api/plans.php',
+        url: '/api/algorithms/plans.php',
         data: userId,
         method: 'GET'
       })
@@ -187,15 +187,13 @@ export default {
     commit
   }, planId) {
     axios({
-        url: '/api/getPlanDetail.php',
+        url: '/api/algorithms/getPlanDetail.php',
         data: planId,
-        method: 'GET'
+        method: 'POST'
       })
       .then((resp) => {
-        const attrs = resp.data.attrs
-        const planDetail = resp.data.planDetail
-        commit('getAttrs', attrs)
-        commit('getPlanDetail', planDetail)
+        const detail = resp.data
+        commit('getItinerary', detail)
       })
       .catch(err => {
         console.log(err)

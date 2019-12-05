@@ -18,10 +18,7 @@ export default {
   getUserProfile(state, userProfile) {
     state.userProfile = userProfile
   },
-  getPlans(state, plans) {
-    state.plans = plans
-  },
-  getAttrs(state, attrs) {
-    state.attrs = attrs
+  getItinerary(state, itinerary) {
+    state.itinerary = itinerary
   }
 }
