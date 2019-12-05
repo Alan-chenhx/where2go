@@ -14,8 +14,8 @@ $email = $_POST['email'];
 // $description = '123213213213213123213123213';
 // $avatar = '1123213213213213213213221';
 
-$description = $_POST['description'];
-$avatar = $_POST['avatar'];
+$description = "This guy is lazy, and did not leave any description.";
+$avatar = "https://wiki.illinois.edu/wiki/download/thumbnails/700856761/BV32p154.jpg?version=1&modificationDate=1565897325000&api=v2";
 
 $name = 'Anonymous';
 mysqli_query($conn,"START TRANSACTION");
