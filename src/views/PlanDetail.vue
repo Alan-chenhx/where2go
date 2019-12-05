@@ -58,7 +58,7 @@
                           <v-btn
                             icon
                             class="ml-5"
-                            @click="deleteUser(currPlanId, attr.city, attr.name)"
+                            @click="deleteAttr(currPlanId, attr.city, attr.name)"
                           >
                             <v-icon>clear</v-icon>
                           </v-btn>
@@ -138,10 +138,10 @@ export default {
     log: function(evt) {
       window.console.log(evt);
     },
-    deleteUser(currPlanId, city, name) {
+    async deleteAttr(currPlanId, city, name) {
       const payload = { planId: currPlanId, city: city, name: name };
       console.log(payload);
-      this.removeFromItinerary(payload);
+      await this.removeFromItinerary(payload).then(this.fetchPlanDetail());
     },
     toDate(n) {
       return this.startDate.addDays(n);
