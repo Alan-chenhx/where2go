@@ -41,15 +41,41 @@
               >
                 <span class="headline text-center text-no-wrap">{{day[0].city}}</span>
               </v-timeline-item>
-              <draggable :v-model="day" :group="'city'+day[0].city" @start="log">
+              <draggable :v-model="day" :group="'city'+day[0].city">
                 <div v-for="(attr, j) in day" :key="j">
                   <v-timeline-item>
+                    <template v-slot:icon>
+                      <v-sheet
+                        class="text-no-wrap pa-2 white--text text-center"
+                        color="purple"
+                        min-width="90"
+                      >{{attr.duration}} mins</v-sheet>
+                    </template>
                     <v-card class="elevation-3">
-                      <v-row>
-                      <v-card-title class="headline">{{attr.duration}} mins </v-card-title>  
-                        <v-divider vertical=true ></v-divider>
-                      <v-card-title class="headline">{{attr.name}}</v-card-title>
-                      </v-row>
+                      <v-img :src="attr.background" height="100%" class="white--text text-center align-end">
+                        <v-card-title class="headline black--text">{{ attr.name }}
+                          <v-btn icon class="ml-5" @click="removeFromItinerary(currPlanId, attr.city, attr.name)">
+                            <v-icon>clear</v-icon>
+                          </v-btn>
+                        </v-card-title>
+                        <v-card-subtitle>{{ attr.address }}</v-card-subtitle>
+                        <v-card-text>
+                          <v-row align="center" class="mx-0">
+                            <v-rating
+                              :value="attr.rating"
+                              color="amber"
+                              dense
+                              half-increments
+                              readonly
+                              size="14"
+                              v-if="!!attr.rating"
+                            ></v-rating>
+                            <div class="grey--text ml-4" v-if="!!attr.rating">{{attr.rating}}</div>
+                            <div class="ml-4 black--text">{{ attr.tag }}</div>
+                          </v-row>
+                          {{ attr.description }}
+                        </v-card-text>
+                      </v-img>
                     </v-card>
                   </v-timeline-item>
                   <v-timeline-item
@@ -103,7 +129,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchPlanDetail"]),
+    ...mapActions(["fetchPlanDetail", "removeFromItinerary"]),
     log: function(evt) {
       window.console.log(evt);
     },

@@ -160,19 +160,17 @@ export default {
   },
   removeFromItinerary({
     commit
-  }, planId, attrId) {
+  }, planId, city, name) {
     axios({
         url: '/api/algorithms/removeAttr.php',
-        data: [
-          planId,
-          attrId
-        ],
+        data: {
+          'planId': planId,
+          'city': city,
+          'name': name
+        },
         method: 'POST'
       })
       .then(resp => {
-        //FIXME 
-        const userProfile = resp.data.userProfile
-        commit('getUserProfile', userProfile)
       })
       .catch(err => {
         console.log(err)

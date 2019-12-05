@@ -15,15 +15,15 @@ $cover = '';
 $note = '';
 
 
-$start = '2019-02-01';
-$end = '2019-02-06';
-$tag = ["wildlife", "shopping"];
-$dest = ["Los Angeles", "Mountain View"];
-$days = 1;
-$pace = "medium";
-// $user_id = $_SESSION['user_id'];
-$user_id=1;
-$name = "asdkjsa";
+// $start = '2019-02-01';
+// $end = '2019-02-06';
+// $tag = ["wildlife", "shopping"];
+// $dest = ["Los Angeles", "Mountain View"];
+// $days = 1;
+// $pace = "medium";
+$user_id = $_SESSION['user_id'];
+// $user_id=1;
+// $name = "asdkjsa";
 
 $str = "*";
 foreach ($dest as &$d) {
@@ -52,3 +52,4 @@ $new_tag = str_replace('"', '*', json_encode($tag));
 $query = mysqli_query($conn, "INSERT INTO plans (user_id, name, start, end, dest, tag, cover, note, pace, ref_id)
                               VALUES ($user_id, '$name', '$start', '$end', '$new_dest', '$new_tag', '$cover', '$note', '$pace', $output);");
 echo $output;
+// echo $cover;
