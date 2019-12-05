@@ -17,6 +17,7 @@ for ($x = 0; $x < $counter; $x++) {
     $response_array["note"] = $row["note"];
     $response_array["pace"] = $row["pace"];
     $response_array["plan_id"] = $row["ref_id"];
+    $response_array["cover"] = $row["cover"];
 }
 
 
