@@ -103,7 +103,7 @@ export default {
       "culture",
       "outdoors",
       "relaxing",
-      "romantic",
+      // "romantic",
       "beaches",
       "historic sites",
       "museums",

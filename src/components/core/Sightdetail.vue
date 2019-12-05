@@ -6,24 +6,24 @@
       </template>
 
       <v-card fluid>
-        <v-img :src="item.background" height="200px" class="white--text text-center align-end"></v-img>
-        <v-card-title class="headline">{{ item.name }}</v-card-title>
-        <v-card-subtitle>{{ item.address }}</v-card-subtitle>
+        <v-img :src="attr.background" height="200px" class="white--text text-center align-end"></v-img>
+        <v-card-title class="headline">{{ attr.name }}</v-card-title>
+        <v-card-subtitle>{{ attr.address }}</v-card-subtitle>
         <v-card-text>
           <v-row align="center" class="mx-0">
             <v-rating
-              :value="item.rating"
+              :value="attr.rating"
               color="amber"
               dense
               half-increments
               readonly
               size="14"
-              v-if="!!item.rating"
+              v-if="!!attr.rating"
             ></v-rating>
-            <div class="grey--text ml-4" v-if="!!item.rating">{{item.rating}}</div>
+            <div class="grey--text ml-4" v-if="!!attr.rating">{{attr.rating}}</div>
           </v-row>
-          <div class="mb-1 black--text">{{ item.price }} • {{ item.tag }}</div>
-          {{ item.discription }}
+          <div class="mb-1 black--text">{{ attr.price }} • {{ attr.tag }}</div>
+          {{ attr.discription }}
         </v-card-text>
 
         <v-card-actions>
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       dialog: false,
-      item: {
+      attr: {
         name: "Bradbury Building",
         background:
           "https://s.inspirockcdn.com/ds10/photos/United States/1/bradbury-building--1985987038.jpg",
