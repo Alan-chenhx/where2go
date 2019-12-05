@@ -58,7 +58,7 @@
                           <v-btn
                             icon
                             class="ml-5"
-                            @click="deleteAttr(currPlanId, attr.city, attr.name)"
+                            @click="deleteAttr(currPlanId, attr.city, attr.name, i, j)"
                           >
                             <v-icon>clear</v-icon>
                           </v-btn>
@@ -138,10 +138,10 @@ export default {
     log: function(evt) {
       window.console.log(evt);
     },
-    async deleteAttr(currPlanId, city, name) {
+    async deleteAttr(currPlanId, city, name, i, j) {
       const payload = { planId: currPlanId, city: city, name: name };
       console.log(payload);
-      await this.removeFromItinerary(payload).then(this.fetchPlanDetail());
+      await this.removeFromItinerary(payload).then(this.itinerary[i].splice(j, 1));
     },
     toDate(n) {
       return this.startDate.addDays(n);
