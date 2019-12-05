@@ -57,7 +57,16 @@ export default {
     commit
   }) {
     return new Promise((resolve) => {
-      commit('logout')
+      axios({
+        url: '/api/logout.php',
+        method: 'GET'
+      })
+      .then(resp => {
+        commit('logout')
+      })
+      .catch(err => {
+        console.log(err)
+      })
       //delete axios.defaults.headers.common['Authorization']
       resolve()
     })
