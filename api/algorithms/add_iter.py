@@ -59,7 +59,7 @@ for i in range(len(its) - 1):
         RETURN i, j
     """ %(head['city'], head['name'], nxt['city'], nxt['name'])
     graph.run(query)
-head = its[i]
+head = its[0]
 query = """
     MATCH (i:Itinerary)
     WHERE i.city = '%s' AND i.name = "%s"
