@@ -84,12 +84,10 @@ export default {
     querySelections(v) {
       this.loading = true;
       // Simulated ajax query
-      setTimeout(() => {
-        this.items = this.data.filter(e => {
-          return (e || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
-        });
-        this.loading = false;
-      }, 500);
+      this.items = this.data.filter(e => {
+        return (e || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+      });
+      this.loading = false;
     }
   }
 };

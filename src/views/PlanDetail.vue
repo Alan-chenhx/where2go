@@ -18,7 +18,7 @@
                   @click="scrollToDate(n-1)"
                   icon
                   text
-                >{{ toDate(n).getDate() }}</v-btn>
+                >{{ toDate(n-1).getDate() }}</v-btn>
               </div>
             </div>
           </div>
@@ -41,13 +41,13 @@
               >
                 <span class="headline text-center text-no-wrap">{{day[0].city}}</span>
               </v-timeline-item>
-              <draggable :v-model="day" :group="'city'+day[0].city">
+              <draggable :v-model="day" :group="'city'+day[0].city" @start="log">
                 <div v-for="(attr, j) in day" :key="j">
                   <v-timeline-item>
                     <v-card class="elevation-3">
                       <v-row>
                       <v-card-title class="headline">{{attr.duration}} mins </v-card-title>  
-                        <v-divider vertical="true"></v-divider>
+                        <v-divider vertical=true ></v-divider>
                       <v-card-title class="headline">{{attr.name}}</v-card-title>
                       </v-row>
                     </v-card>
