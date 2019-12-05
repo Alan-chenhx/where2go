@@ -124,8 +124,9 @@ export default {
     }
   },
 
-  async created () {
+  async beforeRouteUpdate (to, from, next) {
     await this.fetchPlans()
+    next()
   },
 };
 </script>
