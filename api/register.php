@@ -18,7 +18,7 @@ $description = $_POST['description'];
 $avatar = $_POST['avatar'];
 
 $name = 'Anonymous';
-mysqli_query("START TRANSACTION");
+mysqli_query($conn,"START TRANSACTION");
 $query1 = mysqli_query($conn, "INSERT INTO profiles (email, description, avatar, name) 
                               VALUES ('$email','$description', '$avatar', '$name') 
                               ON DUPLICATE KEY UPDATE email = '$email', 
@@ -30,9 +30,9 @@ $query1 = mysqli_query($conn, "INSERT INTO profiles (email, description, avatar,
 
 $query2 = mysqli_query($conn, "INSERT INTO users (username, password) VALUES ('$username', '$password');");
 if ($query1 and $query2) {
-    mysqli_query("COMMIT");
+    mysqli_query($conn,"COMMIT");
 } else {        
-    mysqli_query("ROLLBACK");
+    mysqli_query($conn,"ROLLBACK");
 }
 
 $query = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username' AND password = '$password'");

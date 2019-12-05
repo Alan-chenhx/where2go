@@ -29,7 +29,7 @@ export default {
         src: require("@/assets/yosemite.jpg")
       },
       {
-        src: require("@/assets/wof.jpg")
+        src: require("@/assets/lake.jpeg")
       },
       {
         src: require("@/assets/sunset1.jpg")
