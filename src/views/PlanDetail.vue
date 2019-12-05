@@ -52,7 +52,7 @@
                       >{{attr.duration}} mins</v-sheet>
                     </template>
                     <v-card class="elevation-3">
-                      <v-img :src="attr.background" height="100%">
+                      <v-img :src="attr.photo" height="100%">
                         <v-card-title class="headline black--text">
                           {{ attr.name }}
                           <v-btn
