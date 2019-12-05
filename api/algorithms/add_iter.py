@@ -1,5 +1,31 @@
 from multi_generate import *
 from py2neo import Graph
+import json
+def getcover(city,attrac):
+    graph = Graph(host='localhost', auth=('neo4j', 'abduabdu'))
+    # city = sys.argv[1].replace('-',' ')
+    # attrac = sys.argv[2].replace('-',' ')
+    query = """
+        MATCH (p:Place)-[:Near]->(c:City)
+        WHERE c.name="%s" and p.name="%s"
+        RETURN p
+    """ %(city,attrac)
+    # query = """
+    #     MATCH (p:Place)-[:Near]->(c:City)
+    #     WHERE c.name="Los Angeles" and p.name="Greenbar Distillery"
+    #     RETURN p
+    # """
+    res = graph.run(query).data()
+
+    # attractions=[]
+    # for attr in res:
+    #     # print(attr['p']['name'])
+    #     attractions.append(attr['p']['name'])
+    try:
+        ans=res[0]['p']['photo']
+    except:
+        ans={}
+    return ans
 
 graph = Graph(host='localhost', auth=('neo4j', 'abduabdu'))
 
@@ -8,6 +34,19 @@ preference = sys.argv[2].replace('-', ' ').split(',')
 days = int(sys.argv[3])
 pace = sys.argv[4]
 itinerary = algorithm1(cities, preference, days, pace)
+
+cover_city=''
+for keyp in itinerary:
+    cover_city=keyp
+# cover_city = itinerary[key]
+# print()
+# print(itinerary[cover_city])
+try:
+    cover_attra = itinerary[cover_city][0][0]['name']
+    # print(cover_attra)
+except:
+    pass
+# print(cover_city)
 it_list = []
 
 d = 0
@@ -74,4 +113,11 @@ query = """
     RETURN p, i
 """ %(head['name'], plan_id, plan_id)
 graph.run(query)
-print(plan_id)
+try:
+    cover=getcover(cover_city,cover_attra)
+    cover=cover.replace("background-image: url('",'')
+    cover=cover.replace("')'",'')
+    # print(cover)
+    print( json.dumps([plan_id,cover]),end='' )
+except:
+    print(json.dumps([plan_id,"https:\/\/s.inspirockcdn.com\/ds10\/photos\/United States\/1\/town-and-country-village-1255533322.jpg"]),end='')
