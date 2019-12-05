@@ -1,11 +1,12 @@
 <?php
 
 include 'includes/db.php';
-// $_POST = json_decode(file_get_contents("php://input"),true);
-// $uid = $_SESSION['user_id'];
-$uid = 0;
-
+$_POST = json_decode(file_get_contents("php://input"),true);
+$uid = $_POST['user_id'];
+// $uid = 0;
+// echo $uid;
 $query = mysqli_query($conn, "SELECT * FROM plans WHERE user_id = '$uid'");
+
 
 $counter = mysqli_num_rows($query);
 $response = array($counter);
@@ -24,5 +25,4 @@ for ($x = 0; $x < $counter; $x++) {
 }
 // $ans["plans"]=$response;
 
-
-echo json_encode($response);
+echo json_encode($query);
