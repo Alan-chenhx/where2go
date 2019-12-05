@@ -1,25 +1,28 @@
 <?php
 
+session_start();
+
 include '../includes/db.php';
 $_POST = json_decode(file_get_contents("php://input"), true);
 $start = $_POST['start'];
 $end = $_POST['end'];
 $dest = $_POST['dest'];
-$tag = $_POST['tag'];
+$tag = $_POST['tags'];
 $days = $_POST['days'];
 $pace = $_POST['pace'];
 $name = $_POST['name'];
 $cover = '';
 $note = '';
 
-$start = '2019-02-01';
-$end = '2019-02-06';
-$tag = ["wildlife", "shopping"];
-$dest = ["Los Angeles", "Mountain View"];
-$days = 1;
-$pace = "medium";
+
+//$start = '2019-02-01';
+//$end = '2019-02-06';
+//$tag = ["wildlife", "shopping"];
+//$dest = ["Los Angeles", "Mountain View"];
+//$days = 1;
+//$pace = "medium";
 $user_id = $_SESSION['user_id'];
-$name = "asdkjsa";
+//$name = "asdkjsa";
 
 $str = "*";
 foreach ($dest as &$d) {
@@ -36,7 +39,9 @@ foreach ($tag as &$t) {
 $str1 = str_replace("*,", "", $str1);
 $to_exec = "python add_iter.py ".$str." ".$str1." ".$days." ".$pace;
 $command = escapeshellcmd($to_exec);
+echo $command;
 $output = shell_exec($command);
+echo $output;
 $new_dest = str_replace('"', '*', json_encode($dest));
 $new_tag = str_replace('"', '*', json_encode($tag));
 
