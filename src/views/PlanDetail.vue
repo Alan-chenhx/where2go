@@ -132,7 +132,7 @@ export default {
       return this.itinerary.length;
     },
     startDate() {
-      return this.itinerary.start;
+      return new Date(this.itinerary.start);
     }
   },
 
