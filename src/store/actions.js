@@ -160,14 +160,10 @@ export default {
   },
   removeFromItinerary({
     commit
-  }, planId, city, name) {
+  }, payload) {
     axios({
         url: '/api/algorithms/removeAttr.php',
-        data: {
-          'planId': planId,
-          'city': city,
-          'name': name
-        },
+        data: payload,
         method: 'POST'
       })
       .then(resp => {

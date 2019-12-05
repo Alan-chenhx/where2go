@@ -52,9 +52,14 @@
                       >{{attr.duration}} mins</v-sheet>
                     </template>
                     <v-card class="elevation-3">
-                      <v-img :src="attr.background" height="100%" class="white--text text-center align-end">
-                        <v-card-title class="headline black--text">{{ attr.name }}
-                          <v-btn icon class="ml-5" @click="removeFromItinerary(currPlanId, attr.city, attr.name)">
+                      <v-img :src="attr.background" height="100%">
+                        <v-card-title class="headline black--text">
+                          {{ attr.name }}
+                          <v-btn
+                            icon
+                            class="ml-5"
+                            @click="deleteUser(currPlanId, attr.city, attr.name)"
+                          >
                             <v-icon>clear</v-icon>
                           </v-btn>
                         </v-card-title>
@@ -132,6 +137,11 @@ export default {
     ...mapActions(["fetchPlanDetail", "removeFromItinerary"]),
     log: function(evt) {
       window.console.log(evt);
+    },
+    deleteUser(currPlanId, city, name) {
+      const payload = { planId: currPlanId, city: city, name: name };
+      console.log(payload);
+      this.removeFromItinerary(payload);
     },
     toDate(n) {
       return this.startDate.addDays(n);
