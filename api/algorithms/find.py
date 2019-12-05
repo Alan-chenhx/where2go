@@ -56,6 +56,7 @@ def generate(city,preference,day_s,pace,maps,data):
             daytime+=graph[ tmp[-1] ][ tmp[-2] ]
             if(graph[ tmp[-1] ][ tmp[-2] ]==0.0):
                 # print(tmp[-1],tmp[-2])
+                pass
             day.append(graph[ tmp[-1] ][ tmp[-2] ])
         day.append( paths[tmp[-1]] )
 
