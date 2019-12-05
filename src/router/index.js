@@ -44,18 +44,18 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
-//   const session = localStorage.getItem('authStatus');
-//   console.log(session)
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+  const session = JSON.parse(localStorage.getItem('vuex')).authStatus;
+  // console.log(session)
 
-//   if (requiresAuth && session!='success') {
-//     next('/login')
-//   } else if (requiresAuth && session=='success') {
-//     next()
-//   } else {
-//     next()
-//   }
-// })
+  if (requiresAuth && session!='success') {
+    next('/login')
+  } else if (requiresAuth && session=='success') {
+    next()
+  } else {
+    next()
+  }
+})
 
 export default router
