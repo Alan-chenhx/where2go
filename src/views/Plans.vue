@@ -124,10 +124,5 @@ export default {
       this.itemsPerPage = number;
     }
   },
-
-  async beforeRouteUpdate(to, from, next) {
-    await this.fetchPlans();
-    next();
-  }
 };
 </script>

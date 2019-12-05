@@ -62,7 +62,7 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && session != 'success') {
     next('/login')
   } else if (requiresAuth && session == 'success') {
-    next()
+    this.fetchPlans().then(next());
   } else {
     next()
   }
