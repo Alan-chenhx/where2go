@@ -53,7 +53,11 @@
                     </template>
                     <v-card class="elevation-3">
                       <v-img :src="attr.background" height="100%" class="white--text text-center align-end">
-                        <v-card-title class="headline black--text">{{ attr.name }}</v-card-title>
+                        <v-card-title class="headline black--text">{{ attr.name }}
+                          <v-btn icon class="ml-5" @click="removeFromItinerary(currPlanId, attr.city, attr.name)">
+                            <v-icon>clear</v-icon>
+                          </v-btn>
+                        </v-card-title>
                         <v-card-subtitle>{{ attr.address }}</v-card-subtitle>
                         <v-card-text>
                           <v-row align="center" class="mx-0">
@@ -125,7 +129,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchPlanDetail"]),
+    ...mapActions(["fetchPlanDetail", "removeFromItinerary"]),
     log: function(evt) {
       window.console.log(evt);
     },
