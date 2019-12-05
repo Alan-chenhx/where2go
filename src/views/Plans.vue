@@ -124,8 +124,8 @@ export default {
     }
   },
 
-  async created() {
-    await this.fetchPlans();
-  }
+  async created () {
+    await this.fetchPlans()
+  },
 };
 </script>

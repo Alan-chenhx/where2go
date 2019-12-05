@@ -20,5 +20,8 @@ export default {
   },
   getItinerary(state, itinerary) {
     state.itinerary = itinerary
+  },
+  getPlans(state, plans){
+    state.plans = plans
   }
 }
