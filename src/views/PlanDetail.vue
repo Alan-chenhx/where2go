@@ -45,8 +45,11 @@
                 <div v-for="(attr, j) in day" :key="j">
                   <v-timeline-item>
                     <v-card class="elevation-3">
+                      <v-row>
+                      <v-card-title class="headline">{{attr.duration}}</v-card-title>  
+                        <v-divider vertical="true"></v-divider>
                       <v-card-title class="headline">{{attr.name}}</v-card-title>
-                      <v-card-text>Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.</v-card-text>
+                      </v-row>
                     </v-card>
                   </v-timeline-item>
                   <v-timeline-item
