@@ -11,8 +11,8 @@ $password = $_POST['password'];
 $email = $_POST['email'];
 // $email = 'fuck123123123131231232131321';
 
-$description = '123213213213213123213123213';
-$avatar = '1123213213213213213213221';
+// $description = '123213213213213123213123213';
+// $avatar = '1123213213213213213213221';
 
 $description = $_POST['description'];
 $avatar = $_POST['avatar'];

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export default {
   login({
-    commit
+    commit, dispatch
   }, user) {
     return new Promise((resolve, reject) => {
       commit('auth_request')
@@ -17,16 +17,18 @@ export default {
           const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
+          dispatch('fetchUserProfile', currUserId)
           resolve(resp)
         })
         .catch(err => {
+          console.log(err)
           commit('auth_error')
           reject(err)
         })
     })
   },
   register({
-    commit
+    commit, dispatch
   }, user) {
     return new Promise((resolve, reject) => {
       commit('auth_request')
@@ -39,9 +41,11 @@ export default {
           const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
+          dispatch('fetchUserProfile', currUserId)
           resolve(resp)
         })
         .catch(err => {
+          console.log(err)
           commit('auth_error', err)
           reject(err)
         })
