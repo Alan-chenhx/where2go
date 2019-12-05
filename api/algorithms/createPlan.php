@@ -15,7 +15,7 @@ $start = '2019-02-01';
 $end = '2019-02-06';
 $tag = ["wildlife", "shopping"];
 $dest = ["Los Angeles", "Mountain View"];
-$days = 2;
+$days = 1;
 $pace = "medium";
 $user_id = $_SESSION['user_id'];
 
