@@ -42,14 +42,21 @@ for day in places:
             RETURN DISTINCT p
         """ %(p)
         placedata = graph.run(query).data()[0]['p']
+        placedata=json.dumps(placedata)
+        # print(placedata)
         query = """
             MATCH (i:Itinerary)
             WHERE i.name = "%s" AND i.plan_id = %s
             RETURN i
         """ %(p, uniq_id)
         itinerarydata = graph.run(query).data()[0]['i']
+        placedata=json.loads(placedata)
         placedata['timetonext'] = itinerarydata['timetonext']
+        placedata=json.dumps(placedata)
+        # placedata.replace()
         frontday.append(placedata)
     frontfinal.append(frontday)
-with open('test.json', 'w+') as f:
-    f.write(json.dumps(frontfinal))
+
+print(frontfinal,end="")
+# with open('test.json', 'w+') as f:
+#     f.write(json.dumps(frontfinal))
