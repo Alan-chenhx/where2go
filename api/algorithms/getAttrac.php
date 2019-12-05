@@ -10,5 +10,5 @@ $to_exec = "python returnAttrac.py ".$tmpc." ".$tmpa;
 // echo $to_exec;
 $command = escapeshellcmd($to_exec);
 $output = shell_exec($command);
-$output = str_replace("\\", "", $output);
+$output = str_replace("\'", "'", $output);
 echo $output;

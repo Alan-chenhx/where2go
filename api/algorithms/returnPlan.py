@@ -52,11 +52,11 @@ for day in places:
         itinerarydata = graph.run(query).data()[0]['i']
         placedata=json.loads(placedata)
         placedata['timetonext'] = itinerarydata['timetonext']
-        placedata=json.dumps(placedata)
+        # placedata=json.dumps(placedata)
         # placedata.replace()
         frontday.append(placedata)
     frontfinal.append(frontday)
 
-print(frontfinal,end="")
+print(json.dumps(frontfinal),end="")
 # with open('test.json', 'w+') as f:
 #     f.write(json.dumps(frontfinal))
