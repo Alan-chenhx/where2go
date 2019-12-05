@@ -124,5 +124,13 @@ export default {
       this.itemsPerPage = number;
     }
   },
+
+  async created() {
+    await this.fetchPlans();
+  },
+
+  async beforeRouteUpdate(to, from, next) {
+    await this.fetchPlans().then(next());
+  }
 };
 </script>
