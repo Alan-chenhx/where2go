@@ -11,13 +11,20 @@ itinerary = algorithm1(cities, preference, days, pace)
 it_list = []
 
 d = 0
+
+query = """
+    CREATE (p:Plan)
+    RETURN ID(p)
+"""
+plan_id = graph.run(query).data()[0]['ID(p)']
+
 for city in itinerary:
     for day in itinerary[city]:
         oneday = []
         query = """
-            CREATE (d:Day {uu: %s})
+            CREATE (d:Day {uu: %s, plan_id: %s})
             RETURN d
-        """ %(d)
+        """ %(d, plan_id)
         graph.run(query)
         for place in day:
             step = {}
@@ -28,15 +35,15 @@ for city in itinerary:
                 MATCH (p:Place)-[:Near]->(c:City)
                 WHERE p.name = "%s" AND c.name = "%s"
                 WITH p
-                CREATE (i:Itinerary {city: "%s", duration: %s, name: "%s", timetonext: %s, ref_id: ID(p)})
+                CREATE (i:Itinerary {city: "%s", duration: %s, name: "%s", timetonext: %s, ref_id: ID(p), plan_id: %s, uu: %s})
                 RETURN i
-            """ %(name, city, city, duration, name, timetonext) 
+            """ %(name, city, city, duration, name, timetonext, plan_id, d) 
             graph.run(query)
             query = """
                 MATCH (i:Itinerary), (d:Day)
-                WHERE i.city = "%s" AND i.name = "%s" AND d.uu = %s
+                WHERE i.name = "%s" AND d.uu = %s AND d.plan_id = %s AND i.plan_id = %s
                 CREATE (i)-[:In]->(d)
-            """ %(city, name, d)
+            """ %(name, d, plan_id, plan_id)
             graph.run(query)
             step['city'] = city
             step['duration'] = duration
@@ -54,15 +61,9 @@ for i in range(len(its) - 1):
     nxt = its[i + 1]
     query = """
         MATCH (i:Itinerary), (j:Itinerary)
-        WHERE i.city = '%s' AND i.name = "%s" AND j.city = '%s' AND j.name = "%s"
+        WHERE i.name = "%s" AND j.name = "%s" AND i.plan_id = %s AND j.plan_id = %s
         CREATE (i)-[:Next]->(j)
         RETURN i, j
-    """ %(head['city'], head['name'], nxt['city'], nxt['name'])
+    """ %(head['name'], nxt['name'], plan_id, plan_id)
     graph.run(query)
-head = its[0]
-query = """
-    MATCH (i:Itinerary)
-    WHERE i.city = '%s' AND i.name = "%s"
-    RETURN ID(i)
-""" %(head['city'], head['name'])
-print(graph.run(query).data()[0]['ID(i)'])
+print(plan_id)

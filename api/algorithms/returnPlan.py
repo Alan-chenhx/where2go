@@ -6,24 +6,25 @@ graph = Graph(host='localhost', auth=('neo4j', 'abduabdu'))
 uniq_id = sys.argv[1]
 
 query = """
-    MATCH (i) WHERE ID(i) = %s
-    WITH (i)
-    MATCH (p:Place) WHERE ID(p) = i.ref_id
-    RETURN p
+    MATCH (d:Day)
+    WHERE d.plan_id = %s
+    RETURN d
 """ %(uniq_id)
-place_list = graph.run(query).data()
-query = """
-    MATCH (i) WHERE ID(i) = %s
-    WITH (i)
-    MATCH (i)-[:Next*]->(n)
-    WITH n
-    MATCH (p:Place) WHERE ID(p) = n.ref_id
-    RETURN p
-""" %(uniq_id)
-place_list += graph.run(query).data()
-#print(json.dumps(place_list))
-out_list = []
-for i in place_list:
-    out_list.append(i['p'])
+res = graph.run(query).data()
 
-print(json.dumps(out_list))
+days = []
+
+for entry in res:
+    plan_id = entry['d']['plan_id']
+    uu = entry['d']['uu']
+    days.append((plan_id, uu))
+
+for day in days:
+    query = """
+        MATCH (i)-[:Next*]->(j)
+        WHERE j.plan_id = %s
+        RETURN (j)
+    """ %(day[0])
+    print(graph.run(query).data())
+
+print(days)

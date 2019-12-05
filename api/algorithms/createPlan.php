@@ -15,8 +15,9 @@ $start = '2019-02-01';
 $end = '2019-02-06';
 $tag = ["wildlife", "shopping"];
 $dest = ["Los Angeles", "Mountain View"];
-$days = 1;
+$days = 2;
 $pace = "medium";
+$user_id = $_SESSION['user_id'];
 
 
 $str = "*";
@@ -35,11 +36,12 @@ $str1 = str_replace("*,", "", $str1);
 $to_exec = "python add_iter.py ".$str." ".$str1." ".$days." ".$pace;
 $command = escapeshellcmd($to_exec);
 $output = shell_exec($command);
+echo $output;
 $new_dest = str_replace('"', '*', json_encode($dest));
 $new_tag = str_replace('"', '*', json_encode($tag));
 
-$query = mysqli_query($conn, "INSERT INTO plans (start, end, dest, tag, cover, note, pace, ref_id)
-                              VALUES ('$start', '$end', '$new_dest', '$new_tag', '$cover', '$note', '$pace', $output);");
+$query = mysqli_query($conn, "INSERT INTO plans (user_id, start, end, dest, tag, cover, note, pace, ref_id)
+                              VALUES ($user_id, '$start', '$end', '$new_dest', '$new_tag', '$cover', '$note', '$pace', $output);");
 
 $to_exec = "python returnPlan.py ".$output;
 $command = escapeshellcmd($to_exec);
