@@ -19,8 +19,7 @@
             </v-col>
             <v-btn color="success" width="90" @click="toModify" v-if="modify">modify</v-btn>
             <v-btn color="success" width="90" @click="updateInfo(user)" v-if="!modify">save</v-btn>
-            <v-btn color="red" class="ml-3" v-if="!modify" dark width="90" @click="deluser = true">Delete</v-btn>
-            <core-DeleteDialogue :dialog="deluser" class="mt-4" />
+            <v-btn color="red" class="ml-3" v-if="!modify" dark width="90" @click="deleteUser(currUserId)">Delete</v-btn>
           </v-card-text>
         </material-card>
       </v-col>
@@ -34,7 +33,6 @@ import { mapState, mapActions } from "vuex";
 export default {
   data: () => ({
     user: {},
-    deluser: false,
     modify: true
   }),
 
@@ -43,7 +41,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchUserProfile", "updateUserProfile"]),
+    ...mapActions(["fetchUserProfile", "updateUserProfile", "deleteUser"]),
     enable() {
       this.modify = !this.modify;
     },

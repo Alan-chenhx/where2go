@@ -12,9 +12,9 @@
       <v-card-actions>
         <v-spacer></v-spacer>
 
-        <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
+        <v-btn color="green darken-1" text @click="toDeleteUser(false)">Disagree</v-btn>
 
-        <v-btn color="green darken-1" text @click="dialog = false & deleteUser(currUserId)">Agree</v-btn>
+        <v-btn color="green darken-1" text @click="toDeleteUser(true)">Agree</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -23,15 +23,24 @@
 <script>
 import { mapActions, mapState } from "vuex";
 
+//FIXME 
+
 export default {
   computed: {
-    ...mapState(['currUserId'])
+    ...mapState(['currUserId']),
   },
   props: {
-    dialog: Boolean
+    dialog: Boolean,
   },
   methods: {
-    ...mapActions(['deleteUser'])
+    ...mapActions(['deleteUser']),
+    toDeleteUser(agree) {
+      let myDialog = this.dialog;
+      this.$emit("close-dialog", myDialog);
+      if (agree) {
+        this.deleteUser(this.currUserId)
+      }
+    }
   }
 };
 </script>
