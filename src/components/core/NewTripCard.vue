@@ -133,7 +133,7 @@ export default {
         "pace": this.choice,
         "tags": this.pref
       };
-      createNewPlan(payload)
+      this.createNewPlan(payload)
     },
     add() {
       this.cities.push({
