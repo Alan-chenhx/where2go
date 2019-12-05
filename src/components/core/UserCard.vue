@@ -1,52 +1,26 @@
 <template>
-  <v-container fill-height fluid>
+  <v-container>
     <v-row justify="center">
       <v-col cols="12" md="4">
         <material-card class="v-card-profile">
           <v-avatar slot="offset" class="mx-auto d-block elevation-6" size="130">
             <img :src="user.avatar" />
           </v-avatar>
-          <v-card-text class="text-center pt-n12">
-            <v-col style="text-align: center">
-              <v-textarea
-                class="mt-n12 text--center"
-                color="success"
-                style=" text-align-last: center; "
-                :readonly="modify"
-                v-model="user.name"
-                :single-line="singleLine"
-                :rows="rows"
-                :auto-grow="autoGrow"
-                :rounded="rounded"
-              ></v-textarea>
-
-              <v-textarea
-                class="mt-n12"
-                color="success"
-                style=" text-align-last: center; "
-                :readonly="modify"
-                v-model="user.email"
-                :single-line="singleLine"
-                :rows="rows"
-                :auto-grow="autoGrow"
-                :rounded="rounded"
-              ></v-textarea>
-
-              <v-textarea
-                class="mt-n10"
-                color="success"
-                style=" text-align-last: center; "
-                :readonly="modify"
-                v-model="user.discription"
-                :single-line="singleLine"
-                :rows="rows"
-                :auto-grow="autoGrow"
-                :rounded="rounded"
-              ></v-textarea>
+          <v-card-text class="text-center">
+            <v-col v-if="modify" style="text-center">
+              <h6 class="overline mb-3">{{user.email}}</h6>
+              <h2 class="mb-3">{{user.name}}</h2>
+              <p class="font-weight-light">{{user.desciption}}</p>
             </v-col>
-            <v-btn color="success" @click="toModify" v-if="modify">modify</v-btn>
-            <v-btn color="success" @click="updateInfo(user)" v-if="!modify">save</v-btn>
-            <!-- <core-DeleteDialogue :hidden="modify" class="mt-4" /> -->
+            <v-col v-if="!modify">
+              <v-text-field label="email" v-model="user.email" />
+              <v-text-field label="name" v-model="user.name" />
+              <v-textarea outlined label="desciption" v-model="user.desciption" />
+            </v-col>
+            <v-btn color="success" width="90" @click="toModify" v-if="modify">modify</v-btn>
+            <v-btn color="success" width="90" @click="updateInfo(user)" v-if="!modify">save</v-btn>
+            <v-btn color="red" class="ml-3" v-if="!modify" dark width="90" @click="deluser = true">Delete</v-btn>
+            <core-DeleteDialogue :dialog="deluser" class="mt-4" />
           </v-card-text>
         </material-card>
       </v-col>
@@ -60,11 +34,8 @@ import { mapState, mapActions } from "vuex";
 export default {
   data: () => ({
     user: {},
-    modify: true,
-    rows: 1,
-    singleLine: true,
-    rounded: true,
-    autoGrow: true
+    deluser: false,
+    modify: true
   }),
 
   computed: {

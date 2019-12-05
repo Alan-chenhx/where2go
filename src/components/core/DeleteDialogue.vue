@@ -1,14 +1,5 @@
 <template>
-  <v-row justify="center">
-    <v-btn
-      color="red"
-      dark
-      @click.stop="dialog = true"
-    >
-      Delete
-    </v-btn>
-
-    <v-dialog
+  <v-dialog
       v-model="dialog"
       max-width="350"
     >
@@ -46,14 +37,12 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
 </template>
+
 <script>
   export default {
-    data () {
-      return {
-        dialog: false,
-      }
-    },
+    props:{
+      dialog: Boolean,
+    }
   }
 </script>
