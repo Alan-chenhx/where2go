@@ -173,7 +173,7 @@ export default {
     commit
   }) {
     axios({
-        url: '/api/algorithms/plans.php',
+        url: '/api/getPlans.php',
         method: 'GET'
       })
       .then(resp => {
