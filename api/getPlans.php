@@ -25,4 +25,4 @@ for ($x = 0; $x < $counter; $x++) {
 // $ans["plans"]=$response;
 
 
-echo json_encode($ans);
+echo json_encode($response);
