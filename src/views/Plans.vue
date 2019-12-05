@@ -127,7 +127,7 @@ export default {
       this.$store.commit('getCurrPlanId', planId);
       setTimeout(
         this.$router.push('/plan-detail')
-      ,100)
+      ,200)
     }
   },
 

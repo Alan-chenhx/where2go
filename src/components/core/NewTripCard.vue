@@ -134,7 +134,7 @@ export default {
         "tags": pref
       };
       console.log(payload)
-      this.createNewPlan(payload)
+      this.createNewPlan(payload).then(this.$router.push('/plan-detail'))
     },
     add() {
       this.cities.push({

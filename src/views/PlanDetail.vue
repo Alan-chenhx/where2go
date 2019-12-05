@@ -56,11 +56,12 @@
                         <v-card-title class="headline">
                           {{ attr.name }}
                           <v-btn
-                            icon
+                            rounded
+                            dark
                             class="ml-5"
                             @click="deleteAttr(currPlanId, attr.city, attr.name, i, j)"
                           >
-                            <v-icon>clear</v-icon>
+                            <v-icon >clear</v-icon>
                           </v-btn>
                         </v-card-title>
                         <v-card-subtitle>{{ attr.address }}</v-card-subtitle>
