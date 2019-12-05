@@ -46,20 +46,20 @@
               type="text"
             />
             <v-text-field
-              label="Password"
-              name="Password"
-              :rules="passwordRules"
-              v-model="password"
-              prepend-icon="lock"
-              type="password"
-            />
-            <v-text-field
               label="Email"
               name="Email"
               :rules="emailRules"
               v-model="email"
               prepend-icon="email"
               type="text"
+            />
+            <v-text-field
+              label="Password"
+              name="Password"
+              :rules="passwordRules"
+              v-model="password"
+              prepend-icon="lock"
+              type="password"
             />
             <v-btn
               color="primary"
