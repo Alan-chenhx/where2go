@@ -177,7 +177,7 @@ export default {
         method: 'GET'
       })
       .then(resp => {
-        const plans = resp.data.plans
+        const plans = resp.data
         commit('getPlans', plans)
       })
       .catch(err => {
