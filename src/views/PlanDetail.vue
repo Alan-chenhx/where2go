@@ -18,7 +18,7 @@
                   @click="scrollToDate(n-1)"
                   icon
                   text
-                >{{ toDate(n).getDate() }}</v-btn>
+                >{{ toDate(n-1).getDate() }}</v-btn>
               </div>
             </div>
           </div>
