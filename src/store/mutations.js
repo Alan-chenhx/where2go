@@ -23,5 +23,8 @@ export default {
   },
   getPlans(state, plans){
     state.plans = plans
+  },
+  getCurrPlanId(state, planId){
+    state.currPlanId = planId;
   }
 }

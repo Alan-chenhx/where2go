@@ -1,105 +1,96 @@
 <template>
-    <v-autocomplete
-      v-model="select"
-      :loading="loading"
-      :items="items"
-      :search-input.sync="search"
-      cache-items
-      flat
-      hide-no-data
-      hide-details
-      label="What state are you from?"
-      solo-inverted
-    ></v-autocomplete>
+  <v-autocomplete
+    v-model="select"
+    :loading="loading"
+    :items="items"
+    :search-input.sync="search"
+    cache-items
+    flat
+    hide-no-data
+    hide-details
+    label="Enter destination city"
+    solo-inverted
+  ></v-autocomplete>
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        loading: false,
-        items: [],
-        search: null,
-        select: null,
-        states: [
-          'Alabama',
-          'Alaska',
-          'American Samoa',
-          'Arizona',
-          'Arkansas',
-          'California',
-          'Colorado',
-          'Connecticut',
-          'Delaware',
-          'District of Columbia',
-          'Federated States of Micronesia',
-          'Florida',
-          'Georgia',
-          'Guam',
-          'Hawaii',
-          'Idaho',
-          'Illinois',
-          'Indiana',
-          'Iowa',
-          'Kansas',
-          'Kentucky',
-          'Louisiana',
-          'Maine',
-          'Marshall Islands',
-          'Maryland',
-          'Massachusetts',
-          'Michigan',
-          'Minnesota',
-          'Mississippi',
-          'Missouri',
-          'Montana',
-          'Nebraska',
-          'Nevada',
-          'New Hampshire',
-          'New Jersey',
-          'New Mexico',
-          'New York',
-          'North Carolina',
-          'North Dakota',
-          'Northern Mariana Islands',
-          'Ohio',
-          'Oklahoma',
-          'Oregon',
-          'Palau',
-          'Pennsylvania',
-          'Puerto Rico',
-          'Rhode Island',
-          'South Carolina',
-          'South Dakota',
-          'Tennessee',
-          'Texas',
-          'Utah',
-          'Vermont',
-          'Virgin Island',
-          'Virginia',
-          'Washington',
-          'West Virginia',
-          'Wisconsin',
-          'Wyoming',
-        ],
-      }
+export default {
+  props: ["select_data"],
+  data() {
+    return {
+      select: null,
+      loading: false,
+      items: [],
+      search: null,
+      data: [
+        "Los Angeles",
+        "San Francisco",
+        "San Diego",
+        "Sacramento",
+        "San Jose",
+        "Irvine",
+        "Oakland",
+        "Long Beach",
+        "Anaheim",
+        "Berkeley",
+        "Santa Monica",
+        "Palo Alto",
+        "Pasadena",
+        "Fresno",
+        "Santa Ana",
+        "Oceanside",
+        "Bakersfield",
+        "Fremont",
+        "Carlsbad",
+        "Santa Barbara",
+        "Stockton",
+        "Newport Beach",
+        "Riverside",
+        "Oxnard",
+        "San Bernardino",
+        "Santa Rosa",
+        "Chula Vista",
+        "Sunnyvale",
+        "Torrance",
+        "Mountain View",
+        "Huntington Beach",
+        "Santa Cruz",
+        "Thousand Oaks",
+        "Burbank",
+        "Beverly Hills",
+        "Modesto",
+        "Santa Clarita",
+        "Garden Grove",
+        "Fontana",
+        "Encinitas",
+        "Manhattan Beach",
+        "Temecula",
+        "Moreno Valley",
+        "San Mateo",
+        "Costa Mesa",
+        "Rancho Cucamonga"
+      ]
+    };
+  },
+  watch: {
+    select: function(val) {
+      this.$emit("update:select_data", val);
     },
-    watch: {
-      search (val) {
-        val && val !== this.select && this.querySelections(val)
-      },
-    },
-    methods: {
-      querySelections (v) {
-        this.loading = true
-        // Simulated ajax query
-        setTimeout(() => {
-          this.items = this.states.filter(e => {
-            return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
-          })
-          this.loading = false
-        }, 500)
-      },
-    },
+    search(val) {
+      val && val !== this.select && this.querySelections(val);
+    }
+  },
+  methods: {
+    querySelections(v) {
+      this.loading = true;
+      // Simulated ajax query
+      setTimeout(() => {
+        this.items = this.data.filter(e => {
+          return (e || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        this.loading = false;
+      }, 500);
+    }
   }
+};
 </script>

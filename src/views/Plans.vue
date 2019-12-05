@@ -97,13 +97,14 @@ import { mapState, mapMutations, mapActions } from "vuex";
 import { async } from "q";
 
 export default {
+  name: "Plans",
   data: () => ({
     itemsPerPageArray: [8, 12, 16],
     itemsPerPage: 4,
     page: 1
   }),
   computed: {
-    ...mapState(['plans']),
+    ...mapState(["plans"]),
     numberOfPages() {
       return Math.ceil(this.plans.length / this.itemsPerPage);
     },
@@ -124,9 +125,9 @@ export default {
     }
   },
 
-  async beforeRouteUpdate (to, from, next) {
-    await this.fetchPlans()
-    next()
-  },
+  async beforeRouteUpdate(to, from, next) {
+    await this.fetchPlans();
+    next();
+  }
 };
 </script>
