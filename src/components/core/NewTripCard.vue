@@ -123,7 +123,7 @@ export default {
       });
       let diffTime = (new Date(this.end_date))-(new Date(this.start_date));
       let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
-      const name = "My Tour " + (this.plans.length + 1);
+      const name = "My Tour " + (!!this.plans.length?this.plans.length:0 + 1);
       const payload = {
         "name": name,
         "start": this.start_date,
@@ -133,7 +133,7 @@ export default {
         "pace": this.choice,
         "tags": this.pref
       };
-      console.log(payload)
+      createNewPlan(payload)
     },
     add() {
       this.cities.push({

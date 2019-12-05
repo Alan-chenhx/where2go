@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app color="white" dark :hide-on-scroll="['login', 'plan-detail'].indexOf($route.name) == -1">
+    <v-app-bar app color="white" dark :hide-on-scroll="['login', 'home'].indexOf($route.name) == -1">
       <v-toolbar-items>
         <v-img :src="require('@/assets/logob.png')" />
       </v-toolbar-items>
