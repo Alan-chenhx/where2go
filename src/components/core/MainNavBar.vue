@@ -8,11 +8,11 @@
       <v-spacer></v-spacer>
 
       <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
+        <v-icon color="black" v-if="isLoggedIn"  @click="toPlans">mdi-heart</v-icon>
       </v-btn>
 
       <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
+        <v-icon color="black" v-if="isLoggedIn"  @click="toCreate">mdi-plus</v-icon>
       </v-btn>
 
       <v-menu bottom open-on-hover offset-y>
@@ -48,13 +48,20 @@ import { mapGetters, mapActions, mapState } from "vuex";
 export default {
   computed: {
     ...mapState(["userProfile"]),
-    ...mapGetters(["isLoggedIn"])
+    ...mapGetters(["isLoggedIn"]),
+    
   },
   data: () => ({}),
   methods: {
     ...mapActions(["logout"]),
     toLogin() {
       this.$router.push("/login");
+    },
+    toCreate() {
+      this.$router.push("/home");
+    },
+    toPlans() {
+      this.$router.push("/plans");
     }
   }
 };

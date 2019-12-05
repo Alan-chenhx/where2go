@@ -57,7 +57,7 @@ for day in places:
         # placedata.replace()
         frontday.append(placedata)
     frontfinal.append(frontday)
-
-print(json.dumps(frontfinal),end="")
+ans=json.dumps(frontfinal).replace("background-image: url('","").replace("')","")
+print(ans,end="")
 # with open('test.json', 'w+') as f:
 #     f.write(json.dumps(frontfinal))
