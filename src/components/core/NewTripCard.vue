@@ -78,7 +78,7 @@
       </v-layout>
     </v-col>
     <v-row justify="center">
-      <v-btn class="ma-1" dark @click="log">Create New Plan</v-btn>
+      <v-btn class="ma-1" dark @click="createNew">Create New Plan</v-btn>
     </v-row>
   </material-card>
 </template>
@@ -114,8 +114,8 @@ export default {
   }),
 
   methods: {
-    ...mapActions(['create'])
-    log() {
+    ...mapActions(['createNewPlan']),
+    createNew() {
       let pref = [];
       let self = this;
       this.chips.forEach(i => {
