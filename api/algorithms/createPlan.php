@@ -39,9 +39,7 @@ foreach ($tag as &$t) {
 $str1 = str_replace("*,", "", $str1);
 $to_exec = "python3 add_iter.py ".$str." ".$str1." ".$days." ".$pace;
 $command = escapeshellcmd($to_exec);
-echo $command;
 $output = shell_exec($command);
-echo $output;
 $new_dest = str_replace('"', '*', json_encode($dest));
 $new_tag = str_replace('"', '*', json_encode($tag));
 
