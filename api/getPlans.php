@@ -22,7 +22,7 @@ if ($counter==0){
         $response_array["tag"] = $row["tag"];
         $response_array["note"] = $row["note"];
         $response_array["pace"] = $row["pace"];
-        $response_array["plan_id"] = $row["ref_id"];
+        $response_array["planId"] = $row["ref_id"];
         $response_array["cover"] = $row["cover"];
         $response_array["name"] = $row["name"];
         $response[$x]=$response_array;

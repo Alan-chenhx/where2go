@@ -37,7 +37,7 @@ foreach ($tag as &$t) {
     $str1 = $str1.",".$tmp;
 }
 $str1 = str_replace("*,", "", $str1);
-$to_exec = "python add_iter.py ".$str." ".$str1." ".$days." ".$pace;
+$to_exec = "python3 add_iter.py ".$str." ".$str1." ".$days." ".$pace;
 $command = escapeshellcmd($to_exec);
 echo $command;
 $output = shell_exec($command);

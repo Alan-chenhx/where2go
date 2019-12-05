@@ -9,7 +9,7 @@ $tag = $_POST["tag"];
 $note = $_POST["note"];
 $pace = $_POST["pace"];
 $name = $_POST["name"];
-$ref_id = $_POST["plan_id"];
+$ref_id = $_POST["planId"];
 // $start = "2019-02-06";
 // $end = "2019-02-06";
 // $dest = "[*Los Angeles*,*Mountain View*]";
@@ -40,7 +40,7 @@ foreach ($tag as &$t) {
     $str1 = $str1.",".$tmp;
 }
 $str1 = str_replace("*,", "", $str1);
-$to_exec = "python add_iter.py ".$str." ".$str1." ".$days." ".$pace;
+$to_exec = "python3 add_iter.py ".$str." ".$str1." ".$days." ".$pace;
 $command = escapeshellcmd($to_exec);
 $output = shell_exec($command);
 $new_dest = str_replace('"', '*', json_encode($dest));
