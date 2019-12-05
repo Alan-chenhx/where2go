@@ -6,7 +6,7 @@ $city = "Los Angeles";
 $attrac = "Greenbar Distillery";
 $tmpc = str_replace(" ", "-", $city);
 $tmpa = str_replace(" ", "-", $attrac);
-$to_exec = "python returnAttrac.py ".$tmpc." ".$tmpa;
+$to_exec = "python3 returnAttrac.py ".$tmpc." ".$tmpa;
 // echo $to_exec;
 $command = escapeshellcmd($to_exec);
 $output = shell_exec($command);

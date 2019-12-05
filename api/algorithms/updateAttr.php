@@ -14,7 +14,7 @@ $name = "Pacific Grove Certified Farmers' Market";
 $duration = 233;
 $planId = 13458;
 
-$command = "python updateIter.py "."\"$city\"".' '."\"$oldname\"".' '."\"$name\"".' '.$duration.' '.$planId;
+$command = "python3 updateIter.py "."\"$city\"".' '."\"$oldname\"".' '."\"$name\"".' '.$duration.' '.$planId;
 $to_exec = escapeshellcmd($command);
 $output = shell_exec($to_exec);
 
