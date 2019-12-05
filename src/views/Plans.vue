@@ -98,7 +98,7 @@ import { async } from "q";
 
 export default {
   data: () => ({
-    itemsPerPageArray: [4, 8, 12],
+    itemsPerPageArray: [8, 12, 16],
     itemsPerPage: 4,
     page: 1
   }),
