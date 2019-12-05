@@ -169,6 +169,22 @@ export default {
         console.log(err)
       })
   },
+  createNewPlan({
+    commit
+  }, payload) {
+    axios({
+        url: '/api/algorithms/createPlan.php',
+        data: payload,
+        method: 'POST'
+      })
+      .then(resp => {
+        const planId = resp.data
+        commit('getCurrPlanId', planId)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
   fetchPlans({
     commit
   }) {
