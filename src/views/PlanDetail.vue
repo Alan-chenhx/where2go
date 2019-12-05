@@ -2,7 +2,7 @@
   <v-content>
     <v-container>
       <v-row>
-        <v-col cols="1">
+        <v-col cols="1" :v-if="!loading">
           <div>
             <div class="d-flex flex-column" style="height: 90vh;overflow-y: auto;position: fixed;">
               <div
@@ -11,11 +11,11 @@
               <div v-for="n in numDays" :key="n">
                 <div
                   class="text-center"
-                  v-if="toDate(n).getMonth() != toDate(n-1).getMonth()"
-                >{{ toDate(n).toLocaleString('default', { month: 'short' }).toUpperCase() }}</div>
+                  v-if="toDate(n-1).getMonth() != toDate(n-2).getMonth()"
+                >{{ toDate(n-1).toLocaleString('default', { month: 'short' }).toUpperCase() }}</div>
                 <v-btn
                   class="black--text ma-0"
-                  @click="scrollToDate(n)"
+                  @click="scrollToDate(n-1)"
                   icon
                   text
                 >{{ toDate(n).getDate() }}</v-btn>
@@ -23,7 +23,7 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="8">
+        <v-col cols="8" :v-if="!loading">
           <v-timeline dense>
             <div v-for="(day, i) in itinerary" :key="i">
               <v-timeline-item fill-dot small :id="'date-'+i">
@@ -89,13 +89,14 @@ export default {
     draggable
   },
   data: () => ({
+    loading: true,
     startDate: new Date(2019, 11, 26),
     input: null,
     nonce: 0
   }),
 
   computed: {
-    ...mapState(["itinerary"]),
+    ...mapState(["itinerary", "currPlanId"]),
     numDays() {
       return this.itinerary.length;
     }
@@ -130,7 +131,9 @@ export default {
   },
 
   async created() {
-    await this.fetchPlanDetail({ planId: "13458" });
+    this.loading = true;
+    await this.fetchPlanDetail({ planId: this.currPlanId });
+    this.loading = false;
   }
 };
 </script>
