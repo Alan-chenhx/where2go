@@ -6,9 +6,9 @@ import math
 import numpy as np
 import math
 def generate(city,preference,day_s,pace,maps,data):
-    if(pace=='low'):
+    if(pace=='Slow-easy'):
         para=300
-    elif(pace=='medium'):
+    elif(pace=='Medium'):
         para=450
     else:
         para=600
