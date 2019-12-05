@@ -12,21 +12,21 @@
           >
             <template v-slot:default="props">
               <v-row>
-                <v-col v-for="item in props.items" :key="item.name" cols="12" sm="6" md="4" lg="3">
+                <v-col v-for="(item, i) in props.items" :key="i" cols="12" sm="6" md="4" lg="3">
                   <v-hover v-slot:default="{ hover }">
                     <v-card :elevation="hover ? 12 : 2">
                       <v-responsive :aspect-ratio="6/5">
                         <v-img
-                          :src="item.background"
+                          :src="item.cover"
                           height="100%"
                           class="white--text text-center align-end d-flex"
                         >
                           <v-card-title
                             class="d-flex font-weight-black justify-center display-1"
-                          >{{ item.trip_name }}</v-card-title>
+                          >{{ item.name }}</v-card-title>
                           <v-card-subtitle
                             class="white--text align-center justify-center subtitle-1 font-weight-black"
-                          >{{ item.begin_time }} - {{ item.end_time }}</v-card-subtitle>
+                          >{{ item.start }} - {{ item.end }}</v-card-subtitle>
                           <v-spacer />
                           <v-card-text
                             style="filter: opacity(80%);"
@@ -34,13 +34,13 @@
                           >
                             <div v-if="hover">
                               <span style="font-weight: bold;">Preferences:</span>
-                              {{ item.preference }}
+                              {{ item.tag }}
                             </div>
                             <div v-if="hover">
                               <span style="font-weight: bold;">Pace:</span>
                               {{ item.pace }}
                             </div>
-                            <div v-else>{{ item.pace }}</div>
+                            <div v-else>{{ item.pace }} pace</div>
                           </v-card-text>
                         </v-img>
                       </v-responsive>
@@ -93,8 +93,8 @@
 }
 </style>
 <script>
-import {mapState, mapMutations, mapActions} from 'vuex'
-import { async } from 'q';
+import { mapState, mapMutations, mapActions } from "vuex";
+import { async } from "q";
 
 export default {
   data: () => ({
@@ -112,7 +112,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchPlans']),
+    ...mapActions(["fetchPlans"]),
     nextPage() {
       if (this.page + 1 <= this.numberOfPages) this.page += 1;
     },
