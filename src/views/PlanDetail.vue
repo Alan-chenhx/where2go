@@ -52,8 +52,8 @@
                       >{{attr.duration}} mins</v-sheet>
                     </template>
                     <v-card class="elevation-3">
-                      <v-img :src="attr.photo" height="100%">
-                        <v-card-title class="headline black--text">
+                      <v-img :src="attr.photo" max-height="150" class="white--text v-card--reveal;">
+                        <v-card-title class="headline">
                           {{ attr.name }}
                           <v-btn
                             icon
@@ -64,23 +64,23 @@
                           </v-btn>
                         </v-card-title>
                         <v-card-subtitle>{{ attr.address }}</v-card-subtitle>
-                        <v-card-text>
-                          <v-row align="center" class="mx-0">
-                            <v-rating
-                              :value="attr.rating"
-                              color="amber"
-                              dense
-                              half-increments
-                              readonly
-                              size="14"
-                              v-if="!!attr.rating"
-                            ></v-rating>
-                            <div class="grey--text ml-4" v-if="!!attr.rating">{{attr.rating}}</div>
-                            <div class="ml-4 black--text">{{ attr.tag }}</div>
-                          </v-row>
-                          {{ attr.description }}
-                        </v-card-text>
                       </v-img>
+                      <v-card-text>
+                        <v-row align="center" class="mx-0">
+                          <v-rating
+                            :value="attr.rating"
+                            color="amber"
+                            dense
+                            half-increments
+                            readonly
+                            size="14"
+                            v-if="!!attr.rating"
+                          ></v-rating>
+                          <div class="grey--text ml-4" v-if="!!attr.rating">{{attr.rating}}</div>
+                          <div class="ml-4 black--text">{{ attr.tag }}</div>
+                        </v-row>
+                        {{ attr.description }}
+                      </v-card-text>
                     </v-card>
                   </v-timeline-item>
                   <v-timeline-item
@@ -141,7 +141,9 @@ export default {
     async deleteAttr(currPlanId, city, name, i, j) {
       const payload = { planId: currPlanId, city: city, name: name };
       console.log(payload);
-      await this.removeFromItinerary(payload).then(this.itinerary[i].splice(j, 1));
+      await this.removeFromItinerary(payload).then(
+        this.itinerary[i].splice(j, 1)
+      );
     },
     toDate(n) {
       return this.startDate.addDays(n);
