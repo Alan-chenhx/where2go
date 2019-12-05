@@ -41,8 +41,4 @@ $new_tag = str_replace('"', '*', json_encode($tag));
 
 $query = mysqli_query($conn, "INSERT INTO plans (user_id, start, end, dest, tag, cover, note, pace, ref_id)
                               VALUES ($user_id, '$start', '$end', '$new_dest', '$new_tag', '$cover', '$note', '$pace', $output);");
-
-$to_exec = "python returnPlan.py ".$output;
-$command = escapeshellcmd($to_exec);
-$output = shell_exec($command);
 echo $output;
