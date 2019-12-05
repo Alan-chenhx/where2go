@@ -44,6 +44,5 @@ for day in places:
         frontday.append(graph.run(query).data()[0]['p'])
     frontfinal.append(frontday)
 print(frontfinal)
-fname = 'test_' + str(uniq_id) + '.json'
-with open(fname, 'w+') as f:
+with open('test.json', 'w+') as f:
     f.write(json.dumps(frontfinal))

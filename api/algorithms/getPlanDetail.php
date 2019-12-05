@@ -6,7 +6,6 @@ $planId = $_POST['planId'];
 $to_exec = "python returnPlan.py ".$planId;
 $command = escapeshellcmd($to_exec);
 $output = shell_exec($command);
-$fname = "test_".$planId.".json"
-$file = json_decode(file_get_contents($fname), true);
+$file = json_decode(file_get_contents("test.json"), true);
 header('Content-Type: application/json');
 echo json_encode($file);
