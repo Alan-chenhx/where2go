@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
+import PlanDetail from '../views/PlanDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,14 @@ const routes = [{
     }
   },
   {
+    path: '/plan-detail',
+    name: 'plan-detail',
+    component: PlanDetail,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '*',
     redirect: '/'
   }
@@ -49,9 +58,9 @@ router.beforeEach((to, from, next) => {
   const session = JSON.parse(localStorage.getItem('vuex')).authStatus;
   // console.log(session)
 
-  if (requiresAuth && session!='success') {
+  if (requiresAuth && session != 'success') {
     next('/login')
-  } else if (requiresAuth && session=='success') {
+  } else if (requiresAuth && session == 'success') {
     next()
   } else {
     next()
