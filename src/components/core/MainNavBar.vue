@@ -8,11 +8,11 @@
       <v-spacer></v-spacer>
 
       <v-btn icon>
-        <v-icon :color="black" @click="toPlans">mdi-heart</v-icon>
+        <v-icon color="black" v-if="isLoggedIn"  @click="toPlans">mdi-heart</v-icon>
       </v-btn>
 
       <v-btn icon>
-        <v-icon :color="black" @click="toCreate">mdi-plus</v-icon>
+        <v-icon color="black" v-if="isLoggedIn"  @click="toCreate">mdi-plus</v-icon>
       </v-btn>
 
       <v-menu bottom open-on-hover offset-y>
