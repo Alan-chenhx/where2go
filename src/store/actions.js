@@ -171,14 +171,13 @@ export default {
   },
   fetchPlans({
     commit
-  }, userId) {
+  }) {
     axios({
-        url: '/api/algorithms/plans.php',
-        data: userId,
+        url: '/api/getPlans.php',
         method: 'GET'
       })
       .then(resp => {
-        const plans = resp.data.plans
+        const plans = resp.data
         commit('getPlans', plans)
       })
       .catch(err => {

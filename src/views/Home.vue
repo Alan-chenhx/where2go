@@ -126,7 +126,7 @@ export default {
   },
 
   async created() {
-    await this.fetchPlanDetail({'planId': '13455'});
+    await this.fetchPlanDetail({'planId': '13458'});
   }
 };
 </script>
