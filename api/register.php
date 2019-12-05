@@ -9,15 +9,19 @@ $password = $_POST['password'];
 // $username = 'ggg';
 // $password = 'ggg';
 $email = $_POST['email'];
-$description = '';
-$avatar = '1';
+// $email = 'fuck123123123131231232131321';
+$description = '123213213213213123213123213';
+$avatar = '1123213213213213213213221';
 $name = 'Anonymous';
 $query = mysqli_query($conn, "INSERT INTO profiles (email, description, avatar, name) 
                               VALUES ('$email','$description', '$avatar', '$name') 
-                              ON DUPLICATE KEY UPDATE email = '$email', , 
+                              ON DUPLICATE KEY UPDATE email = '$email', 
                                                       description = '$description',
                                                       name = '$name', 
                                                       avatar = '$avatar';");
+
+
+
 $query = mysqli_query($conn, "INSERT INTO users (username, password) VALUES ('$username', '$password');");
 
 
