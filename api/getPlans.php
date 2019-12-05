@@ -1,9 +1,10 @@
 <?php
 
 include 'includes/db.php';
-
+// $_POST = json_decode(file_get_contents("php://input"),true);
 $uid = $_SESSION['user_id'];
 // $uid = 0;
+
 $query = mysqli_query($conn, "SELECT * FROM plans WHERE user_id = '$uid'");
 
 $counter = mysqli_num_rows($query);
