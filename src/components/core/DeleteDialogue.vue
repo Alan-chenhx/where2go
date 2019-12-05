@@ -14,16 +14,19 @@
 
         <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
 
-        <v-btn color="green darken-1" text @click="dialog = false">Agree</v-btn>
+        <v-btn color="green darken-1" text @click="dialog = false & deleteUser(currUserId)">Agree</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
+  computed: {
+    ...mapState(['currUserId'])
+  },
   props: {
     dialog: Boolean
   },
