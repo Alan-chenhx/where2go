@@ -41,8 +41,15 @@ for day in places:
             WHERE p.name = "%s"
             RETURN DISTINCT p
         """ %(p)
-        frontday.append(graph.run(query).data()[0]['p'])
+        placedata = graph.run(query).data()[0]['p']
+        query = """
+            MATCH (i:Itinerary)
+            WHERE i.name = "%s" AND i.plan_id = %s
+            RETURN i
+        """ %(p, uniq_id)
+        itinerarydata = graph.run(query).data()[0]['i']
+        placedata['timetonext'] = itinerarydata['timetonext']
+        frontday.append(placedata)
     frontfinal.append(frontday)
-print(frontfinal)
 with open('test.json', 'w+') as f:
     f.write(json.dumps(frontfinal))
