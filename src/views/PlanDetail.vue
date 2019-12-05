@@ -46,7 +46,7 @@
                   <v-timeline-item>
                     <v-card class="elevation-3">
                       <v-row>
-                      <v-card-title class="headline">{{attr.duration}}</v-card-title>  
+                      <v-card-title class="headline">{{attr.duration}} mins </v-card-title>  
                         <v-divider vertical="true"></v-divider>
                       <v-card-title class="headline">{{attr.name}}</v-card-title>
                       </v-row>
