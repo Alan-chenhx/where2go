@@ -1,5 +1,6 @@
 // https://vuex.vuejs.org/en/actions.html
 import axios from 'axios'
+import state from './state'
 //import router from '../router'
 
 export default {
@@ -17,6 +18,7 @@ export default {
           const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
+          console.log(state.authStatus)
           dispatch('fetchUserProfile', currUserId)
           resolve(resp)
         })
