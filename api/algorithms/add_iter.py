@@ -66,4 +66,12 @@ for i in range(len(its) - 1):
         RETURN i, j
     """ %(head['name'], nxt['name'], plan_id, plan_id)
     graph.run(query)
+head = its[0]
+query = """
+    MATCH (i:Itinerary), (p:Plan)
+    WHERE i.name = "%s" AND i.plan_id = %s AND ID(p) = %s
+    CREATE (p)-[:Next]->(i)
+    RETURN p, i
+""" %(head['name'], plan_id, plan_id)
+graph.run(query)
 print(plan_id)
