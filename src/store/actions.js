@@ -56,6 +56,21 @@ export default {
       resolve()
     })
   },
+  deleteUser({
+    commit
+  }, currUserId) {
+    axios({
+        url: '/api/deleteUser.php',
+        data: currUserId,
+        method: 'POST'
+      })
+      .then(resp => {
+        commit('logout')
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
   fetchUserProfile({
     commit
   }, userId) {
