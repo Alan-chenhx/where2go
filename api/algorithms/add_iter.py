@@ -116,7 +116,7 @@ graph.run(query)
 try:
     cover=getcover(cover_city,cover_attra)
     cover=cover.replace("background-image: url('",'')
-    cover=cover.replace("')'",'')
+    cover=cover.replace("')",'')
     # print(cover)
     print( json.dumps([plan_id,cover]),end='' )
 except:
