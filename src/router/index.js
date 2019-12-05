@@ -55,7 +55,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
-  const session = JSON.parse(localStorage.getItem('vuex')).authStatus;
+  let local = JSON.parse(localStorage.getItem('vuex'));
+  const session = local?local.authStatus:'';
   // console.log(session)
 
   if (requiresAuth && session != 'success') {

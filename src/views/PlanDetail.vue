@@ -132,7 +132,7 @@ export default {
 
   async created() {
     this.loading = true;
-    //await this.fetchPlanDetail({ planId: this.currPlanId });
+    await this.fetchPlanDetail({ planId: this.currPlanId });
     this.loading = false;
   }
 };
