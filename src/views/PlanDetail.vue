@@ -64,7 +64,7 @@
                             <v-icon >clear</v-icon>
                           </v-btn>
                         </v-card-title>
-                        <v-card-subtitle>{{ attr.address }}</v-card-subtitle>
+                        <v-card-subtitle class="white--text">{{ attr.address }}</v-card-subtitle>
                       </v-img>
                       <v-card-text>
                         <v-row align="center" class="mx-0">
@@ -122,7 +122,6 @@ export default {
   },
   data: () => ({
     loading: true,
-    startDate: new Date(2019, 11, 26),
     input: null,
     nonce: 0
   }),
@@ -131,6 +130,9 @@ export default {
     ...mapState(["itinerary", "currPlanId"]),
     numDays() {
       return this.itinerary.length;
+    },
+    startDate() {
+      return this.itinerary.start;
     }
   },
 
