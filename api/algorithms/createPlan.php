@@ -15,7 +15,7 @@ $start = '2019-02-01';
 $end = '2019-02-06';
 $tag = ["wildlife", "shopping"];
 $dest = ["Los Angeles", "Mountain View"];
-$days = 5;
+$days = 1;
 $pace = "medium";
 
 
@@ -33,19 +33,15 @@ foreach ($tag as &$t) {
 }
 $str1 = str_replace("*,", "", $str1);
 $to_exec = "python add_iter.py ".$str." ".$str1." ".$days." ".$pace;
-echo $to_exec;
 $command = escapeshellcmd($to_exec);
 $output = shell_exec($command);
-echo $output;
 $new_dest = str_replace('"', '*', json_encode($dest));
 $new_tag = str_replace('"', '*', json_encode($tag));
 
-$sql = "INSERT INTO plans (start, end, dest, tag, cover, note, pace, ref_id)
-                              VALUES ($start, $end, '$new_dest', '$new_tag', $cover, $note, '$pace', $output);";
-echo $sql;
 $query = mysqli_query($conn, "INSERT INTO plans (start, end, dest, tag, cover, note, pace, ref_id)
                               VALUES ('$start', '$end', '$new_dest', '$new_tag', '$cover', '$note', '$pace', $output);");
-if (!$query) {
-    echo "success";
-    mysqli_error($conn);
-}
+
+$to_exec = "python returnPlan.py ".$output;
+$command = escapeshellcmd($to_exec);
+$output = shell_exec($command);
+echo $output;
