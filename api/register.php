@@ -17,7 +17,7 @@ $email = $_POST['email'];
 $description = "This guy is lazy, and did not leave any description.";
 $avatar = "https://wiki.illinois.edu/wiki/download/thumbnails/700856761/BV32p154.jpg?version=1&modificationDate=1565897325000&api=v2";
 
-$name = 'Anonymous';
+$name = $_POST['username'];
 mysqli_query($conn,"START TRANSACTION");
 $query1 = mysqli_query($conn, "INSERT INTO profiles (email, description, avatar, name) 
                               VALUES ('$email','$description', '$avatar', '$name') 
