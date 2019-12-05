@@ -43,3 +43,21 @@ query = """
     RETURN i
 """ %(oldname, city, planId, name, duration, ref_id, newtime)
 graph.run(query)
+
+
+query = """
+    MATCH (i:Itinerary)-[:Next]->(j:Itinerary)
+    WHERE j.name = "%s" AND j.plan_id = %s
+    RETURN i.name
+""" %(name, planId)
+prev = graph.run(query).data()
+if prev != []:
+    prev = prev[0]['i.name']
+    newtime = math.ceil(float(dat[city][prev][name]))
+    query = """
+        MATCH (i:Itinerary)
+        WHERE i.name = "%s" AND i.plan_id = %s
+        SET i.timetonext = %s
+        RETURN i
+    """ %(prev, planId, newtime)
+    graph.run(query)
