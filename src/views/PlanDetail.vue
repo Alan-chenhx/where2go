@@ -130,9 +130,9 @@ export default {
     }
   },
 
-  created() {
+  async created() {
     this.loading = true;
-    this.fetchPlanDetail({ planId: this.currPlanId });
+    //await this.fetchPlanDetail({ planId: this.currPlanId });
     this.loading = false;
   }
 };
