@@ -131,7 +131,7 @@ export default {
         "dest": this.cities,
         "days": diffDays,
         "pace": this.choice,
-        "tags": this.pref
+        "tags": pref
       };
       console.log(payload)
       this.createNewPlan(payload)
