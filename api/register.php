@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'includes/db.php';
 
 $_POST = json_decode(file_get_contents("php://input"),true);
