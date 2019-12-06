@@ -11,7 +11,7 @@
         <v-icon color="black" v-if="isLoggedIn"  @click="toPlans">mdi-heart</v-icon>
       </v-btn>
 
-      <v-btn icon>
+      <v-btn icon class="mr-4">
         <v-icon color="black" v-if="isLoggedIn"  @click="toCreate">mdi-plus</v-icon>
       </v-btn>
 
@@ -55,7 +55,8 @@ export default {
   methods: {
     ...mapActions(["logout"]),
     async toLogout() {
-      await logout().then(this.$route.push('/'))
+      await this.logout().then()
+      this.$router.push('/login')
     },
     toLogin() {
       this.$router.push("/login");
