@@ -100,7 +100,7 @@ export default {
   name: "Plans",
   data: () => ({
     itemsPerPageArray: [8, 12, 16],
-    itemsPerPage: 4,
+    itemsPerPage: 8,
     page: 1
   }),
   computed: {
@@ -123,8 +123,9 @@ export default {
     updateItemsPerPage(number) {
       this.itemsPerPage = number;
     },
-    toPlan(planId) {
+    toPlan(planId, startDate) {
       this.$store.commit('getCurrPlanId', planId);
+      this.$store.commit('getCurrStart', startDate);
       setTimeout(
         this.$router.push('/plan-detail')
       ,200)

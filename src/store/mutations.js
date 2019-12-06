@@ -26,5 +26,8 @@ export default {
   },
   getCurrPlanId(state, planId){
     state.currPlanId = planId;
+  },
+  getCurrStart(state, Start){
+    state.currStart = Start;
   }
 }

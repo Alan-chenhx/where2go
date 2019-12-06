@@ -19,7 +19,7 @@
             </v-col>
             <v-btn color="success" width="90" @click="toModify" v-if="modify">modify</v-btn>
             <v-btn color="success" width="90" @click="updateInfo(user)" v-if="!modify">save</v-btn>
-            <v-btn color="red" class="ml-3" v-if="!modify" dark width="90" @click="deleteUser(currUserId)">Delete</v-btn>
+            <v-btn color="red" class="ml-3" v-if="!modify" dark width="90" @click="deleteAccount">Delete</v-btn>
           </v-card-text>
         </material-card>
       </v-col>
@@ -42,6 +42,9 @@ export default {
 
   methods: {
     ...mapActions(["fetchUserProfile", "updateUserProfile", "deleteUser"]),
+    deleteAccount(){
+      this.deleteUser(currUserId).then(this.$router.push('/'))
+    },
     enable() {
       this.modify = !this.modify;
     },
