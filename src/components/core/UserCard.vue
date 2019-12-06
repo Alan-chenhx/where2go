@@ -37,7 +37,7 @@ export default {
   methods: {
     ...mapActions(["fetchUserProfile", "updateUserProfile", "deleteUser"]),
     deleteAccount() {
-      this.deleteUser(this.currUserId).then(this.$router.push("/"));
+      this.deleteUser(this.currUserId).then(this.$router.push("/login"));
     },
     enable() {
       this.modify = !this.modify;
