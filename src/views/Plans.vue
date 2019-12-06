@@ -14,7 +14,7 @@
               <v-row>
                 <v-col v-for="(item, i) in props.items" :key="i" cols="12" sm="6" md="4" lg="3">
                   <v-hover v-slot:default="{ hover }">
-                    <v-card @click="toPlan(item.planId)" :elevation="hover ? 12 : 2">
+                    <v-card @click="toPlan(item.planId, item.start)" :elevation="hover ? 12 : 2">
                       <v-responsive :aspect-ratio="6/5">
                         <v-img
                           :src="item.cover"
@@ -126,6 +126,7 @@ export default {
     toPlan(planId, startDate) {
       this.$store.commit('getCurrPlanId', planId);
       this.$store.commit('getCurrStart', startDate);
+      console.log(startDate)
       setTimeout(
         this.$router.push('/plan-detail')
       ,200)

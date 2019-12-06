@@ -182,6 +182,7 @@ export default {
       })
       .then(resp => {
         const planId = resp.data
+        console.log(payload.start)
         commit('getCurrStart', payload.start)
         commit('getCurrPlanId', planId)
       })
