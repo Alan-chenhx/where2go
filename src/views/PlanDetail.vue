@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <v-container>
-      <v-row>
+      <v-row justify="center">
         <v-col cols="1" :v-if="!loading">
           <div>
             <div class="d-flex flex-column" style="height: 90vh;overflow-y: auto;position: fixed;">
@@ -23,7 +23,7 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="8" :v-if="!loading">
+        <v-col cols="9" :v-if="!loading">
           <v-timeline dense>
             <div v-for="(day, i) in itinerary" :key="i">
               <v-timeline-item fill-dot small :id="'date-'+i">
@@ -160,10 +160,11 @@ export default {
     },
     async deleteAttr(currPlanId, city, name, i, j) {
       const payload = { planId: currPlanId, city: city, name: name };
-      console.log(payload);
-      await this.removeFromItinerary(payload).then(
-        this.itinerary[i].splice(j, 1)
-      );
+      //console.log(payload);
+      await this.removeFromItinerary(payload);
+      if (this.itinerary[i].length > 1) {
+        this.itinerary[i].splice(j, 1);
+      } else this.itinerary.splice(i, 1);
     },
     toDate(n) {
       return this.startDate.addDays(n + 1);

@@ -133,7 +133,7 @@ export default {
         "pace": this.choice,
         "tags": pref
       };
-      console.log(payload)
+      //console.log(payload)
       this.createNewPlan(payload).then(this.$router.push('/plan-detail'))
     },
     add() {
