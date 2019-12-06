@@ -1,4 +1,5 @@
 <?php
+session_unset();
 session_start();
 include 'includes/db.php';
 
