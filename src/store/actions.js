@@ -15,10 +15,10 @@ export default {
           method: 'POST'
         })
         .then(resp => {
-          const currUserId = resp.data.usid
+          const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
-          console.log(state.authStatus)
+          //console.log(state.authStatus)
           dispatch('fetchUserProfile', currUserId)
           resolve(resp)
         })
@@ -40,7 +40,7 @@ export default {
           method: 'POST'
         })
         .then(resp => {
-          const currUserId = resp.data.usid
+          const currUserId = resp.data.currUserId
           //axios.defaults.headers.common['Authorization'] = currUserId
           commit('auth_success', currUserId)
           dispatch('fetchUserProfile', currUserId)

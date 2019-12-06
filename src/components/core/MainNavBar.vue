@@ -30,7 +30,7 @@
             </v-list-item-content>
             <v-list-item-title>Log In</v-list-item-title>
           </v-list-item>
-          <v-list-item v-if="isLoggedIn" @click="logout">
+          <v-list-item v-if="isLoggedIn" @click="toLogout">
             <v-list-item-content>
               <v-icon>clear</v-icon>
             </v-list-item-content>
@@ -54,6 +54,9 @@ export default {
   data: () => ({}),
   methods: {
     ...mapActions(["logout"]),
+    async toLogout() {
+      await logout().then(this.$route.push('/'))
+    },
     toLogin() {
       this.$router.push("/login");
     },
