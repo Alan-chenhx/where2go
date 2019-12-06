@@ -55,7 +55,8 @@ export default {
   methods: {
     ...mapActions(["logout"]),
     async toLogout() {
-      await this.logout().then(this.$router.push('/login'))
+      await this.logout().then()
+      this.$router.push('/login')
     },
     toLogin() {
       this.$router.push("/login");
