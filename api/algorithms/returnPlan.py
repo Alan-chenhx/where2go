@@ -53,6 +53,7 @@ for day in places:
         placedata=json.loads(placedata)
         placedata['timetonext'] = itinerarydata['timetonext']
         placedata['city'] = itinerarydata['city']
+        placedata.pop('url', None)
         # placedata=json.dumps(placedata)
         # placedata.replace()
         frontday.append(placedata)
